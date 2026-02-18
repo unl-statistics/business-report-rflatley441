@@ -1,3 +1,145 @@
 ---
 title: "Draft: Data Documentation"
 ---
+
+
+## 1) Gulf "heat sink" temperature data (near Dauphin Island)
+
+### Dataset 
+
+- Local file:** `water_temps.txt`
+- Primary variable: `WTMP` = water temperature** (units: degC) 
+
+### Who collected it
+
+- This file format matches NOAA's National Data Buoy Center(NDBC) station data products; the station page for DPHA1 describes the station and operator.
+
+### Why it exists 
+
+- NDBC station observations support marine weather/ocean monitoring (operational marine observations). The data suits usecase as it is a nearby observed water temperature time series for a coastal site.
+
+### What the data is about (fields + meaning)
+
+The file includes timestamp columns plus marine meteorology/ocean variables. The header lines define the schema and units. 
+
+Key features for project:
+
+- `YY, MM, DD, hh, mm` = date/time components (year, month, day, hour, minute) 
+- `WTMP` (**degC**) = water temperature 
+
+Optional columns possibly worth exploring:
+
+  - `ATMP` (**degC**) air temperature 
+  - `PRES` (**hPa**) pressure 
+  - `WDIR` (**degT**) wind direction; `WSPD` (**m/s**) wind speed 
+  - `TIDE` (**ft**) tide 
+
+### When the data was collected 
+
+- The file contains data for 2025
+- Time resolution is in 30-minute intervals 
+
+### Where the data was collected 
+
+NDBC station, DPHA1, location: 30.251 N, 88.078 W, Dauphin Island Sea Lab, AL
+
+### How the data was ted
+
+- Observations are recorded by the station sensor suite; the station page documents station/operator and measurement configuration like sea temp depth
+
+### Structure of the data
+
+- Plain text, whitespace-delimited table with 2 header/comment lines, starting with `#`, then numeric rows. 
+
+### Formatting decisions + missingness codes
+
+* Missing/invalid values are encoded with sentinel values that appear in the file:
+
+  - `999` and `999.0` (seen for `WDIR`, `DEWP`, etc.) 
+  - `99.0` and `99.00` (seen across wave/tide/visibility fields) 
+
+### Data validation
+
+- sentinel missingness occur somewhat frequently, so QA should include:
+
+  - % missing in `WTMP` by month
+  - gaps (long runs of missing)
+  - physically plausible range checks for `WTMP`
+
+### Reuse / licensing
+
+-  NOAA/NDBC station data are publicly distributed for reuse; cite the station page and note retrieval date/time in your report appendix.
+
+
+------------------------------------------------
+
+## 2) Electricity usage / demand data (timing of high-load periods)
+
+### Dataset
+
+- file: `eletrical_usage.csv`
+- Primary variable: `Demand (MW)` = actual demand (units: MW)
+
+### Who collected it
+
+- U.S. Energy Information Administration (EIA) collects these operational grid data through Form EIA-930 from balancing authorities
+
+### Why it exists
+
+- Supports the Hourly Electric Grid Monitor and public visibility into hourly demand, generation, and interchange.
+
+### What the data is about (fields + meaning)
+
+The file is an EIA-930 "BALANCE" consolidated CSV with BA-by-hour operational measures. It contains hourly demand forecast, demand, net generation, total interchange, and generation by source.
+
+Key features of data:
+
+- `Balancing Authority` = BA acronym/name (e.g., "AECI")
+- `Data Date` = operating date (local)
+- `Hour Number` = 1–24 hour-ending index
+- `Local Time at End of Hour` and `UTC Time at End of Hour` = timestamps
+- `Demand Forecast (MW)` = day-ahead forecasted demand
+- `Demand (MW)` = actual demand
+- `Net Generation (MW)` = net generation within BA
+- `Total Interchange (MW)` = net interchange with neighbors
+
+Optional columns possibly worth exploring:
+  - Fuel mix columns, e.g., `Net Generation (MW) from Coal`, `... Natural Gas`, etc.
+
+### When the data was collected
+
+- The file contains data for Jan–Jun 2025
+- Time resolution is hourly
+
+### Where the data was collected
+
+These are reported at the Balancing Authority level for the Lower 48 and filtered to southern region.
+
+### How the data was generated/collected
+
+- Reported via EIA's automated feeds under Form EIA-930
+
+### Structure of the data
+
+- CSV (rows = Balancing authority -hour observations; columns = demand/generation/interchange + fuel mix + variants like imputed/adjusted values)
+
+### Formatting decisions + missingness codes
+
+- EIA-930 includes "imputed" and "adjusted" series which should be documented as separate variables
+- Need to specify which one to use as "authoritative" for analysis (or how to prioritize them)
+- Define what counts as missing (blank/NA) and whether to substitute adjusted for raw when raw is missing
+
+
+### Data validation
+
+- Timezone in this dataset is different than water temp dataset. 
+- QA should include:
+
+  - missingness rate by BA
+  - negative/implausible values
+  - time continuity checks
+
+### Reuse / licensing
+
+- EIA publishes the Grid Monitor datasets for public use
+
