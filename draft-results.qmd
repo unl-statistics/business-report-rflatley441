@@ -196,6 +196,20 @@ knitr::kable(
 )
 ```
 
+::: callout-note
+
+Numbering is the same as in draft-data-doc.qmd -- don't do that job for quarto.
+
+Your code doesn't work -- make_datetime() doesn't like the character inputs you're giving it. You probably want to transform things before calling that function.
+
+In general, you need a lot more words and to connect your figures and tables into the text using labels/references as demonstrated in class.
+
+You need to explain the assumptions of your models and what they tell us, specifically. Does it matter that you're controlling for seasonality when that's an inherent part of temperature and demand fluctuation? What do your crude and adjusted models actually mean in reality? You need to spend a lot more time on what the meaning is here, and not just on the fact that you fit the model and ran a test or calculated an odds ratio. Remember, your audience is a manager who hasn't had this material and doesn't care what an odds ratio is. Focus on practical interpretation.
+
+I'm not fixing your code to get everything working, so I haven't examined your graphs yet, but please make sure you're using good color scales, etc. -- I'm happy to take a look once you fix the code.
+
+:::
+
 Monthly summaries show that exceedances of 85°F are concentrated in the late-summer and early‑fall months, when both the 95th percentile and maximum temperatures peak.
 This seasonality is important for planning maintenance and contingency capacity.
 

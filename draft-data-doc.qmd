@@ -2,6 +2,17 @@
 title: "Draft: Data Documentation"
 ---
 
+::: callout-note
+
+Put your name on your work and give it an appropriate title -- edit your _quarto.yml file
+
+Don't try to do the section numbering for quarto. Just let it do its thing. Your data documentation is reasonable for a draft but should be moved into a written, paragraph-focused form before the final report, though bullets are still a good formatting option for e.g. variables.
+
+You're going to want more than Jan-Jun 2025 data for energy usage. Can you get 2024 and/or the remainder of 2025? You're not going to be able to see the effects of climate change on anything less than 10+ years anyways, but still, you'd want more than a single summer to make business decisions.
+
+:::
+
+
 
 ## 1) Gulf "heat sink" temperature data (near Dauphin Island)
 
