@@ -1,3 +1,39 @@
 ---
 title: "Draft: Executive Summary"
 ---
+
+## Executive Summary
+
+High Gulf water temperatures can force thermal limits that reduce power-plant output at the same time electricity demand is highest. This report evaluates whether a plant with an 85°F Gulf-water operating design assumption should treat warm-season water temperatures as a material operational risk over the next five years.
+
+### Problem and purpose
+
+The business problem is a planning trade-off: if Gulf water temperatures frequently exceed 85°F, the plant may face recurring reduced-capacity operation during warm months, potentially including hours when the grid most needs full generation. The purpose of this report is to quantify (1) how often Gulf water temperature exceeds 85°F and (2) how often those exceedances coincide with peak-demand hours, then translate those patterns into one and five-year risk metrics.
+
+### Process and methods (how the problem was solved)
+
+To answer the business question, the analysis uses observed 2025 data and a transparent workflow designed for planning use:
+
+- **Data**: Gulf water temperature observations near Dauphin Island, AL and hourly electricity demand for the plant’s region.
+- **Cleaning and alignment**: Water temperatures were cleaned (including sentinel missingness), converted to Fahrenheit, and aggregated to hourly averages; demand data were cleaned and time-aligned to the same local hourly timestamps.
+- **Operational indicators**:
+  - **Exceedance**: hourly water temperature \(> 85^\circ\)F
+  - **Peak demand**: top 10% of demand hours in the study period
+- **Analysis**: descriptive summaries and seasonality plots; cross-tabulations of exceedance by peak-demand status; logistic regression models (crude, peak-only, and month-adjusted) to assess whether exceedance risk is elevated during peak-demand periods after accounting for seasonal month effects.
+- **Planning translation**: observed exceedance proportions were scaled to expected **annual** and **five-year** hours/days above 85°F under a conservative stationarity assumption (i.e., near-term conditions resemble the observed year).
+
+### Main conclusion
+
+Observed 2025 conditions indicate that water temperatures above 85°F are not rare and are strongly seasonal, clustering in late summer and early fall. A **non-trivial subset** of these exceedance hours occurs during **peak-demand** periods, creating a recurring warm-season window when the plant is most likely to be thermally constrained precisely when the grid most benefits from full capacity. Even under conservative assumptions (no additional warming beyond observed conditions), the evidence supports treating high Gulf temperatures as a risk over a five-year planning horizon.
+
+### Recommendations and decisions
+
+Based on the observed seasonality and the coincidence of thermal exceedances with high-demand hours, the report supports the following actions:
+
+- **Incorporate thermal constraints into capacity planning**: explicitly account for the warm-season exceedance window when evaluating reserves, resource adequacy, and operational readiness.
+- **Align outage and maintenance scheduling with the risk window**: avoid discretionary maintenance and planned outages during periods when both Gulf temperatures and electricity demand are likely to be high.
+- **Evaluate mitigation options with a cost–risk lens**: prioritize investments or contracting strategies that reduce the likelihood or impact of warm-season derates (e.g., cooling-system upgrades, thermal-buffering solutions, or flexible demand-response arrangements), using the estimated frequency of exceedances and their overlap with peak demand to justify expected value.
+
+### Justification for recommendations
+
+These recommendations follow directly from the empirical pattern in the data: exceedances are concentrated in a predictable seasonal window and are more consequential when they coincide with peak demand. Planning and scheduling changes are low-regret responses to a recurring constraint, and mitigation investments can be evaluated against expected reduced-capacity hours/days over the next five years.
