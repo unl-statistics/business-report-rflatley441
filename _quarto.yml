@@ -3,20 +3,20 @@ project:
   output-dir: docs
 
 book:
-  title: "Evaluation of <scenario>"
+  title: "Gulf Cooling Water and Peak Demand: Thermal Risk for Coastal Generation"
   author: "Ryan Flatley"
   page-footer:
-    left: "Copyright 2025, Author Name"
+    left: "Copyright 2026, Ryan Flatley"
   chapters:
     - index.qmd
-    - intro.qmd
     - summary.qmd
+    - intro.qmd
+    - methods.qmd
+    - results.qmd
+    - discussion.qmd
     - references.qmd
   appendices:
     - draft-data-doc.qmd
-    - draft-results.qmd
-    - draft-intro-conclusions.qmd
-    - draft-exec-summary.qmd
 
 bibliography: references.bib
 
@@ -26,6 +26,4 @@ format:
     theme: cosmo
   pdf:
     documentclass: scrreprt
-
-
 

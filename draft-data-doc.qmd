@@ -1,25 +1,13 @@
----
-title: "Draft: Data Documentation"
----
+# Data documentation {#sec-data-appendix}
 
-::: callout-note
+This appendix supports @sec-methods and @sec-results by documenting **sources**, **variables**, and **merge rules** for the two public datasets used in the report. Citations: NDBC station page [@ndbc-dpha1]; EIA Hourly Electric Grid Monitor [@eia-grid-monitor].
 
-Put your name on your work and give it an appropriate title -- edit your _quarto.yml file
-
-Don't try to do the section numbering for quarto. Just let it do its thing. Your data documentation is reasonable for a draft but should be moved into a written, paragraph-focused form before the final report, though bullets are still a good formatting option for e.g. variables.
-
-You're going to want more than Jan-Jun 2025 data for energy usage. Can you get 2024 and/or the remainder of 2025? You're not going to be able to see the effects of climate change on anything less than 10+ years anyways, but still, you'd want more than a single summer to make business decisions.
-
-:::
-
-
-
-## 1) Gulf "heat sink" temperature data (near Dauphin Island)
+## Gulf heat-sink temperature (near Dauphin Island) {#sec-data-water}
 
 ### Dataset 
 
-- Local file:** `water_temps.txt`
-- Primary variable: `WTMP` = water temperature** (units: degC) 
+- Local file: `water_temps.txt`
+- Primary variable: `WTMP` = water temperature (units: °C) 
 
 ### Who collected it
 
@@ -54,7 +42,7 @@ Optional columns possibly worth exploring:
 
 NDBC station, DPHA1, location: 30.251 N, 88.078 W, Dauphin Island Sea Lab, AL
 
-### How the data was ted
+### How the data was collected
 
 - Observations are recorded by the station sensor suite; the station page documents station/operator and measurement configuration like sea temp depth
 
@@ -84,11 +72,11 @@ NDBC station, DPHA1, location: 30.251 N, 88.078 W, Dauphin Island Sea Lab, AL
 
 ------------------------------------------------
 
-## 2) Electricity usage / demand data (timing of high-load periods)
+## Electricity usage and demand (timing of high-load periods) {#sec-data-electricity}
 
 ### Dataset
 
-- file: `eletrical_usage.csv`
+- file: `electrical_usage.csv`
 - Primary variable: `Demand (MW)` = actual demand (units: MW)
 
 ### Who collected it

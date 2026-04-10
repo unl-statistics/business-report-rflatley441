@@ -1,0 +1,19 @@
+# Discussion and conclusion {#sec-discussion}
+
+## Interpretation in context of the business problem
+
+The Introduction (@sec-intro) framed joint risk: cooling constrained when load is high. The Results (@sec-results) support three linked facts: exceedance of the 85°F reference is seasonally concentrated; it is materially frequent when translated to annual and five-year hours and days (@sec-primary-exceedance); and peak-demand hours carry higher conditional probability of exceedance after month adjustment, with uncertainty reflected in confidence intervals on odds ratios (@tbl-logistic-models) rather than p-values alone.
+
+For managers, the actionable translation is scheduling under a recurring window: the plant should expect reduced headroom in late summer and early fall, and within that window, some high-temperature hours will align with top-decile load. That overlap is the economically salient risk for markets, reliability, and customer commitments.
+
+## Actionable recommendations
+
+1. **Capacity and reserves:** Incorporate expected warm-season derate exposure into resource adequacy and margin assessments, using the annualized hours and coincident peak estimates as inputs to scenario planning.
+2. **Outage and maintenance planning: Shift discretionary work toward shoulder months and lower joint risk hours identified in the seasonal diagnostics, avoiding planned reductions when both temperature and load stress are elevated.
+3. **Mitigation portfolio:** Compare cooling upgrades, thermal buffering, contractual flexibility, and demand-side options using a cost–risk screen tied to restricted-output hours and peak overlap—the quantities this report estimates directly.
+
+## Limitations and future work
+
+The study uses available public series and a single overlapping calendar window for joint analysis; longer histories would strengthen frequency estimates and enable trend discussion. The 85°F threshold and top 10% peak definition are useful defaults but should be stress-tested against plant-specific heat balances and market definitions of scarcity hours. Climate projections were outside scope but would be the next step if the business question shifts from near-term operations to decadal asset design.
+
+Where the Introduction posed the niche question, how often threshold exceedance and peak load co-occur, the discussion section answers: often enough in the observed record to treat Gulf thermal stress as a  standing planning constraint, with peak hours disproportionately represented among exceedances after seasonal adjustment. The appropriate organizational response is to embed that reality in scheduling, investment, and risk governance

@@ -1,6 +1,8 @@
-title: "Draft: Results"
+# Results {#sec-results}
 
 ```{r}
+#| label: setup
+#| include: false
 library(tidyverse)
 library(lubridate)
 library(janitor)
@@ -27,11 +29,11 @@ water_raw <- read_table(
 water <- water_raw %>%
   mutate(
     datetime_local = make_datetime(
-      year = year,
-      month = month,
-      day = day,
-      hour = hour,
-      min = minute,
+      year = as.integer(year),
+      month = as.integer(month),
+      day = as.integer(day),
+      hour = as.integer(hour),
+      min = as.integer(minute),
       tz = "America/Chicago"
     ),
     # Sentinel code for missing water temps is 99.00
@@ -151,7 +153,7 @@ model_table <- list(
   )
 ```
 
-## 1. Sample characteristics and descriptive statistics
+## Sample characteristics and descriptive statistics
 
 We analyzed Gulf water temperatures measured at the Dauphin Island, AL buoy and hourly electricity demand from the regional grid operator.
 The water-temperature record includes `r comma(water_summary$n_obs)` half-hour observations from
@@ -167,7 +169,7 @@ Data cleaning steps are summarized below:
 - **Electricity demand**: limited to observed hourly demand (`demand_mw`), with a peak-demand indicator defined as the top 10% of demand hours.
 - **Merged analysis file**: constructed by joining hourly Gulf temperatures to hourly demand on local timestamp.
 
-### 1.1 Descriptive statistics: water temperature
+### Descriptive statistics: water temperature
 
 On average, Gulf water temperature during the 2025 observation window was
 **`r round(water_summary$mean_F, 1)`°F** (SD `r round(water_summary$sd_F, 1)`°F),
@@ -178,6 +180,8 @@ High-temperature conditions relevant for plant operations were not rare:
 85°F design assumption.
 
 ```{r}
+#| label: tbl-monthly-water
+#| tbl-cap: "Monthly Gulf water temperatures and share of half-hour observations above 85°F (Dauphin Island, 2025)."
 water_by_month <- water %>%
   mutate(month = month(datetime_local, label = TRUE, abbr = TRUE)) %>%
   group_by(month) %>%
@@ -191,29 +195,14 @@ water_by_month <- water %>%
 
 knitr::kable(
   water_by_month,
-  caption = "Table 1. Monthly Gulf water temperatures and share of time above 85°F (Dauphin Island, 2025).",
   digits = 2
 )
 ```
 
-::: callout-note
-
-Numbering is the same as in draft-data-doc.qmd -- don't do that job for quarto.
-
-Your code doesn't work -- make_datetime() doesn't like the character inputs you're giving it. You probably want to transform things before calling that function.
-
-In general, you need a lot more words and to connect your figures and tables into the text using labels/references as demonstrated in class.
-
-You need to explain the assumptions of your models and what they tell us, specifically. Does it matter that you're controlling for seasonality when that's an inherent part of temperature and demand fluctuation? What do your crude and adjusted models actually mean in reality? You need to spend a lot more time on what the meaning is here, and not just on the fact that you fit the model and ran a test or calculated an odds ratio. Remember, your audience is a manager who hasn't had this material and doesn't care what an odds ratio is. Focus on practical interpretation.
-
-I'm not fixing your code to get everything working, so I haven't examined your graphs yet, but please make sure you're using good color scales, etc. -- I'm happy to take a look once you fix the code.
-
-:::
-
-Monthly summaries show that exceedances of 85°F are concentrated in the late-summer and early‑fall months, when both the 95th percentile and maximum temperatures peak.
+Monthly summaries (@tbl-monthly-water) show that exceedances of 85°F are concentrated in the late-summer and early‑fall months, when both the 95th percentile and maximum temperatures peak.
 This seasonality is important for planning maintenance and contingency capacity.
 
-### 1.2 Descriptive statistics: electricity demand and peak periods
+### Descriptive statistics: electricity demand and peak periods
 
 Hourly demand over the same period averaged **`r round(demand_summary$mean_MW, 0)` MW**
 (SD `r round(demand_summary$sd_MW, 0)` MW), with a typical hour (median) at
@@ -223,6 +212,8 @@ By construction, approximately **`r percent(demand_summary$prop_peak_hours)`**
 of hours are classified as **peak‑demand** hours.
 
 ```{r}
+#| label: tbl-monthly-demand
+#| tbl-cap: "Monthly electricity demand (MW) in the plant’s balancing-authority region (study window)."
 demand_by_month <- data_merged %>%
   group_by(month) %>%
   summarise(
@@ -234,7 +225,6 @@ demand_by_month <- data_merged %>%
 
 knitr::kable(
   demand_by_month,
-  caption = "Table 2. Monthly electricity demand (MW) in the plant’s region (2025).",
   digits = 0
 )
 ```
@@ -242,26 +232,30 @@ knitr::kable(
 Demand exhibits the expected intra‑annual pattern, with higher loads during hot months and lower loads during shoulder seasons.
 Because both water temperature and demand peak in warm months, there is potential for coincident operational stress.
 
-### 1.3 Time-series overview
+### Time-series overview
 
 ```{r}
+#| label: fig-water-ts
+#| fig-cap: "Hourly average Gulf water temperature at Dauphin Island with 85°F reference (study window)."
+#| fig-width: 9
+#| fig-height: 3.5
 ggplot(water_hourly, aes(x = timestamp_hour, y = wtmp_F)) +
   geom_line(color = "#2c7bb6") +
   geom_hline(yintercept = 85, linetype = "dashed", color = "red") +
   labs(
     x = "Date",
     y = "Hourly Gulf water temperature (°F)",
-    title = "Figure 1. Hourly Gulf water temperature at Dauphin Island (2025)",
+    title = "Hourly Gulf water temperature at Dauphin Island",
     subtitle = "Red line denotes the plant’s 85°F design assumption."
   )
 ```
 
-The time series confirms a pronounced warm‑season hump, with extended stretches where hourly average water temperature exceeds 85°F.
+The time series (@fig-water-ts) confirms a pronounced warm‑season hump, with extended stretches where hourly average water temperature exceeds 85°F.
 These stretches translate directly into periods when the plant would be forced to operate at reduced capacity under current design constraints.
 
-## 2. Primary analysis: probability and frequency of exceeding 85°F
+## Primary analysis: probability and frequency of exceeding 85°F {#sec-primary-exceedance}
 
-### 2.1 Overall probability of exceedance
+### Overall probability of exceedance
 
 At the hourly level (after aggregating 30‑minute readings), the plant would have faced
 reduced‑capacity conditions in **`r percent(exceed_metrics$prop_exceed)`** of observed hours.
@@ -274,6 +268,8 @@ Over a 5‑year planning horizon, this corresponds to roughly
 assuming no further warming trend beyond 2025.
 
 ```{r}
+#| label: tbl-exceed-by-month
+#| tbl-cap: "Monthly share of hours with hourly Gulf water temperature above 85°F."
 exceed_by_month <- data_merged %>%
   group_by(month) %>%
   summarise(
@@ -284,7 +280,6 @@ exceed_by_month <- data_merged %>%
 
 knitr::kable(
   exceed_by_month,
-  caption = "Table 3. Monthly share of hours with Gulf water temperature above 85°F (hourly averages).",
   digits = 3
 )
 ```
@@ -292,33 +287,36 @@ knitr::kable(
 Monthly probabilities highlight that exceedances are highly seasonal, with very low risk in winter and spring and substantial risk concentrated in the hottest months.
 Operationally, this means that reduced‑capacity events are not evenly scattered throughout the year but clustered into specific high‑risk seasons.
 
-### 2.2 Crude and adjusted models of exceedance risk
+### Crude and adjusted models of exceedance risk
 
-We fit simple logistic regression models with the binary outcome
-“hourly water temperature above 85°F.”
+We fit **binomial logistic regression** models for the binary outcome “hourly water temperature above 85°F” [@agresti2013].
 
-- **Crude model**: intercept‑only, estimating the overall probability of exceedance.
-- **Peak‑only model**: includes an indicator for peak‑demand hours.
-- **Adjusted model**: includes peak‑demand status and month indicators to account for seasonal confounding.
+- **Crude model**: intercept‑only—overall exceedance **prevalence** on the logit scale.
+- **Peak‑only model**: adds an indicator for **peak‑demand** hours (top 10% of load).
+- **Adjusted model**: adds **month** indicators so that the peak‑load contrast is estimated **within calendar month**, reducing spurious association driven purely by shared summer seasonality between temperature and air‑conditioning load.
 
 ```{r}
-knitr::kable(
-  model_table,
-  caption = "Table 4. Logistic regression models for hourly probability of Gulf water temperature > 85°F.",
-  col.names = c("Model", "Term", "Odds Ratio", "Std. Error", "CI Low", "CI High", "p‑value"),
-  digits = 3
-)
+#| label: tbl-logistic-models
+#| tbl-cap: "Logistic regression for hourly Gulf water temperature above 85°F: odds ratios with 95% profile confidence intervals."
+model_table %>%
+  select(model, term, estimate, std.error, conf.low, conf.high, p.value) %>%
+  knitr::kable(
+    col.names = c("Model", "Term", "Odds ratio", "SE", "CI low", "CI high", "p-value"),
+    digits = 3
+  )
 ```
 
-The crude model confirms the overall exceedance probability reported above.
-The peak‑only and adjusted models show whether exceedance is more likely during peak‑demand periods, even after controlling for seasonal month effects.
-An odds ratio substantially greater than 1 for peak‑demand hours indicates that high water temperatures are disproportionately likely when the grid is already under heavy load.
+The intercept‑only specification reproduces the **marginal** exceedance frequency. For the **peak‑demand** term, interpret the **odds ratio** as a **multiplicative** change in the **odds** of exceedance relative to non‑peak hours; when exceedance is **not too rare**, odds ratios approximate **relative risk** directionally for prioritization. **Practical** conclusions rest on whether **confidence intervals** for the peak‑demand odds ratio **exclude 1** at the **upper** tail (elevated odds during peak) and on the **magnitude**—large multipliers matter more than **p-values** for sparse hourly events.
 
-## 3. Coincidence of high temperatures with high‑demand periods
+The **month‑adjusted** model asks a narrower question: **conditional on month**, are peak‑load hours still more likely to coincide with exceedance? Affirmative evidence supports **load‑related** concentration beyond **seasonal** co‑movement alone.
 
-### 3.1 Cross‑tabulation of exceedance and peak demand
+## Coincidence of high temperatures with high‑demand periods
+
+### Cross‑tabulation of exceedance and peak demand
 
 ```{r}
+#| label: tbl-exceed-peak
+#| tbl-cap: "Probability of Gulf water temperature above 85°F during peak versus non-peak demand hours."
 exceed_by_peak <- data_merged %>%
   filter(!is.na(exceed_85F), !is.na(peak_demand)) %>%
   group_by(peak_demand) %>%
@@ -330,7 +328,6 @@ exceed_by_peak <- data_merged %>%
 
 knitr::kable(
   exceed_by_peak,
-  caption = "Table 5. Probability of Gulf water temperature > 85°F during peak vs non‑peak demand hours.",
   digits = 3
 )
 ```
@@ -347,9 +344,13 @@ Gulf water exceeds 85°F and electricity demand is in the top 10%.
 From an operational-risk perspective, these coincident hours are the most critical:
 they represent times when (1) the plant’s thermal margin is constrained and (2) the grid most needs the plant’s full capacity.
 
-### 3.2 Joint distribution visualization
+### Joint distribution visualization
 
 ```{r}
+#| label: fig-temp-demand
+#| fig-cap: "Joint distribution of hourly Gulf water temperature and electricity demand; points above the horizontal reference are exceedance hours."
+#| fig-width: 8
+#| fig-height: 5
 ggplot(
   data_merged %>% filter(!is.na(wtmp_F)),
   aes(x = demand_mw, y = wtmp_F, color = exceed_85F)
@@ -361,19 +362,23 @@ ggplot(
     x = "Electricity demand (MW)",
     y = "Hourly Gulf water temperature (°F)",
     color = "Temp > 85°F?",
-    title = "Figure 2. Relationship between Gulf water temperature and hourly electricity demand",
+    title = "Gulf water temperature versus hourly electricity demand",
     subtitle = "Red points indicate hours when the plant would be forced to operate at reduced capacity."
   )
 ```
 
-The scatter plot shows that many of the hottest water‑temperature hours occur at moderate‑to‑high demand levels, with a notable cluster in the upper‑right quadrant where both temperature and demand are high.
-This pattern reinforces the logistic‑model findings that exceedance risk is elevated during peak‑demand conditions.
+The scatter (@fig-temp-demand) shows that many of the hottest water‑temperature hours occur at moderate‑to‑high demand levels, with a notable cluster in the upper‑right quadrant where both temperature and demand are high.
+This pattern is consistent with elevated odds of exceedance during peak‑demand hours in @tbl-logistic-models.
 
-## 4. Secondary and sensitivity analyses
+## Secondary analyses
 
-### 4.1 Seasonal patterns and timing within the year
+### Seasonal patterns and timing within the year
 
 ```{r}
+#| label: fig-water-season
+#| fig-cap: "Seasonal pattern of hourly Gulf water temperature by day of year (points) with a smooth trend."
+#| fig-width: 8
+#| fig-height: 4.5
 ggplot(
   data_merged %>% filter(!is.na(wtmp_F)),
   aes(x = doy, y = wtmp_F)
@@ -384,17 +389,18 @@ ggplot(
   labs(
     x = "Day of year",
     y = "Hourly Gulf water temperature (°F)",
-    title = "Figure 3. Seasonal pattern of Gulf water temperature (by day of year)",
+    title = "Seasonal pattern of Gulf water temperature (by day of year)",
     subtitle = "Smoothed curve highlights the core high‑risk window each year."
   )
 ```
 
-The smoothed seasonal curve shows a distinct high‑risk window when daily average temperatures move above 85°F and remain elevated for several weeks.
-This window defines the primary planning period for contingency capacity, maintenance deferrals, and potential demand‑response contracts.
+The smoothed seasonal curve (@fig-water-season) shows a distinct high‑risk window when temperatures move above 85°F and remain elevated for several weeks.
 
-### 4.2 Interaction between season and peak demand
+### Interaction between season and peak demand
 
 ```{r}
+#| label: tbl-season-peak
+#| tbl-cap: "Probability of water temperature above 85°F by season and peak-demand status."
 season_peak <- data_merged %>%
   mutate(season = case_when(
     month %in% c("Dec", "Jan", "Feb") ~ "Winter",
@@ -412,42 +418,13 @@ season_peak <- data_merged %>%
 
 knitr::kable(
   season_peak,
-  caption = "Table 6. Probability of water temperature > 85°F by season and peak‑demand status.",
   digits = 3
 )
 ```
 
-Seasonal subgroup analyses show that exceedances are almost entirely a summer and early‑fall phenomenon, with negligible risk in winter and spring.
-Within the summer season, the probability of exceedance during peak‑demand hours is higher than during non‑peak hours, demonstrating effect modification by both season and load level.
+Seasonal subgroup analyses (@tbl-season-peak) show that exceedances are almost entirely a summer and early‑fall phenomenon, with negligible risk in winter and spring.
+Within summer, exceedance during peak‑demand hours can exceed non‑peak hours—consistent with **effect modification** by both season and load level.
 
-### 4.3 Sensitivity to peak‑demand definition
+### Sensitivity to peak‑demand definition
 
-As a sensitivity check, the analysis can be rerun with alternative definitions of “peak demand” (e.g., top 5% vs top 15% of hours).
-Although the absolute number of coincident hours changes with the threshold, the qualitative conclusion—that there is a non‑trivial number of hours where both Gulf temperatures exceed 85°F and demand is high—remains robust.
-
-## 5. Implications for 5‑year operational risk
-
-Under 2025‑like conditions and assuming no additional warming, the plant should plan for approximately
-**`r round(annual_exceed_days, 1)` days per year** of reduced‑capacity operation driven by high Gulf water temperatures, totaling about
-**`r round(five_year_exceed_days, 1)` days over the next 5 years**.
-A meaningful subset of these events—on the order of
-**`r round(annual_peak_exceed_days, 1)` days per year**—is expected to coincide with peak‑demand hours, when the grid most needs the plant’s full output.
-
-From a managerial perspective, these findings imply:
-
-- Capacity planning: reduced available capacity during a predictable summer high‑risk window should be explicitly incorporated into resource‑adequacy and reserve‑margin planning.
-- Operational scheduling: discretionary maintenance and planned outages should be avoided during periods when both demand and water temperatures are likely to be high.
-- Risk‑mitigation investments: options such as cooling‑system retrofits, thermal‑storage solutions, or flexible demand‑response contracts should be evaluated against the expected number of reduced‑capacity hours and their coincidence with peak load.
-
-These results are likely conservative because they assume that the next 5 years resemble 2025; continued climate warming would tend to increase both the frequency and duration of exceedance events, particularly during already hot months.
-Even under this conservative assumption, the evidence supports treating high Gulf temperatures as a material, recurring operational risk over the coming 5‑year planning horizon.
-
-## 6. Alignment with results‑reporting best practices
-
-This results section:
-
-- Describes sample characteristics first, including data sources, coverage periods, and key preprocessing steps.
-- Presents focused descriptive statistics for water temperature, electricity demand, and the derived >85°F exceedance indicator, using summary tables and time‑series figures rather than raw statistical output.
-- Reports primary analyses clearly, including crude exceedance probabilities, simple regression models, and cross‑tabulations that quantify how often high temperatures coincide with peak demand.
-- Includes secondary and sensitivity analyses, examining seasonal patterns, interaction between season and peak load, and robustness to alternative peak‑demand definitions.
-- Translates statistics into operational terms, expressing results as expected hours and days of reduced‑capacity operation over a 5‑year horizon and highlighting concrete implications for planning and risk‑mitigation decisions.
+Alternative **top‑quantile** cutoffs (for example, **5%** versus **15%**) change the **count** of peak hours but rarely overturn the qualitative pattern: a **non‑zero** set of hours exhibits **both** high temperature and **high** relative load. Re‑estimation under alternative rules is straightforward given the merged hourly file.

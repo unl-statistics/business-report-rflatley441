@@ -1,3 +1,35 @@
-# Summary
+# Executive summary {.unnumbered}
 
-In summary, this book has no content whatsoever.
+::: {.callout-note appearance="minimal"}
+## How to read this summary
+
+Section headings below follow the same order as the full report: Introduction, Methods, Results, and Discussion. Numbers cited here are developed in @sec-results and supported by the data sources described in @sec-methods and documented in @sec-data-appendix.
+:::
+
+## Introduction 
+
+Coastal steam and combined-cycle plants often rely on Gulf water as a heat sink. When nearshore water temperature approaches design limits, operators may need to reduce output—sometimes during the same summer and early-fall hours when electricity demand is highest. The business question is whether an 85°F Gulf-water assumption remains a credible planning baseline or whether observed temperatures and their overlap with peak demand warrant capacity, scheduling, and mitigation decisions now.
+
+This assessment occupies a specific niche: regional, hour-level operational risk—not long-run climate attribution—using public marine and grid data to estimate how often the 85°F threshold is exceeded and how often those hours coincide with top-decile load.
+
+## Methods 
+
+The analysis links hourly Gulf water temperature from NOAA’s NDBC buoy record near Dauphin Island [@ndbc-dpha1] to hourly balancing-authority demand from the U.S. EIA Hourly Electric Grid Monitor [@eia-grid-monitor]. Water temperatures were cleaned (including sentinel missingness), converted to °F, and averaged to hourly values; demand was aligned on local timestamps. Exceedance is defined as hourly water temperature above 85°F; peak demand is the top 10% of hours by load in the study window.
+
+Binomial logistic regression [@agresti2013] estimates how the probability of exceedance changes with peak-load status, with a month-adjusted model to separate load-driven association from seasonal co-movement of temperature and demand. Results emphasize confidence intervals and frequency translation (expected hours and days per year and over five years) rather than null-hypothesis testing.
+
+## Results
+
+- Seasonality: Exceedances concentrate in late summer and early fall; winter and spring show comparatively little high-temperature risk (@fig-water-ts, @fig-water-season, @tbl-monthly-water).
+- Frequency: Under stationarity of the observed year, hourly exceedance rates scale to substantial annual and five-year counts of high-temperature hours (@sec-primary-exceedance).
+- Overlap with peak load: A non-trivial share of exceedance hours occurs when demand is in the top decile, and model estimates show higher odds of exceedance during peak-load hours after accounting for month—with uncertainty summarized by odds ratios and profile confidence intervals (@tbl-logistic-models, @fig-temp-demand).
+
+::: {.callout-important}
+## Bottom line for decision-makers
+
+Treat warm-season Gulf temperatures as a recurring constraint, not a rare tail event. Plan capacity and maintenance around a predictable high-risk window, and evaluate cooling upgrades or contracts using expected restricted-output hours and their overlap with peak demand—not only single-year averages.
+:::
+
+## Discussion
+
+Detailed interpretation and limitations appear in @sec-discussion. In brief: embed thermal derate risk in resource-adequacy and reserve planning; shift discretionary outages away from months and hours where temperature and load jointly stress the system; and prioritize mitigation options using a cost–risk comparison tied to the frequency and coincidence estimates in this report.

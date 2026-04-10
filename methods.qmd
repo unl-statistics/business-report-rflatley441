@@ -1,0 +1,35 @@
+# Methods {#sec-methods}
+
+## Study design and estimand
+
+The estimand is operational, not causal: the probability that hourly Gulf water temperature exceeds 85°F and how that probability differs during peak-demand hours versus other hours, holding month fixed to reflect the strong shared seasonality of temperature and air-conditioning load. The report also reports descriptive frequencies—how often exceedances occur overall and jointly with peak demand—scaled to annual and five-year hours and days under a stationarity assumption (recent conditions remain representative of the near term).
+
+## Data sources and role in place of primary collection {#sec-data-role}
+
+Because this is a secondary-data study, source selection is part of the method. NDBC provides continuous nearshore sea surface temperature suitable for a local heat-sink proxy [@ndbc-dpha1]. EIA-930 provides hourly demand comparable in time resolution for defining system stress [@eia-grid-monitor]. Full provenance, fields, missing-data conventions, and merge logic are documented in @sec-data-appendix; this chapter states only what is necessary to interpret the models and results.
+
+## Outcomes and operational indicators
+
+Exceedance is the binary indicator equal to one when hourly water temperature exceeds \(85^\circ\)F after aggregating 30-minute buoy readings to hourly means (an hour exceeds if any aligned sub-hourly value exceeds after aggregation—implemented as any sub-hourly exceedance within the hour). Peak demand is an indicator for hours at or above the 90th percentile of observed hourly demand in the merged window. The percentile definition is internal to the sample and should be read as relative stress within the study period rather than an industry-wide reserve event definition.
+
+## Statistical methods and justification
+
+### Why logistic regression
+
+The primary outcome is binary. Binomial logistic regression models the log-odds of exceedance as a linear function of predictors [@agresti2013; @mccullagh1989]. This choice matches the data type, yields multiplicative odds statements comparable across subgroups, and supports interval estimates via profile likelihood intervals for parameters (reported on the odds-ratio scale via exponentiation).
+
+Three specifications are fit:
+
+1. Intercept-only (“crude”) model: overall exceedance prevalence on the logit scale.
+2. Peak-demand indicator: tests whether odds of exceedance differ during peak hours without seasonal adjustment.
+3. Peak + month factors: adjusts for month to reduce confounding when both temperature and load rise in summer.
+
+p-values are secondary; practical significance is assessed using magnitude and confidence intervals for odds ratios and by translating probabilities into expected hours per year.
+
+### Frequency translation
+
+Let \(\hat{p}\) be the sample proportion of hours with exceedance among hours with non-missing temperature. Under stationarity, expected annual exceedance hours are \(\hat{p} \times 365 \times 24\); five-year totals multiply by five. These projections are planning aids, not forecasts with climate or weather uncertainty bands.
+
+## What this chapter does not contain
+
+Following standard reporting practice, methods do not present findings or recommendations; those appear in @sec-results and @sec-discussion.
