@@ -9,7 +9,7 @@ For managers, the actionable translation is scheduling under a recurring window:
 ## Actionable recommendations
 
 1. **Capacity and reserves:** Incorporate expected warm-season derate exposure into resource adequacy and margin assessments, using the annualized hours and coincident peak estimates as inputs to scenario planning.
-2. **Outage and maintenance planning: Shift discretionary work toward shoulder months and lower joint risk hours identified in the seasonal diagnostics, avoiding planned reductions when both temperature and load stress are elevated.
+2. **Outage and maintenance planning:** Shift discretionary work toward shoulder months and lower joint risk hours identified in the seasonal diagnostics, avoiding planned reductions when both temperature and load stress are elevated.
 3. **Mitigation portfolio:** Compare cooling upgrades, thermal buffering, contractual flexibility, and demand-side options using a cost–risk screen tied to restricted-output hours and peak overlap—the quantities this report estimates directly.
 
 ## Limitations and future work
