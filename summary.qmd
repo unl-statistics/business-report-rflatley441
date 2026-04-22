@@ -10,8 +10,6 @@ Section headings below follow the same order as the full report: Introduction, M
 
 Coastal steam and combined-cycle plants often rely on Gulf water as a heat sink. When nearshore water temperature approaches design limits, operators may need to reduce output—sometimes during the same summer and early-fall hours when electricity demand is highest. The business question is whether an 85°F Gulf-water assumption remains a credible planning baseline or whether observed temperatures and their overlap with peak demand warrant capacity, scheduling, and mitigation decisions now.
 
-This assessment occupies a specific niche: regional, hour-level operational risk—not long-run climate attribution—using public marine and grid data to estimate how often the 85°F threshold is exceeded and how often those hours coincide with top-decile load.
-
 ## Methods 
 
 The analysis links hourly Gulf water temperature from NOAA’s NDBC buoy record near Dauphin Island [@ndbc-dpha1] to hourly balancing-authority demand from the U.S. EIA Hourly Electric Grid Monitor [@eia-grid-monitor]. Water temperatures were cleaned (including sentinel missingness), converted to °F, and averaged to hourly values; demand was aligned on local timestamps. Exceedance is defined as hourly water temperature above 85°F; peak demand is the top 10% of hours by load in the study window.
