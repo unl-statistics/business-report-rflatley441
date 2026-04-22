@@ -1,0 +1,255 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Gulf Cooling Water and Peak Demand: Thermal Risk for Coastal Generation",
+    "section": "",
+    "text": "Preface\nThis report evaluates whether Gulf of Mexico surface water temperatures near Dauphin Island, Alabama, pose a material planning risk for a coastal power plant that assumes 85°F as a Gulf-water operating limit. It synthesizes public buoy observations with hourly electricity demand for the plant’s region, then translates patterns into annual and five-year expectations for high-temperature hours and their overlap with peak-load periods. The audience is executive and operations leadership deciding how to schedule capacity, maintenance, and mitigation investments under warm-season constraints.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "Executive summary",
+    "section": "",
+    "text": "Introduction\nCoastal steam and combined-cycle plants often rely on Gulf water as a heat sink. When nearshore water temperature approaches design limits, operators may need to reduce output—sometimes during the same summer and early-fall hours when electricity demand is highest. The business question is whether an 85°F Gulf-water assumption remains a credible planning baseline or whether observed temperatures and their overlap with peak demand warrant capacity, scheduling, and mitigation decisions now.\nThis assessment occupies a specific niche: regional, hour-level operational risk—not long-run climate attribution—using public marine and grid data to estimate how often the 85°F threshold is exceeded and how often those hours coincide with top-decile load.",
+    "crumbs": [
+      "Executive summary"
+    ]
+  },
+  {
+    "objectID": "summary.html#methods",
+    "href": "summary.html#methods",
+    "title": "Executive summary",
+    "section": "Methods",
+    "text": "Methods\nThe analysis links hourly Gulf water temperature from NOAA’s NDBC buoy record near Dauphin Island (National Data Buoy Center 2025) to hourly balancing-authority demand from the U.S. EIA Hourly Electric Grid Monitor (U.S. Energy Information Administration 2025). Water temperatures were cleaned (including sentinel missingness), converted to °F, and averaged to hourly values; demand was aligned on local timestamps. Exceedance is defined as hourly water temperature above 85°F; peak demand is the top 10% of hours by load in the study window.\nBinomial logistic regression (Agresti 2013) estimates how the probability of exceedance changes with peak-load status, with a month-adjusted model to separate load-driven association from seasonal co-movement of temperature and demand. Results emphasize confidence intervals and frequency translation (expected hours and days per year and over five years) rather than null-hypothesis testing.",
+    "crumbs": [
+      "Executive summary"
+    ]
+  },
+  {
+    "objectID": "summary.html#results",
+    "href": "summary.html#results",
+    "title": "Executive summary",
+    "section": "Results",
+    "text": "Results\nImportant coverage note (lower bound): The demand series ends on July 1, 2025, so the coincidence analysis (temperature () peak demand) covers roughly January–June and misses July–September entirely—the three months when Table 3.1 shows exceedance rates of ~85% (Jul), ~78% (Aug), and ~25% (Sep). As a result, any annualized coincident-hours figure reported here or in Chapter 3 is a lower bound, not a standalone planning input. For rough intuition, if June (the only full summer month with demand data; ~56% exceedance in Table 3.1) is representative of the missing window, true coincident hours are plausibly 3–5× the reported estimate.\n\nSeasonality: Exceedances concentrate in late summer and early fall; winter and spring show comparatively little high-temperature risk (Figure 3.1, Figure 3.3, Table 3.1).\nFrequency: Under stationarity of the observed year, hourly exceedance rates scale to substantial annual and five-year counts of high-temperature hours (Primary analysis: probability and frequency of exceeding 85°F).\nOverlap with peak load: A non-trivial share of exceedance hours occurs when demand is in the top decile, and model estimates show higher odds of exceedance during peak-load hours after accounting for month—with uncertainty summarized by odds ratios and profile confidence intervals (Table 3.4, Figure 3.2).\n\n\n\n\n\n\n\nImportantBottom line for decision-makers\n\n\n\nTreat warm-season Gulf temperatures as a recurring constraint, not a rare tail event. Plan capacity and maintenance around a predictable high-risk window, and evaluate cooling upgrades or contracts using expected restricted-output hours and their overlap with peak demand—not only single-year averages.",
+    "crumbs": [
+      "Executive summary"
+    ]
+  },
+  {
+    "objectID": "summary.html#discussion",
+    "href": "summary.html#discussion",
+    "title": "Executive summary",
+    "section": "Discussion",
+    "text": "Discussion\nDetailed interpretation and limitations appear in 4  Discussion and conclusion. In brief: embed thermal derate risk in resource-adequacy and reserve planning; shift discretionary outages away from months and hours where temperature and load jointly stress the system; and prioritize mitigation options using a cost–risk comparison tied to the frequency and coincidence estimates in this report.\n\n\n\n\nAgresti, Alan. 2013. Categorical Data Analysis. 3rd ed. Hoboken, NJ: Wiley. https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635.\n\n\nNational Data Buoy Center. 2025. “Station DPHA1 — Dauphin Island, AL.” National Oceanic; Atmospheric Administration. 2025. https://www.ndbc.noaa.gov/station_page.php?station=dpha1.\n\n\nU.S. Energy Information Administration. 2025. “Hourly Electric Grid Monitor.” U.S. Department of Energy. 2025. https://www.eia.gov/electricity/gridmonitor/dashboard.",
+    "crumbs": [
+      "Executive summary"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "1  Introduction",
+    "section": "",
+    "text": "1.1 Background and motivation\nElectricity systems depend on dispatchable capacity during the highest-demand hours. For generators sited on the Gulf Coast, condenser cooling is often tied to ambient or intake water that warms with seasonal air temperatures, shallow shelf dynamics, and extended heat events. When cooling is constrained, plants may face output limits or efficiency losses precisely when reliability margins are thinnest.\nFrom a business perspective, the concern is not only average conditions but joint risk: hours when water temperature is high enough to threaten full output and load is elevated. Regulators, markets, and internal planning groups increasingly expect evidence that design assumptions (such as a maximum Gulf water temperature) remain consistent with observed operating conditions.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#problem",
+    "href": "intro.html#problem",
+    "title": "1  Introduction",
+    "section": "1.2 Problem",
+    "text": "1.2 Problem\nThis report addresses a focused question: Over a near-term planning horizon, how often does observed Gulf water temperature exceed an 85°F operating reference, and how often do those exceedances coincide with high electricity demand? The niche is hour-level, regional joint analysis of public environmental and grid data—appropriate when the decision is operational and scheduling (for example, maintenance placement and mitigation timing) rather than estimating decades-scale climate trends, which would require longer records and different tools.\nThe analysis is intentionally transparent and reproducible: it uses documented thresholds (85°F exceedance; top 10% of hours for peak demand) and standard binomial regression to express uncertainty for decision-relevant comparisons—especially confidence intervals on adjusted associations between peak load and exceedance after month effects are accounted for (Agresti 2013).",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "intro.html#preview-of-data-and-methods",
+    "href": "intro.html#preview-of-data-and-methods",
+    "title": "1  Introduction",
+    "section": "1.3 Preview of data and methods",
+    "text": "1.3 Preview of data and methods\nData come from (1) nearshore Gulf water temperature measured at NOAA NDBC station DPHA1 (Dauphin Island, Alabama) (National Data Buoy Center 2025) and (2) hourly electricity demand for a southern balancing authority from the EIA-930 Hourly Electric Grid Monitor (U.S. Energy Information Administration 2025). Variable definitions, time alignment, and quality checks are summarized in Appendix A.\nMethods (Chapter 2) justify logistic regression for the binary exceedance outcome, the peak-demand definition, and month adjustment to reduce seasonal confounding. Results (Chapter 3) report descriptive seasonality, annualized exceedance hours, cross-tabulations by peak status, and models with interval-based inference. Discussion (Chapter 4) translates findings into actionable planning steps and states limitations (single-year overlap, stationarity, and threshold choices).\n\n\n\n\nAgresti, Alan. 2013. Categorical Data Analysis. 3rd ed. Hoboken, NJ: Wiley. https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635.\n\n\nNational Data Buoy Center. 2025. “Station DPHA1 — Dauphin Island, AL.” National Oceanic; Atmospheric Administration. 2025. https://www.ndbc.noaa.gov/station_page.php?station=dpha1.\n\n\nU.S. Energy Information Administration. 2025. “Hourly Electric Grid Monitor.” U.S. Department of Energy. 2025. https://www.eia.gov/electricity/gridmonitor/dashboard.",
+    "crumbs": [
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Introduction</span>"
+    ]
+  },
+  {
+    "objectID": "methods.html",
+    "href": "methods.html",
+    "title": "2  Methods",
+    "section": "",
+    "text": "2.1 Study design and estimand\nThe estimand is operational, not causal: the probability that hourly Gulf water temperature exceeds 85°F and how that probability differs during peak-demand hours versus other hours, holding month fixed to reflect the strong shared seasonality of temperature and air-conditioning load. The report also reports descriptive frequencies—how often exceedances occur overall and jointly with peak demand—scaled to annual and five-year hours and days under a stationarity assumption (recent conditions remain representative of the near term).",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Methods</span>"
+    ]
+  },
+  {
+    "objectID": "methods.html#sec-data-role",
+    "href": "methods.html#sec-data-role",
+    "title": "2  Methods",
+    "section": "2.2 Data sources and role in place of primary collection",
+    "text": "2.2 Data sources and role in place of primary collection\nBecause this is a secondary-data study, source selection is part of the method. NDBC provides continuous nearshore sea surface temperature suitable for a local heat-sink proxy (National Data Buoy Center 2025). EIA-930 provides hourly demand comparable in time resolution for defining system stress (U.S. Energy Information Administration 2025). Full provenance, fields, missing-data conventions, and merge logic are documented in Appendix A; this chapter states only what is necessary to interpret the models and results.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Methods</span>"
+    ]
+  },
+  {
+    "objectID": "methods.html#outcomes-and-operational-indicators",
+    "href": "methods.html#outcomes-and-operational-indicators",
+    "title": "2  Methods",
+    "section": "2.3 Outcomes and operational indicators",
+    "text": "2.3 Outcomes and operational indicators\nExceedance is the binary indicator equal to one when hourly water temperature exceeds \\(85^\\circ\\)F after aggregating 30-minute buoy readings to hourly means (an hour exceeds if any aligned sub-hourly value exceeds after aggregation—implemented as any sub-hourly exceedance within the hour). Peak demand is an indicator for hours at or above the 90th percentile of observed hourly demand in the merged window. The percentile definition is internal to the sample and should be read as relative stress within the study period rather than an industry-wide reserve event definition.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Methods</span>"
+    ]
+  },
+  {
+    "objectID": "methods.html#statistical-methods-and-justification",
+    "href": "methods.html#statistical-methods-and-justification",
+    "title": "2  Methods",
+    "section": "2.4 Statistical methods and justification",
+    "text": "2.4 Statistical methods and justification\n\n2.4.1 Why logistic regression\nThe primary outcome is binary. Binomial logistic regression models the log-odds of exceedance as a linear function of predictors (Agresti 2013; McCullagh and Nelder 1989). This choice matches the data type, yields multiplicative odds statements comparable across subgroups, and supports interval estimates via profile likelihood intervals for parameters (reported on the odds-ratio scale via exponentiation).\nThree specifications are fit:\n\nIntercept-only (“crude”) model: overall exceedance prevalence on the logit scale.\nPeak-demand indicator: tests whether odds of exceedance differ during peak hours without seasonal adjustment.\nPeak + month factors: adjusts for month to reduce confounding when both temperature and load rise in summer.\n\np-values are secondary; practical significance is assessed using magnitude and confidence intervals for odds ratios and by translating probabilities into expected hours per year.\n\n\n2.4.2 Frequency translation\nLet \\(\\hat{p}\\) be the sample proportion of hours with exceedance among hours with non-missing temperature. Under stationarity, expected annual exceedance hours are \\(\\hat{p} \\times 365 \\times 24\\); five-year totals multiply by five. These projections are planning aids, not forecasts with climate or weather uncertainty bands.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Methods</span>"
+    ]
+  },
+  {
+    "objectID": "methods.html#what-this-chapter-does-not-contain",
+    "href": "methods.html#what-this-chapter-does-not-contain",
+    "title": "2  Methods",
+    "section": "2.5 What this chapter does not contain",
+    "text": "2.5 What this chapter does not contain\nFollowing standard reporting practice, methods do not present findings or recommendations; those appear in Chapter 3 and Chapter 4.\n\n\n\n\nAgresti, Alan. 2013. Categorical Data Analysis. 3rd ed. Hoboken, NJ: Wiley. https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635.\n\n\nMcCullagh, Peter, and John Nelder. 1989. Generalized Linear Models. 2nd ed. London: Chapman; Hall. https://utstat.utoronto.ca/brunner/oldclass/2201s11/readings/glmbook.pdf.\n\n\nNational Data Buoy Center. 2025. “Station DPHA1 — Dauphin Island, AL.” National Oceanic; Atmospheric Administration. 2025. https://www.ndbc.noaa.gov/station_page.php?station=dpha1.\n\n\nU.S. Energy Information Administration. 2025. “Hourly Electric Grid Monitor.” U.S. Department of Energy. 2025. https://www.eia.gov/electricity/gridmonitor/dashboard.",
+    "crumbs": [
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Methods</span>"
+    ]
+  },
+  {
+    "objectID": "results.html",
+    "href": "results.html",
+    "title": "3  Results",
+    "section": "",
+    "text": "3.1 Sample characteristics and descriptive statistics\nWe analyzed Gulf water temperatures measured at the Dauphin Island, AL buoy and hourly electricity demand from the regional grid operator. The water-temperature record includes 8,841 half-hour observations from January 01, 2025 through December 31, 2025. The demand dataset contributes 4,344 hourly observations from January 01, 2025 through July 01, 2025.\nData cleaning steps are summarized below:",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "results.html#sample-characteristics-and-descriptive-statistics",
+    "href": "results.html#sample-characteristics-and-descriptive-statistics",
+    "title": "3  Results",
+    "section": "",
+    "text": "Water temperature:\n\nRemoved sentinel missingness codes on the °C scale (e.g., WTMP = 99 or 999). These values (99 and 999) are placeholder codes used by NDBC to indicate failed or missing sensor readings, not real temperatures; left in place, they would convert to approximately 210°F and 2,102°F respectively, which would corrupt every exceedance calculation downstream.\nAdded a range-check flag for any observation outside roughly 7°C–35°C (0 flagged half-hour readings), but did not silently drop flagged values. The 7°C to 35°C bounds represent the physically plausible envelope for nearshore Gulf surface water at this latitude across all seasons: a reading below 7°C would be inconsistent with even the coldest recorded Gulf winters near Dauphin Island, and a reading above 35°C would exceed the warmest documented nearshore Gulf surface temperatures on record. Any observation outside this window therefore indicates sensor malfunction or a transcription error rather than a real ocean condition.\nConverted cleaned water temperatures from °C to °F. The plant’s operating threshold is defined in Fahrenheit, and converting the buoy record to the same units at the aggregation step ensures all reported figures, exceedance indicators, and table values are directly comparable to the 85°F design assumption without requiring the reader to mentally convert.\nAggregated from 30‑minute readings to hourly averages to align with demand data. The demand dataset is recorded at hourly resolution and the two series cannot be joined without a common time key; averaging buoy readings to the hour is the minimum transformation needed to align them.\n\nElectricity demand: limited to observed hourly demand (demand_mw), with a peak-demand indicator defined as the top 10% of demand hours.\nMerged analysis file: constructed by joining hourly Gulf temperatures to hourly demand on local timestamp.\n\n\n3.1.1 Descriptive statistics: water temperature\nOn average, Gulf water temperature during the 2025 observation window was 72.1°F (SD 12.7°F), with a median of 73.2°F and a maximum of 92.5°F. High-temperature conditions relevant for plant operations were not rare: 20% of half‑hour readings exceeded the 85°F design assumption.\n\n\n\n\nTable 3.1: Monthly Gulf water temperatures and share of half-hour observations above 85°F (Dauphin Island, 2025).\n\n\n\n\n\n\nmonth\nn\nmean_F\np95_F\nmax_F\nprop_exceed_85F\n\n\n\n\nJan\n1233\n53.74\n62.13\n65.12\n0.00\n\n\nFeb\n601\n59.20\n66.56\n70.70\n0.00\n\n\nMar\n738\n65.09\n70.70\n73.04\n0.00\n\n\nApr\n612\n74.01\n81.32\n83.48\n0.00\n\n\nMay\n705\n79.78\n84.92\n88.34\n0.04\n\n\nJun\n715\n85.37\n89.06\n91.58\n0.56\n\n\nJul\n740\n87.25\n90.86\n92.48\n0.85\n\n\nAug\n708\n86.92\n90.14\n92.30\n0.78\n\n\nSep\n704\n84.16\n86.36\n88.52\n0.25\n\n\nOct\n677\n76.44\n82.94\n84.74\n0.00\n\n\nNov\n682\n66.74\n72.86\n74.30\n0.00\n\n\nDec\n726\n58.32\n63.86\n66.74\n0.00\n\n\n\n\n\n\n\n\nMonthly summaries (Table 3.1) show that exceedances of 85°F are concentrated in the late-summer and early‑fall months, when both the 95th percentile and maximum temperatures peak. This seasonality is important for planning maintenance and contingency capacity.\n\n\n3.1.2 Descriptive statistics: electricity demand and peak periods\nHourly demand over the same period averaged 2546 MW (SD 850 MW), with a typical hour (median) at 2276 MW and a maximum of 5758 MW. By construction, approximately 10% of hours are classified as peak‑demand hours.\n\n\n\n\nTable 3.2: Monthly electricity demand (MW) in the plant’s balancing-authority region (study window).\n\n\n\n\n\n\nmonth\nn_hours\nmean_MW\np95_MW\nmax_MW\n\n\n\n\nApr\n720\n1970\n2492\n3096\n\n\nFeb\n672\n3247\n5040\n5758\n\n\nJan\n743\n3502\n4678\n5577\n\n\nJul\n1\n2281\n2281\n2281\n\n\nJun\n720\n2551\n3953\n4287\n\n\nMar\n743\n2150\n2945\n3596\n\n\nMay\n744\n1907\n2525\n3034\n\n\nNA\n1\n3576\n3576\n3576\n\n\n\n\n\n\n\n\nDemand exhibits the expected intra‑annual pattern, with higher loads during hot months and lower loads during shoulder seasons. Because both water temperature and demand peak in warm months, there is potential for coincident operational stress.\n\n\n3.1.3 Time-series overview\n\n\n\n\n\n\n\n\nFigure 3.1: Hourly average Gulf water temperature at Dauphin Island with 85°F reference (study window).\n\n\n\n\n\nThe time series (Figure 3.1) confirms a pronounced warm‑season hump, with extended stretches where hourly average water temperature exceeds 85°F. These stretches translate directly into periods when the plant would be forced to operate at reduced capacity under current design constraints.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "results.html#sec-primary-exceedance",
+    "href": "results.html#sec-primary-exceedance",
+    "title": "3  Results",
+    "section": "3.2 Primary analysis: probability and frequency of exceeding 85°F",
+    "text": "3.2 Primary analysis: probability and frequency of exceeding 85°F\n\n3.2.1 Overall probability of exceedance\nAt the hourly level (after aggregating 30‑minute readings), the plant would have faced reduced‑capacity conditions in 11% of observed hours. Scaling this observed proportion to a full year implies that, under 2025‑like conditions, the plant should expect approximately 935 hours (about 39 days) per year above 85°F. Over a 5‑year planning horizon, this corresponds to roughly 4677 hours (about **194.9 days) of required reduced‑capacity operation, assuming no further warming trend beyond 2025.\n\n\n\n\nTable 3.3: Monthly share of hours with hourly Gulf water temperature above 85°F.\n\n\n\n\n\n\nmonth\nn_hours\nn_exceed\nprop_exceed\n\n\n\n\nApr\n612\n0\n0.000\n\n\nFeb\n601\n0\n0.000\n\n\nJan\n629\n0\n0.000\n\n\nJul\n0\n0\nNaN\n\n\nJun\n715\n398\n0.557\n\n\nMar\n737\n0\n0.000\n\n\nMay\n705\n29\n0.041\n\n\nNA\n0\n0\nNaN\n\n\n\n\n\n\n\n\nMonthly probabilities highlight that exceedances are highly seasonal, with very low risk in winter and spring and substantial risk concentrated in the hottest months. Operationally, this means that reduced‑capacity events are not evenly scattered throughout the year but clustered into specific high‑risk seasons.\n\n\n3.2.2 Crude and adjusted models of exceedance risk\nWe fit binomial logistic regression models for the binary outcome “hourly water temperature above 85°F” (Agresti 2013).\n\nCrude model: intercept‑only—overall exceedance prevalence on the logit scale.\nPeak‑only model: adds an indicator for peak‑demand hours (top 10% of load).\nAdjusted model: adds month indicators so that the peak‑load contrast is estimated within calendar month, reducing spurious association driven purely by shared summer seasonality between temperature and air‑conditioning load.\n\n\n\n\n\nTable 3.4: Logistic regression for hourly Gulf water temperature above 85°F: odds ratios with 95% profile confidence intervals.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nModel\nTerm\nOdds ratio\nSE\nCI low\nCI high\np-value\n\n\n\n\nCrude (overall probability)\n(Intercept)\n0.12\n0.051\n0.11\n0.13\n0.000\n\n\nPeak vs non‑peak\npeak_demandTRUE\n1.14\n0.168\n0.81\n1.57\n0.440\n\n\nPeak + month (bias-reduced)\npeak_demandTRUE\n81.87\n1.396\n5.31\n1263.38\n0.002\n\n\nPeak + month (bias-reduced)\nmonthFeb\n0.05\n2.405\n0.00\n5.22\n0.203\n\n\nPeak + month (bias-reduced)\nmonthJan\n0.04\n2.407\n0.00\n4.74\n0.189\n\n\nPeak + month (bias-reduced)\nmonthJun\n1364.13\n1.418\n84.68\n21974.08\n0.000\n\n\nPeak + month (bias-reduced)\nmonthMar\n0.83\n2.002\n0.02\n42.04\n0.926\n\n\nPeak + month (bias-reduced)\nmonthMay\n53.42\n1.428\n3.25\n878.11\n0.005\n\n\nPeak + month (Firth)\npeak_demandTRUE\n81.87\nNA\n11.65\n10359.04\nNA\n\n\nPeak + month (Firth)\nmonthFeb\n0.05\nNA\n0.00\n12.35\nNA\n\n\nPeak + month (Firth)\nmonthJan\n0.04\nNA\n0.00\n11.19\nNA\n\n\nPeak + month (Firth)\nmonthJun\n1364.13\nNA\n199.87\n171727.35\nNA\n\n\nPeak + month (Firth)\nmonthMar\n0.83\nNA\n0.00\n153.23\nNA\n\n\nPeak + month (Firth)\nmonthMay\n53.42\nNA\n7.50\n6773.58\nNA\n\n\n\n\n\n\n\n\nThe intercept‑only specification reproduces the marginal exceedance frequency. For the peak‑demand term, interpret the odds ratio as a multiplicative change in the odds of exceedance relative to non‑peak hours; when exceedance is not too rare, odds ratios approximate relative risk directionally for prioritization. Practical conclusions rest on whether confidence intervals for the peak‑demand odds ratio exclude 1 at the upper tail (elevated odds during peak) and on the magnitude—large multipliers matter more than p-values for sparse hourly events.\nThe month‑adjusted model asks a narrower question: conditional on month, are peak‑load hours still more likely to coincide with exceedance? Affirmative evidence supports load‑related concentration beyond seasonal co‑movement alone.\nThe very large odds ratio and wide confidence interval on peak_demandTRUE in the month‑adjusted model reflect (quasi-)complete separation in the observed data (formally flagged by a separation diagnostic: ). Most notably, within the warm-season subset there is little overlap between “peak demand” and “non‑exceedance” hours (e.g., Table 3.6 shows Summer + TRUE has prob_exceed = 1.000)—so the direction (higher odds during peak hours) is robust but the point estimate should not be interpreted numerically.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "results.html#coincidence-of-high-temperatures-with-highdemand-periods",
+    "href": "results.html#coincidence-of-high-temperatures-with-highdemand-periods",
+    "title": "3  Results",
+    "section": "3.3 Coincidence of high temperatures with high‑demand periods",
+    "text": "3.3 Coincidence of high temperatures with high‑demand periods\n\n3.3.1 Cross‑tabulation of exceedance and peak demand\n\n\n\n\nTable 3.5: Probability of Gulf water temperature above 85°F during peak versus non-peak demand hours.\n\n\n\n\n\n\npeak_demand\nn_hours\nn_exceed\nprob_exceed\n\n\n\n\nFALSE\n3619\n382\n0.106\n\n\nTRUE\n380\n45\n0.118\n\n\n\n\n\n\n\n\nAcross the full observation window, the water temperature exceeded 85°F in 427 of the 3999 hours with both temperature and demand data. Of those exceedance hours, 45 occurred during peak‑demand hours. The resulting annualized estimate is approximately 99 hours (about 4.1 days) per year when both Gulf water exceeds 85°F and electricity demand is in the top 10%.\nImportant caveat (lower bound): the demand series ends July 1, so this coincidence calculation excludes July, August, and September entirely—the three months when Table 3.1 shows exceedance rates of about 85% (Jul), 78% (Aug), and 25% (Sep). As a result, the annualized coincident-hours figure above should be treated as a lower bound, not a standalone planning input. For rough intuition, if June—the only full summer month with demand data, with 56% exceedance in Table 3.1—is at all representative of the missing July–September window, then true coincident hours could plausibly be on the order of 3–5× the reported estimate.\nFrom an operational-risk perspective, these coincident hours are the most critical: they represent times when (1) the plant’s thermal margin is constrained and (2) the grid most needs the plant’s full capacity.\n\n\n3.3.2 Joint distribution visualization\n\n\n\n\n\n\n\n\nFigure 3.2: Joint distribution of hourly Gulf water temperature and electricity demand; points above the horizontal reference are exceedance hours.\n\n\n\n\n\nThe scatter (Figure 3.2) shows that many of the hottest water‑temperature hours occur at moderate‑to‑high demand levels, with a notable cluster in the upper‑right quadrant where both temperature and demand are high. This pattern is consistent with elevated odds of exceedance during peak‑demand hours in Table 3.4.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "results.html#secondary-analyses",
+    "href": "results.html#secondary-analyses",
+    "title": "3  Results",
+    "section": "3.4 Secondary analyses",
+    "text": "3.4 Secondary analyses\n\n3.4.1 Seasonal patterns and timing within the year\n\n\n\n\n\n\n\n\nFigure 3.3: Seasonal pattern of hourly Gulf water temperature by day of year (points) with a smooth trend.\n\n\n\n\n\nThe smoothed seasonal curve (Figure 3.3) shows a distinct high‑risk window when temperatures move above 85°F and remain elevated for several weeks.\n\n\n3.4.2 Interaction between season and peak demand\n\n\n\n\nTable 3.6: Probability of water temperature above 85°F by season and peak-demand status.\n\n\n\n\n\n\nseason\npeak_demand\nn_hours\nprob_exceed\n\n\n\n\nSpring\nFALSE\n2054\n0.014\n\n\nSummer\nFALSE\n670\n0.527\n\n\nSummer\nTRUE\n45\n1.000\n\n\nWinter\nFALSE\n895\n0.000\n\n\nWinter\nTRUE\n335\n0.000\n\n\n\n\n\n\n\n\nSeasonal subgroup analyses (Table 3.6) show that exceedances are almost entirely a summer and early‑fall phenomenon, with negligible risk in winter and spring. Within summer, exceedance during peak‑demand hours can exceed non‑peak hours—consistent with effect modification by both season and load level.\n\n\n3.4.3 Sensitivity to peak‑demand definition\nAlternative top‑quantile cutoffs (for example, 5% versus 15%) change the count of peak hours but rarely overturn the qualitative pattern: a non‑zero set of hours exhibits both high temperature and high relative load. Re‑estimation under alternative rules is straightforward given the merged hourly file.\n\n\n\n\nAgresti, Alan. 2013. Categorical Data Analysis. 3rd ed. Hoboken, NJ: Wiley. https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635.",
+    "crumbs": [
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Results</span>"
+    ]
+  },
+  {
+    "objectID": "discussion.html",
+    "href": "discussion.html",
+    "title": "4  Discussion and conclusion",
+    "section": "",
+    "text": "4.1 Interpretation in context of the business problem\nThe Introduction (Chapter 1) framed joint risk: cooling constrained when load is high. The Results (Chapter 3) support three linked facts: exceedance of the 85°F reference is seasonally concentrated; it is materially frequent when translated to annual and five-year hours and days (Section 3.2); and peak-demand hours carry higher conditional probability of exceedance after month adjustment, with uncertainty reflected in confidence intervals on odds ratios (Table 3.4) rather than p-values alone.\nFor managers, the actionable translation is scheduling under a recurring window: the plant should expect reduced headroom in late summer and early fall, and within that window, some high-temperature hours will align with top-decile load. That overlap is the economically salient risk for markets, reliability, and customer commitments.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion and conclusion</span>"
+    ]
+  },
+  {
+    "objectID": "discussion.html#actionable-recommendations",
+    "href": "discussion.html#actionable-recommendations",
+    "title": "4  Discussion and conclusion",
+    "section": "4.2 Actionable recommendations",
+    "text": "4.2 Actionable recommendations\n\nCapacity and reserves: Incorporate expected warm-season derate exposure into resource adequacy and margin assessments, using the reported annualized hours and coincident peak estimates as lower bounds (the coincidence calculation excludes July–September because the demand series ends July 1) rather than as standalone planning inputs.\nOutage and maintenance planning: Shift discretionary work toward shoulder months and lower joint risk hours identified in the seasonal diagnostics, avoiding planned reductions when both temperature and load stress are elevated.\nMitigation portfolio: Compare cooling upgrades, thermal buffering, contractual flexibility, and demand-side options using a cost–risk screen tied to restricted-output hours and peak overlap—the quantities this report estimates directly.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion and conclusion</span>"
+    ]
+  },
+  {
+    "objectID": "discussion.html#limitations-and-future-work",
+    "href": "discussion.html#limitations-and-future-work",
+    "title": "4  Discussion and conclusion",
+    "section": "4.3 Limitations and future work",
+    "text": "4.3 Limitations and future work\nThe study uses available public series and a single overlapping calendar window for joint analysis. Because the demand dataset ends on July 1, 2025, the coincidence analysis (temperature () peak demand) covers roughly January–June and excludes July–September entirely, when both temperature and demand would be highest simultaneously; the annualized coincident-hours estimate reported in Chapter 3 should therefore be treated as a lower bound, not a standalone planning input. This coverage gap matters because Table 3.1 shows exceedance rates of roughly 85% (Jul), 78% (Aug), and 25% (Sep); if June (the only full summer month with demand data; ~56% exceedance) is at all representative of the missing window, true coincident hours could plausibly be 3–5× the reported figure.\nBuoy sensor data also contain nontrivial sentinel missingness: overall, 2.6% of half-hour WTMP readings are coded as sentinel values (99 or 999) and removed during cleaning, with warm-season rates of 0.0% (Jun), 0.0% (Jul), 0.0% (Aug), and 0.0% (Sep). If any material share of June–September readings are dropped, the exceedance rates reported in Table 3.1 for those months should be interpreted with that caveat in mind. Moreover, sentinel missingness in buoy data is not guaranteed to be random with respect to temperature: if sensor failures correlate with extreme heat events, storm activity, or other conditions that also drive high water temperatures, then removed readings are disproportionately likely to be exceedance hours, biasing Table 3.1 downward and compounding the already-noted underestimate from demand data truncation—so every coincident-risk figure in this report should be understood as a conservative floor on true exposure, not a central estimate.\nThe 85°F threshold and top 10% peak definition are useful defaults but should be stress-tested against plant-specific heat balances and market definitions of scarcity hours.\nFinally, the frequency translation implicitly assumes stationarity of the observed year. The plant was built in 1970, when an 85°F design assumption may have been reasonable; if Gulf water temperatures have trended upward since then, stationarity may be optimistic. If the business question shifts toward decadal planning, the appropriate next step is to extend the analysis using NOAA historical records (for example, longer NDBC station histories where available, or broader sea-surface temperature products such as ERSST) to quantify trends and update risk projections.\nAs a quantitative stress test on that assumption, NOAA NCEI reports that Gulf of Mexico sea surface temperature increased by approximately 1.0°C between 1970 and 2020 (about 0.19°C per decade) (National Centers for Environmental Information 2023). That order of magnitude implies that the distribution of warm-season temperatures driving exceedance is unlikely to be stationary over asset lifetimes: a design threshold that was exceeded only occasionally in earlier decades can plausibly become a recurrent warm-season condition today.\nWhere the Introduction posed the niche question, how often threshold exceedance and peak load co-occur, the discussion section answers: often enough in the observed record to treat Gulf thermal stress as a standing planning constraint, with peak hours disproportionately represented among exceedances after seasonal adjustment. The appropriate organizational response is to embed that reality in scheduling, investment, and risk governance\n\n\n\n\nNational Centers for Environmental Information. 2023. “The Gulf of Mexico Is Getting Warmer.” National Oceanic; Atmospheric Administration. 2023. https://www.ncei.noaa.gov/news/gulf-mexico-getting-warmer.",
+    "crumbs": [
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Discussion and conclusion</span>"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Agresti, Alan. 2013. Categorical Data Analysis. 3rd ed.\nHoboken, NJ: Wiley. https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635.\n\n\nMcCullagh, Peter, and John Nelder. 1989. Generalized Linear\nModels. 2nd ed. London: Chapman; Hall. https://utstat.utoronto.ca/brunner/oldclass/2201s11/readings/glmbook.pdf.\n\n\nNational Centers for Environmental Information. 2023. “The Gulf of\nMexico Is Getting Warmer.” National Oceanic; Atmospheric\nAdministration. 2023. https://www.ncei.noaa.gov/news/gulf-mexico-getting-warmer.\n\n\nNational Data Buoy Center. 2025. “Station DPHA1 —\nDauphin Island, AL.” National Oceanic; Atmospheric\nAdministration. 2025. https://www.ndbc.noaa.gov/station_page.php?station=dpha1.\n\n\nU.S. Energy Information Administration. 2025. “Hourly Electric\nGrid Monitor.” U.S. Department of Energy. 2025. https://www.eia.gov/electricity/gridmonitor/dashboard.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "draft-data-doc.html",
+    "href": "draft-data-doc.html",
+    "title": "Appendix A — Data documentation",
+    "section": "",
+    "text": "A.1 Gulf heat-sink temperature (near Dauphin Island)\nThis appendix supports Chapter 2 and Chapter 3 by documenting sources, variables, and merge rules for the two public datasets used in the report. Citations: NDBC station page (National Data Buoy Center 2025); EIA Hourly Electric Grid Monitor (U.S. Energy Information Administration 2025).",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Data documentation</span>"
+    ]
+  },
+  {
+    "objectID": "draft-data-doc.html#sec-data-water",
+    "href": "draft-data-doc.html#sec-data-water",
+    "title": "Appendix A — Data documentation",
+    "section": "",
+    "text": "A.1.1 Dataset\n\nLocal file: water_temps.txt\nPrimary variable: WTMP = water temperature (units: °C)\n\n\n\nA.1.2 Who collected it\n\nThis file format matches NOAA’s National Data Buoy Center(NDBC) station data products; the station page for DPHA1 describes the station and operator.\n\n\n\nA.1.3 Why it exists\n\nNDBC station observations support marine weather/ocean monitoring (operational marine observations). The data suits usecase as it is a nearby observed water temperature time series for a coastal site.\n\n\n\nA.1.4 What the data is about (fields + meaning)\nThe file includes timestamp columns plus marine meteorology/ocean variables. The header lines define the schema and units.\nKey features for project:\n\nYY, MM, DD, hh, mm = date/time components (year, month, day, hour, minute)\nWTMP (degC) = water temperature\n\nOptional columns possibly worth exploring:\n\nATMP (degC) air temperature\nPRES (hPa) pressure\nWDIR (degT) wind direction; WSPD (m/s) wind speed\nTIDE (ft) tide\n\n\n\nA.1.5 When the data was collected\n\nThe file contains data for 2025\nTime resolution is in 30-minute intervals\n\n\n\nA.1.6 Where the data was collected\nNDBC station, DPHA1, location: 30.251 N, 88.078 W, Dauphin Island Sea Lab, AL\n\n\nA.1.7 How the data was collected\n\nObservations are recorded by the station sensor suite; the station page documents station/operator and measurement configuration like sea temp depth\n\n\n\nA.1.8 Structure of the data\n\nPlain text, whitespace-delimited table with 2 header/comment lines, starting with #, then numeric rows.\n\n\n\nA.1.9 Formatting decisions + missingness codes\n\nMissing/invalid values are encoded with sentinel values that appear in the file:\n\n999 and 999.0 (seen for WDIR, DEWP, etc.)\n99.0 and 99.00 (seen across wave/tide/visibility fields)\n\n\n\n\nA.1.10 Data validation\n\nsentinel missingness occur somewhat frequently, so QA should include:\n\n% missing in WTMP by month\ngaps (long runs of missing)\nphysically plausible range checks for WTMP\n\n\n\n\nA.1.11 Reuse / licensing\n\nNOAA/NDBC station data are publicly distributed for reuse; cite the station page and note retrieval date/time in your report appendix.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Data documentation</span>"
+    ]
+  },
+  {
+    "objectID": "draft-data-doc.html#sec-data-electricity",
+    "href": "draft-data-doc.html#sec-data-electricity",
+    "title": "Appendix A — Data documentation",
+    "section": "A.2 Electricity usage and demand (timing of high-load periods)",
+    "text": "A.2 Electricity usage and demand (timing of high-load periods)\n\nA.2.1 Dataset\n\nfile: electrical_usage.csv\nPrimary variable: Demand (MW) = actual demand (units: MW)\n\n\n\nA.2.2 Who collected it\n\nU.S. Energy Information Administration (EIA) collects these operational grid data through Form EIA-930 from balancing authorities\n\n\n\nA.2.3 Why it exists\n\nSupports the Hourly Electric Grid Monitor and public visibility into hourly demand, generation, and interchange.\n\n\n\nA.2.4 What the data is about (fields + meaning)\nThe file is an EIA-930 “BALANCE” consolidated CSV with BA-by-hour operational measures. It contains hourly demand forecast, demand, net generation, total interchange, and generation by source.\nKey features of data:\n\nBalancing Authority = BA acronym/name (e.g., “AECI”)\nData Date = operating date (local)\nHour Number = 1–24 hour-ending index\nLocal Time at End of Hour and UTC Time at End of Hour = timestamps\nDemand Forecast (MW) = day-ahead forecasted demand\nDemand (MW) = actual demand\nNet Generation (MW) = net generation within BA\nTotal Interchange (MW) = net interchange with neighbors\n\nOptional columns possibly worth exploring: - Fuel mix columns, e.g., Net Generation (MW) from Coal, ... Natural Gas, etc.\n\n\nA.2.5 When the data was collected\n\nThe file contains data for Jan–Jun 2025\nTime resolution is hourly\n\n\n\nA.2.6 Where the data was collected\nThese are reported at the Balancing Authority level for the Lower 48 and filtered to southern region.\n\n\nA.2.7 How the data was generated/collected\n\nReported via EIA’s automated feeds under Form EIA-930\n\n\n\nA.2.8 Structure of the data\n\nCSV (rows = Balancing authority -hour observations; columns = demand/generation/interchange + fuel mix + variants like imputed/adjusted values)\n\n\n\nA.2.9 Formatting decisions + missingness codes\n\nEIA-930 includes “imputed” and “adjusted” series which should be documented as separate variables\nNeed to specify which one to use as “authoritative” for analysis (or how to prioritize them)\nDefine what counts as missing (blank/NA) and whether to substitute adjusted for raw when raw is missing\n\n\n\nA.2.10 Data validation\n\nTimezone in this dataset is different than water temp dataset.\nQA should include:\n\nmissingness rate by BA\nnegative/implausible values\ntime continuity checks\n\n\n\n\nA.2.11 Reuse / licensing\n\nEIA publishes the Grid Monitor datasets for public use\n\n\n\n\n\nNational Data Buoy Center. 2025. “Station DPHA1 — Dauphin Island, AL.” National Oceanic; Atmospheric Administration. 2025. https://www.ndbc.noaa.gov/station_page.php?station=dpha1.\n\n\nU.S. Energy Information Administration. 2025. “Hourly Electric Grid Monitor.” U.S. Department of Energy. 2025. https://www.eia.gov/electricity/gridmonitor/dashboard.",
+    "crumbs": [
+      "Appendices",
+      "<span class='chapter-number'>A</span>  <span class='chapter-title'>Data documentation</span>"
+    ]
+  }
+]

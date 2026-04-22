@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Methods – Gulf Cooling Water and Peak Demand: Thermal Risk for Coastal Generation</title>
+<title>4&nbsp; Discussion and conclusion – Gulf Cooling Water and Peak Demand: Thermal Risk for Coastal Generation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,8 +50,8 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./results.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./references.html" rel="next">
+<link href="./results.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -91,35 +91,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -132,7 +103,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./methods.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Methods</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./discussion.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discussion and conclusion</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,7 +148,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./methods.html" class="sidebar-item-text sidebar-link active">
+  <a href="./methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
   </div>
 </li>
@@ -189,7 +160,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./discussion.html" class="sidebar-item-text sidebar-link">
+  <a href="./discussion.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discussion and conclusion</span></span></a>
   </div>
 </li>
@@ -226,15 +197,9 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#study-design-and-estimand" id="toc-study-design-and-estimand" class="nav-link active" data-scroll-target="#study-design-and-estimand"><span class="header-section-number">2.1</span> Study design and estimand</a></li>
-  <li><a href="#sec-data-role" id="toc-sec-data-role" class="nav-link" data-scroll-target="#sec-data-role"><span class="header-section-number">2.2</span> Data sources and role in place of primary collection</a></li>
-  <li><a href="#outcomes-and-operational-indicators" id="toc-outcomes-and-operational-indicators" class="nav-link" data-scroll-target="#outcomes-and-operational-indicators"><span class="header-section-number">2.3</span> Outcomes and operational indicators</a></li>
-  <li><a href="#statistical-methods-and-justification" id="toc-statistical-methods-and-justification" class="nav-link" data-scroll-target="#statistical-methods-and-justification"><span class="header-section-number">2.4</span> Statistical methods and justification</a>
-  <ul class="collapse">
-  <li><a href="#why-logistic-regression" id="toc-why-logistic-regression" class="nav-link" data-scroll-target="#why-logistic-regression"><span class="header-section-number">2.4.1</span> Why logistic regression</a></li>
-  <li><a href="#frequency-translation" id="toc-frequency-translation" class="nav-link" data-scroll-target="#frequency-translation"><span class="header-section-number">2.4.2</span> Frequency translation</a></li>
-  </ul></li>
-  <li><a href="#what-this-chapter-does-not-contain" id="toc-what-this-chapter-does-not-contain" class="nav-link" data-scroll-target="#what-this-chapter-does-not-contain"><span class="header-section-number">2.5</span> What this chapter does not contain</a></li>
+  <li><a href="#interpretation-in-context-of-the-business-problem" id="toc-interpretation-in-context-of-the-business-problem" class="nav-link active" data-scroll-target="#interpretation-in-context-of-the-business-problem"><span class="header-section-number">4.1</span> Interpretation in context of the business problem</a></li>
+  <li><a href="#actionable-recommendations" id="toc-actionable-recommendations" class="nav-link" data-scroll-target="#actionable-recommendations"><span class="header-section-number">4.2</span> Actionable recommendations</a></li>
+  <li><a href="#limitations-and-future-work" id="toc-limitations-and-future-work" class="nav-link" data-scroll-target="#limitations-and-future-work"><span class="header-section-number">4.3</span> Limitations and future work</a></li>
   </ul>
 </nav>
     </div>
@@ -243,7 +208,7 @@ window.Quarto = {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span id="sec-methods" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Methods</span></span></h1>
+<h1 class="title"><span id="sec-discussion" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Discussion and conclusion</span></span></h1>
 </div>
 
 
@@ -260,53 +225,32 @@ window.Quarto = {
 </header>
 
 
-<section id="study-design-and-estimand" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="study-design-and-estimand"><span class="header-section-number">2.1</span> Study design and estimand</h2>
-<p>The estimand is operational, not causal: the probability that hourly Gulf water temperature exceeds 85°F and how that probability differs during peak-demand hours versus other hours, holding month fixed to reflect the strong shared seasonality of temperature and air-conditioning load. The report also reports descriptive frequencies—how often exceedances occur overall and jointly with peak demand—scaled to annual and five-year hours and days under a stationarity assumption (recent conditions remain representative of the near term).</p>
+<section id="interpretation-in-context-of-the-business-problem" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="interpretation-in-context-of-the-business-problem"><span class="header-section-number">4.1</span> Interpretation in context of the business problem</h2>
+<p>The Introduction (<a href="intro.html" class="quarto-xref"><span>Chapter 1</span></a>) framed joint risk: cooling constrained when load is high. The Results (<a href="results.html" class="quarto-xref"><span>Chapter 3</span></a>) support three linked facts: exceedance of the 85°F reference is seasonally concentrated; it is materially frequent when translated to annual and five-year hours and days (<a href="results.html#sec-primary-exceedance" class="quarto-xref"><span>Section 3.2</span></a>); and peak-demand hours carry higher conditional probability of exceedance after month adjustment, with uncertainty reflected in confidence intervals on odds ratios (<a href="results.html#tbl-logistic-models" class="quarto-xref">Table&nbsp;<span>3.4</span></a>) rather than p-values alone.</p>
+<p>For managers, the actionable translation is scheduling under a recurring window: the plant should expect reduced headroom in late summer and early fall, and within that window, some high-temperature hours will align with top-decile load. That overlap is the economically salient risk for markets, reliability, and customer commitments.</p>
 </section>
-<section id="sec-data-role" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sec-data-role"><span class="header-section-number">2.2</span> Data sources and role in place of primary collection</h2>
-<p>Because this is a secondary-data study, source selection is part of the method. NDBC provides continuous nearshore sea surface temperature suitable for a local heat-sink proxy <span class="citation" data-cites="ndbc-dpha1">(<a href="references.html#ref-ndbc-dpha1" role="doc-biblioref">National Data Buoy Center 2025</a>)</span>. EIA-930 provides hourly demand comparable in time resolution for defining system stress <span class="citation" data-cites="eia-grid-monitor">(<a href="references.html#ref-eia-grid-monitor" role="doc-biblioref">U.S. Energy Information Administration 2025</a>)</span>. Full provenance, fields, missing-data conventions, and merge logic are documented in <a href="draft-data-doc.html" class="quarto-xref"><span>Appendix A</span></a>; this chapter states only what is necessary to interpret the models and results.</p>
-</section>
-<section id="outcomes-and-operational-indicators" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="outcomes-and-operational-indicators"><span class="header-section-number">2.3</span> Outcomes and operational indicators</h2>
-<p>Exceedance is the binary indicator equal to one when hourly water temperature exceeds <span class="math inline">\(85^\circ\)</span>F after aggregating 30-minute buoy readings to hourly means (an hour exceeds if any aligned sub-hourly value exceeds after aggregation—implemented as any sub-hourly exceedance within the hour). Peak demand is an indicator for hours at or above the 90th percentile of observed hourly demand in the merged window. The percentile definition is internal to the sample and should be read as relative stress within the study period rather than an industry-wide reserve event definition.</p>
-</section>
-<section id="statistical-methods-and-justification" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="statistical-methods-and-justification"><span class="header-section-number">2.4</span> Statistical methods and justification</h2>
-<section id="why-logistic-regression" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="why-logistic-regression"><span class="header-section-number">2.4.1</span> Why logistic regression</h3>
-<p>The primary outcome is binary. Binomial logistic regression models the log-odds of exceedance as a linear function of predictors <span class="citation" data-cites="agresti2013 mccullagh1989">(<a href="references.html#ref-agresti2013" role="doc-biblioref">Agresti 2013</a>; <a href="references.html#ref-mccullagh1989" role="doc-biblioref">McCullagh and Nelder 1989</a>)</span>. This choice matches the data type, yields multiplicative odds statements comparable across subgroups, and supports interval estimates via profile likelihood intervals for parameters (reported on the odds-ratio scale via exponentiation).</p>
-<p>Three specifications are fit:</p>
+<section id="actionable-recommendations" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="actionable-recommendations"><span class="header-section-number">4.2</span> Actionable recommendations</h2>
 <ol type="1">
-<li>Intercept-only (“crude”) model: overall exceedance prevalence on the logit scale.</li>
-<li>Peak-demand indicator: tests whether odds of exceedance differ during peak hours without seasonal adjustment.</li>
-<li>Peak + month factors: adjusts for month to reduce confounding when both temperature and load rise in summer.</li>
+<li><strong>Capacity and reserves:</strong> Incorporate expected warm-season derate exposure into resource adequacy and margin assessments, using the reported annualized hours and coincident peak estimates as <strong>lower bounds</strong> (the coincidence calculation excludes July–September because the demand series ends July 1) rather than as standalone planning inputs.</li>
+<li><strong>Outage and maintenance planning:</strong> Shift discretionary work toward shoulder months and lower joint risk hours identified in the seasonal diagnostics, avoiding planned reductions when both temperature and load stress are elevated.</li>
+<li><strong>Mitigation portfolio:</strong> Compare cooling upgrades, thermal buffering, contractual flexibility, and demand-side options using a cost–risk screen tied to restricted-output hours and peak overlap—the quantities this report estimates directly.</li>
 </ol>
-<p>p-values are secondary; practical significance is assessed using magnitude and confidence intervals for odds ratios and by translating probabilities into expected hours per year.</p>
 </section>
-<section id="frequency-translation" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="frequency-translation"><span class="header-section-number">2.4.2</span> Frequency translation</h3>
-<p>Let <span class="math inline">\(\hat{p}\)</span> be the sample proportion of hours with exceedance among hours with non-missing temperature. Under stationarity, expected annual exceedance hours are <span class="math inline">\(\hat{p} \times 365 \times 24\)</span>; five-year totals multiply by five. These projections are planning aids, not forecasts with climate or weather uncertainty bands.</p>
-</section>
-</section>
-<section id="what-this-chapter-does-not-contain" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="what-this-chapter-does-not-contain"><span class="header-section-number">2.5</span> What this chapter does not contain</h2>
-<p>Following standard reporting practice, methods do not present findings or recommendations; those appear in <a href="results.html" class="quarto-xref"><span>Chapter 3</span></a> and <a href="discussion.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
+<section id="limitations-and-future-work" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="limitations-and-future-work"><span class="header-section-number">4.3</span> Limitations and future work</h2>
+<p>The study uses available public series and a single overlapping calendar window for joint analysis. <strong>Because the demand dataset ends on July 1, 2025, the coincidence analysis (temperature () peak demand) covers roughly January–June and excludes July–September entirely</strong>, when both temperature and demand would be highest simultaneously; the annualized coincident-hours estimate reported in <a href="results.html" class="quarto-xref"><span>Chapter 3</span></a> should therefore be treated as a <strong>lower bound</strong>, not a standalone planning input. This coverage gap matters because <a href="results.html#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a> shows exceedance rates of roughly <strong>85% (Jul)</strong>, <strong>78% (Aug)</strong>, and <strong>25% (Sep)</strong>; if <strong>June</strong> (the only full summer month with demand data; <strong>~56%</strong> exceedance) is at all representative of the missing window, true coincident hours could plausibly be <strong>3–5×</strong> the reported figure.</p>
+<p>Buoy sensor data also contain nontrivial <strong>sentinel missingness</strong>: overall, <strong>2.6%</strong> of half-hour <code>WTMP</code> readings are coded as sentinel values (99 or 999) and removed during cleaning, with warm-season rates of <strong>0.0% (Jun)</strong>, <strong>0.0% (Jul)</strong>, <strong>0.0% (Aug)</strong>, and <strong>0.0% (Sep)</strong>. If any material share of June–September readings are dropped, the exceedance rates reported in <a href="results.html#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a> for those months should be interpreted with that caveat in mind. Moreover, sentinel missingness in buoy data is not guaranteed to be random with respect to temperature: if sensor failures correlate with extreme heat events, storm activity, or other conditions that also drive high water temperatures, then removed readings are disproportionately likely to be exceedance hours, biasing <a href="results.html#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a> downward and compounding the already-noted underestimate from demand data truncation—so every coincident-risk figure in this report should be understood as a conservative floor on true exposure, not a central estimate.</p>
+<p>The 85°F threshold and top 10% peak definition are useful defaults but should be stress-tested against plant-specific heat balances and market definitions of scarcity hours.</p>
+<p>Finally, the frequency translation implicitly assumes stationarity of the observed year. The plant was built in 1970, when an 85°F design assumption may have been reasonable; if Gulf water temperatures have trended upward since then, stationarity may be optimistic. If the business question shifts toward decadal planning, the appropriate next step is to extend the analysis using NOAA historical records (for example, longer NDBC station histories where available, or broader sea-surface temperature products such as ERSST) to quantify trends and update risk projections.</p>
+<p>As a quantitative stress test on that assumption, NOAA NCEI reports that Gulf of Mexico sea surface temperature increased by approximately <strong>1.0°C</strong> between <strong>1970 and 2020</strong> (about <strong>0.19°C per decade</strong>) <span class="citation" data-cites="noaa-ncei-gulf-warmer">(<a href="references.html#ref-noaa-ncei-gulf-warmer" role="doc-biblioref">National Centers for Environmental Information 2023</a>)</span>. That order of magnitude implies that the distribution of warm-season temperatures driving exceedance is unlikely to be stationary over asset lifetimes: a design threshold that was exceeded only occasionally in earlier decades can plausibly become a recurrent warm-season condition today.</p>
+<p>Where the Introduction posed the niche question, how often threshold exceedance and peak load co-occur, the discussion section answers: often enough in the observed record to treat Gulf thermal stress as a standing planning constraint, with peak hours disproportionately represented among exceedances after seasonal adjustment. The appropriate organizational response is to embed that reality in scheduling, investment, and risk governance</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-agresti2013" class="csl-entry" role="listitem">
-Agresti, Alan. 2013. <em>Categorical Data Analysis</em>. 3rd ed. Hoboken, NJ: Wiley. <a href="https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635">https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635</a>.
-</div>
-<div id="ref-mccullagh1989" class="csl-entry" role="listitem">
-McCullagh, Peter, and John Nelder. 1989. <em>Generalized Linear Models</em>. 2nd ed. London: Chapman; Hall. <a href="https://utstat.utoronto.ca/brunner/oldclass/2201s11/readings/glmbook.pdf">https://utstat.utoronto.ca/brunner/oldclass/2201s11/readings/glmbook.pdf</a>.
-</div>
-<div id="ref-ndbc-dpha1" class="csl-entry" role="listitem">
-National Data Buoy Center. 2025. <span>“Station <span>DPHA1</span> — Dauphin Island, <span>AL</span>.”</span> National Oceanic; Atmospheric Administration. 2025. <a href="https://www.ndbc.noaa.gov/station_page.php?station=dpha1">https://www.ndbc.noaa.gov/station_page.php?station=dpha1</a>.
-</div>
-<div id="ref-eia-grid-monitor" class="csl-entry" role="listitem">
-U.S. Energy Information Administration. 2025. <span>“Hourly Electric Grid Monitor.”</span> U.S. Department of Energy. 2025. <a href="https://www.eia.gov/electricity/gridmonitor/dashboard">https://www.eia.gov/electricity/gridmonitor/dashboard</a>.
+<div id="ref-noaa-ncei-gulf-warmer" class="csl-entry" role="listitem">
+National Centers for Environmental Information. 2023. <span>“The Gulf of Mexico Is Getting Warmer.”</span> National Oceanic; Atmospheric Administration. 2023. <a href="https://www.ncei.noaa.gov/news/gulf-mexico-getting-warmer">https://www.ncei.noaa.gov/news/gulf-mexico-getting-warmer</a>.
 </div>
 </div>
 </section>
@@ -714,13 +658,13 @@ U.S. Energy Information Administration. 2025. <span>“Hourly Electric Grid Moni
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="./results.html" class="pagination-link" aria-label="Results">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./results.html" class="pagination-link" aria-label="Results">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <span class="nav-page-text">References</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

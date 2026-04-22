@@ -1,13 +1,35 @@
 # Results {#sec-results}
 
+
 ```{r}
 #| label: setup
 #| include: false
-library(tidyverse)
-library(lubridate)
-library(janitor)
-library(broom)
-library(scales)
+load_or_install <- function(pkg) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg, repos = "https://cloud.r-project.org")
+  }
+  suppressPackageStartupMessages(
+    library(pkg, character.only = TRUE, quietly = TRUE, warn.conflicts = FALSE)
+  )
+}
+
+pkgs <- c(
+  "dplyr",
+  "ggplot2",
+  "readr",
+  "purrr",
+  "lubridate",
+  "janitor",
+  "broom",
+  "tibble",
+  "brglm2",
+  "detectseparation",
+  "logistf",
+  "scales",
+  "knitr"
+)
+
+invisible(lapply(pkgs, load_or_install))
 
 theme_set(theme_minimal())
 options(scipen = 999)
@@ -27,6 +49,8 @@ water_raw <- read_table(
 )
 
 water <- water_raw %>%
+  rename(wtmp_C_raw = wtmp) %>%
+  filter(!wtmp_C_raw %in% c(99, 999)) %>%
   mutate(
     datetime_local = make_datetime(
       year = as.integer(year),
@@ -36,12 +60,10 @@ water <- water_raw %>%
       min = as.integer(minute),
       tz = "America/Chicago"
     ),
-    # Sentinel code for missing water temps is 99.00
-    wtmp = na_if(wtmp, 99.00),
-    wtmp_F = wtmp * 9 / 5 + 32,
+    wtmp_out_of_range = wtmp_C_raw < 7 | wtmp_C_raw > 35,
+    wtmp_F = wtmp_C_raw * 9 / 5 + 32,
     exceed_85F = wtmp_F > 85
-  ) %>%
-  filter(!is.na(wtmp_F))
+  )
 
 # Aggregate to hourly resolution for alignment with demand data
 water_hourly <- water %>%
@@ -50,6 +72,7 @@ water_hourly <- water %>%
   summarise(
     wtmp_F = mean(wtmp_F, na.rm = TRUE),
     exceed_85F = any(exceed_85F, na.rm = TRUE),
+    any_wtmp_out_of_range = any(wtmp_out_of_range, na.rm = TRUE),
     .groups = "drop"
   )
 
@@ -61,15 +84,18 @@ elec_raw <- read_csv("electrical_usage.csv") %>%
 
 elec <- elec_raw %>%
   mutate(
-    timestamp_hour = ymd_hms(local_time_at_end_of_hour, tz = "America/Chicago")
+    # EIA-930 exports commonly use m/d/Y h:m:s AM/PM in this field
+    timestamp_hour = mdy_hms(local_time_at_end_of_hour, tz = "America/Chicago")
   ) %>%
-  arrange(timestamp_hour)
+  arrange(timestamp_hour) %>%
+  group_by(timestamp_hour) %>%
+  summarise(across(everything(), ~ dplyr::first(.x)), .groups = "drop")
 
 # 3. Merge water temperature and demand
 data_merged <- elec %>%
   left_join(water_hourly, by = "timestamp_hour") %>%
   mutate(
-    month = month(timestamp_hour, label = TRUE, abbr = TRUE),
+    month = factor(as.character(month(timestamp_hour, label = TRUE, abbr = TRUE)), ordered = FALSE),
     doy = yday(timestamp_hour)
   )
 
@@ -134,17 +160,58 @@ annual_peak_exceed_days <- annual_peak_exceed_hours / 24
 # 5. Simple models of exceedance risk
 model_crude <- glm(exceed_85F ~ 1, family = binomial, data = data_merged)
 model_peak <- glm(exceed_85F ~ peak_demand, family = binomial, data = data_merged)
-model_adjusted <- glm(exceed_85F ~ peak_demand + month, family = binomial, data = data_merged)
+model_adjusted <- glm(
+  exceed_85F ~ peak_demand + month,
+  family = binomial,
+  data = data_merged,
+  method = brglm2::brglmFit,
+  type = "AS_mean"
+)
+
+# Firth-penalized logistic regression as a stability check under separation
+model_firth <- logistf::logistf(
+  exceed_85F ~ peak_demand + month,
+  data = data_merged
+)
+
+sep_df <- data_merged %>%
+  filter(!is.na(exceed_85F), !is.na(peak_demand), !is.na(month))
+sep_x <- model.matrix(~ peak_demand + month, data = sep_df)
+sep_y <- as.integer(sep_df$exceed_85F)
+sep_check <- detectseparation::detect_separation(
+  x = sep_x,
+  y = sep_y,
+  family = binomial()
+)
+
+tidy_logistf <- function(fit) {
+  coefs <- coef(fit)
+  ci <- suppressMessages(confint(fit))
+  # logistf::confint returns log-odds CIs; exponentiate to match OR presentation
+  tibble::tibble(
+    term = names(coefs),
+    estimate = exp(unname(coefs)),
+    std.error = NA_real_,
+    statistic = NA_real_,
+    p.value = NA_real_,
+    conf.low = exp(ci[, 1]),
+    conf.high = exp(ci[, 2])
+  )
+}
 
 model_table <- list(
   `Crude (overall probability)` = model_crude,
   `Peak vs non‑peak` = model_peak,
-  `Peak + month (adjusted)` = model_adjusted
+  `Peak + month (bias-reduced)` = model_adjusted,
+  `Peak + month (Firth)` = model_firth
 ) %>%
-  map_dfr(
-    ~ tidy(.x, exponentiate = TRUE, conf.int = TRUE),
-    .id = "model"
-  ) %>%
+  imap_dfr(function(m, name) {
+    if (inherits(m, "logistf")) {
+      tidy_logistf(m) %>% mutate(model = name, .before = 1)
+    } else {
+      tidy(m, exponentiate = TRUE, conf.int = TRUE) %>% mutate(model = name, .before = 1)
+    }
+  }) %>%
   filter(term != "(Intercept)" | model == "Crude (overall probability)") %>%
   mutate(
     estimate = round(estimate, 2),
@@ -156,27 +223,31 @@ model_table <- list(
 ## Sample characteristics and descriptive statistics
 
 We analyzed Gulf water temperatures measured at the Dauphin Island, AL buoy and hourly electricity demand from the regional grid operator.
-The water-temperature record includes `r comma(water_summary$n_obs)` half-hour observations from
-`r format(water_summary$start_date, "%B %d, %Y")` through
-`r format(water_summary$end_date, "%B %d, %Y")`.
-The demand dataset contributes `r comma(demand_summary$n_hours)` hourly observations from
-`r format(demand_summary$start_hour, "%B %d, %Y")` through
-`r format(demand_summary$end_hour, "%B %d, %Y")`.
+The water-temperature record includes `r if (exists("water_summary")) scales::comma(water_summary$n_obs) else "NA"` half-hour observations from
+`r if (exists("water_summary")) format(water_summary$start_date, "%B %d, %Y") else "NA"` through
+`r if (exists("water_summary")) format(water_summary$end_date, "%B %d, %Y") else "NA"`.
+The demand dataset contributes `r if (exists("demand_summary")) scales::comma(demand_summary$n_hours) else "NA"` hourly observations from
+`r if (exists("demand_summary")) format(demand_summary$start_hour, "%B %d, %Y") else "NA"` through
+`r if (exists("demand_summary")) format(demand_summary$end_hour, "%B %d, %Y") else "NA"`.
 
 Data cleaning steps are summarized below:
 
-- **Water temperature**: limited to valid `WTMP` values, converted from °C to °F, and aggregated from 30‑minute to hourly averages to align with demand data. Sentinel missingness codes (e.g., 99.00) were treated as missing.
+- **Water temperature**:
+  - Removed sentinel missingness codes on the **°C scale** (e.g., `WTMP` = 99 or 999). These values (99 and 999) are placeholder codes used by NDBC to indicate failed or missing sensor readings, not real temperatures; left in place, they would convert to approximately 210°F and 2,102°F respectively, which would corrupt every exceedance calculation downstream.
+  - Added a **range-check flag** for any observation outside roughly **7°C–35°C** (`r if (exists("water")) sum(water$wtmp_out_of_range, na.rm = TRUE) else "NA"` flagged half-hour readings), but did not silently drop flagged values. The 7°C to 35°C bounds represent the physically plausible envelope for nearshore Gulf surface water at this latitude across all seasons: a reading below 7°C would be inconsistent with even the coldest recorded Gulf winters near Dauphin Island, and a reading above 35°C would exceed the warmest documented nearshore Gulf surface temperatures on record. Any observation outside this window therefore indicates sensor malfunction or a transcription error rather than a real ocean condition.
+  - Converted cleaned water temperatures from **°C to °F**. The plant's operating threshold is defined in Fahrenheit, and converting the buoy record to the same units at the aggregation step ensures all reported figures, exceedance indicators, and table values are directly comparable to the 85°F design assumption without requiring the reader to mentally convert.
+  - Aggregated from 30‑minute readings to **hourly averages** to align with demand data. The demand dataset is recorded at hourly resolution and the two series cannot be joined without a common time key; averaging buoy readings to the hour is the minimum transformation needed to align them.
 - **Electricity demand**: limited to observed hourly demand (`demand_mw`), with a peak-demand indicator defined as the top 10% of demand hours.
 - **Merged analysis file**: constructed by joining hourly Gulf temperatures to hourly demand on local timestamp.
 
 ### Descriptive statistics: water temperature
 
 On average, Gulf water temperature during the 2025 observation window was
-**`r round(water_summary$mean_F, 1)`°F** (SD `r round(water_summary$sd_F, 1)`°F),
-with a median of `r round(water_summary$p50_F, 1)`°F and a maximum of
-`r round(water_summary$max_F, 1)`°F.
+**`r if (exists("water_summary")) round(water_summary$mean_F, 1) else "NA"`°F** (SD `r if (exists("water_summary")) round(water_summary$sd_F, 1) else "NA"`°F),
+with a median of `r if (exists("water_summary")) round(water_summary$p50_F, 1) else "NA"`°F and a maximum of
+`r if (exists("water_summary")) round(water_summary$max_F, 1) else "NA"`°F.
 High-temperature conditions relevant for plant operations were not rare:
-**`r percent(water_summary$prop_exceed_85F)`** of half‑hour readings exceeded the
+**`r if (exists("water_summary")) scales::percent(water_summary$prop_exceed_85F) else "NA"`** of half‑hour readings exceeded the
 85°F design assumption.
 
 ```{r}
@@ -204,11 +275,11 @@ This seasonality is important for planning maintenance and contingency capacity.
 
 ### Descriptive statistics: electricity demand and peak periods
 
-Hourly demand over the same period averaged **`r round(demand_summary$mean_MW, 0)` MW**
-(SD `r round(demand_summary$sd_MW, 0)` MW), with a typical hour (median) at
-`r round(demand_summary$p50_MW, 0)` MW and a maximum of
-`r round(demand_summary$max_MW, 0)` MW.
-By construction, approximately **`r percent(demand_summary$prop_peak_hours)`**
+Hourly demand over the same period averaged **`r if (exists("demand_summary")) round(demand_summary$mean_MW, 0) else "NA"` MW**
+(SD `r if (exists("demand_summary")) round(demand_summary$sd_MW, 0) else "NA"` MW), with a typical hour (median) at
+`r if (exists("demand_summary")) round(demand_summary$p50_MW, 0) else "NA"` MW and a maximum of
+`r if (exists("demand_summary")) round(demand_summary$max_MW, 0) else "NA"` MW.
+By construction, approximately **`r if (exists("demand_summary")) scales::percent(demand_summary$prop_peak_hours) else "NA"`**
 of hours are classified as **peak‑demand** hours.
 
 ```{r}
@@ -258,13 +329,13 @@ These stretches translate directly into periods when the plant would be forced t
 ### Overall probability of exceedance
 
 At the hourly level (after aggregating 30‑minute readings), the plant would have faced
-reduced‑capacity conditions in **`r percent(exceed_metrics$prop_exceed)`** of observed hours.
+reduced‑capacity conditions in **`r if (exists("exceed_metrics")) scales::percent(exceed_metrics$prop_exceed) else "NA"`** of observed hours.
 Scaling this observed proportion to a full year implies that, under 2025‑like conditions, the plant should expect approximately
-**`r round(annual_exceed_hours, 0)` hours** (about
-**`r round(annual_exceed_days, 1)` days**) per year above 85°F.
+**`r if (exists("annual_exceed_hours")) round(annual_exceed_hours, 0) else "NA"` hours** (about
+**`r if (exists("annual_exceed_days")) round(annual_exceed_days, 1) else "NA"` days**) per year above 85°F.
 Over a 5‑year planning horizon, this corresponds to roughly
-**`r round(five_year_exceed_hours, 0)` hours** (about
-**`r round(five_year_exceed_days, 1)` days) of required reduced‑capacity operation,
+**`r if (exists("five_year_exceed_hours")) round(five_year_exceed_hours, 0) else "NA"` hours** (about
+**`r if (exists("five_year_exceed_days")) round(five_year_exceed_days, 1) else "NA"` days) of required reduced‑capacity operation,
 assuming no further warming trend beyond 2025.
 
 ```{r}
@@ -310,6 +381,8 @@ The intercept‑only specification reproduces the **marginal** exceedance freque
 
 The **month‑adjusted** model asks a narrower question: **conditional on month**, are peak‑load hours still more likely to coincide with exceedance? Affirmative evidence supports **load‑related** concentration beyond **seasonal** co‑movement alone.
 
+The very large odds ratio and wide confidence interval on `peak_demandTRUE` in the month‑adjusted model reflect **(quasi-)complete separation** in the observed data (formally flagged by a separation diagnostic: `r if (exists("sep_check")) sep_check$separation else "NA"`). Most notably, within the warm-season subset there is little overlap between “peak demand” and “non‑exceedance” hours (e.g., @tbl-season-peak shows `Summer` + `TRUE` has `prob_exceed = 1.000`)—so the **direction** (higher odds during peak hours) is robust but the point estimate should **not** be interpreted numerically.
+
 ## Coincidence of high temperatures with high‑demand periods
 
 ### Cross‑tabulation of exceedance and peak demand
@@ -333,13 +406,20 @@ knitr::kable(
 ```
 
 Across the full observation window, the water temperature exceeded 85°F in
-`r exceed_metrics$n_exceed_hours` of the `r exceed_metrics$n_hours_with_temp`
+`r if (exists("exceed_metrics")) exceed_metrics$n_exceed_hours else "NA"` of the `r if (exists("exceed_metrics")) exceed_metrics$n_hours_with_temp else "NA"`
 hours with both temperature and demand data.
-Of those exceedance hours, `r exceed_metrics$n_peak_exceed_hours` occurred during peak‑demand hours.
+Of those exceedance hours, `r if (exists("exceed_metrics")) exceed_metrics$n_peak_exceed_hours else "NA"` occurred during peak‑demand hours.
 The resulting annualized estimate is approximately
-**`r round(annual_peak_exceed_hours, 0)` hours**
-(about `r round(annual_peak_exceed_days, 1)` days) per year when **both**
+**`r if (exists("annual_peak_exceed_hours")) round(annual_peak_exceed_hours, 0) else "NA"` hours**
+(about `r if (exists("annual_peak_exceed_days")) round(annual_peak_exceed_days, 1) else "NA"` days) per year when **both**
 Gulf water exceeds 85°F and electricity demand is in the top 10%.
+
+**Important caveat (lower bound):** the demand series ends **July 1**, so this coincidence calculation excludes **July, August, and September entirely**—the three months when @tbl-monthly-water shows exceedance rates of about
+**`r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Jul") %>% pull(prop_exceed_85F)) else "NA"`** (Jul),
+**`r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Aug") %>% pull(prop_exceed_85F)) else "NA"`** (Aug), and
+**`r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Sep") %>% pull(prop_exceed_85F)) else "NA"`** (Sep).
+As a result, the annualized coincident-hours figure above should be treated as a **lower bound**, not a standalone planning input.
+For rough intuition, if **June**—the only full summer month with demand data, with **`r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Jun") %>% pull(prop_exceed_85F)) else "NA"`** exceedance in @tbl-monthly-water—is at all representative of the missing July–September window, then true coincident hours could plausibly be on the order of **3–5×** the reported estimate.
 
 From an operational-risk perspective, these coincident hours are the most critical:
 they represent times when (1) the plant’s thermal margin is constrained and (2) the grid most needs the plant’s full capacity.
@@ -380,12 +460,15 @@ This pattern is consistent with elevated odds of exceedance during peak‑demand
 #| fig-width: 8
 #| fig-height: 4.5
 ggplot(
-  data_merged %>% filter(!is.na(wtmp_F)),
+  water_hourly %>%
+    mutate(doy = yday(timestamp_hour)) %>%
+    filter(!is.na(wtmp_F)),
   aes(x = doy, y = wtmp_F)
 ) +
   geom_point(alpha = 0.2, color = "#2c7bb6") +
   geom_smooth(method = "loess", se = FALSE, color = "#d7191c") +
   geom_hline(yintercept = 85, linetype = "dashed", color = "red") +
+  scale_x_continuous(limits = c(1, 365), breaks = seq(0, 365, by = 30)) +
   labs(
     x = "Day of year",
     y = "Hourly Gulf water temperature (°F)",

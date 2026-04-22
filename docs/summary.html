@@ -197,10 +197,10 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#introduction-problem-and-niche" id="toc-introduction-problem-and-niche" class="nav-link active" data-scroll-target="#introduction-problem-and-niche">Introduction (problem and niche)</a></li>
-  <li><a href="#methods-what-was-done" id="toc-methods-what-was-done" class="nav-link" data-scroll-target="#methods-what-was-done">Methods (what was done)</a></li>
-  <li><a href="#results-what-the-data-show" id="toc-results-what-the-data-show" class="nav-link" data-scroll-target="#results-what-the-data-show">Results (what the data show)</a></li>
-  <li><a href="#discussion-recommended-actions" id="toc-discussion-recommended-actions" class="nav-link" data-scroll-target="#discussion-recommended-actions">Discussion (recommended actions)</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#methods" id="toc-methods" class="nav-link" data-scroll-target="#methods">Methods</a></li>
+  <li><a href="#results" id="toc-results" class="nav-link" data-scroll-target="#results">Results</a></li>
+  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
   </ul>
 </nav>
     </div>
@@ -236,25 +236,26 @@ div.csl-indent {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Section headings below follow the <strong>same order</strong> as the full report: <strong>Introduction</strong>, <strong>Methods</strong>, <strong>Results</strong>, and <strong>Discussion</strong>. Numbers cited here are developed in <a href="#sec-results" class="quarto-xref"><span class="quarto-unresolved-ref">sec-results</span></a> and supported by the data sources described in <a href="#sec-methods" class="quarto-xref"><span class="quarto-unresolved-ref">sec-methods</span></a> and documented in <a href="#sec-data-appendix" class="quarto-xref"><span class="quarto-unresolved-ref">sec-data-appendix</span></a>.</p>
+<p>Section headings below follow the same order as the full report: Introduction, Methods, Results, and Discussion. Numbers cited here are developed in <a href="results.html" class="quarto-xref"><span>3&nbsp; Results</span></a> and supported by the data sources described in <a href="methods.html" class="quarto-xref"><span>2&nbsp; Methods</span></a> and documented in <a href="draft-data-doc.html" class="quarto-xref"><span>Appendix A — Data documentation</span></a>.</p>
 </div>
 </div>
-<section id="introduction-problem-and-niche" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-problem-and-niche">Introduction (problem and niche)</h2>
-<p>Coastal steam and combined-cycle plants often rely on <strong>Gulf water as a heat sink</strong>. When nearshore water temperature approaches design limits, operators may need to <strong>reduce output</strong>—sometimes during the same summer and early-fall hours when <strong>electricity demand is highest</strong>. The business question is whether an <strong>85°F</strong> Gulf-water assumption remains a <strong>credible planning baseline</strong> or whether observed temperatures and their <strong>overlap with peak demand</strong> warrant <strong>capacity, scheduling, and mitigation</strong> decisions now.</p>
-<p>This assessment occupies a specific niche: <strong>regional, hour-level operational risk</strong>—not long-run climate attribution—using <strong>public</strong> marine and grid data to estimate <strong>how often</strong> the 85°F threshold is exceeded and <strong>how often</strong> those hours coincide with <strong>top-decile</strong> load.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>Coastal steam and combined-cycle plants often rely on Gulf water as a heat sink. When nearshore water temperature approaches design limits, operators may need to reduce output—sometimes during the same summer and early-fall hours when electricity demand is highest. The business question is whether an 85°F Gulf-water assumption remains a credible planning baseline or whether observed temperatures and their overlap with peak demand warrant capacity, scheduling, and mitigation decisions now.</p>
+<p>This assessment occupies a specific niche: regional, hour-level operational risk—not long-run climate attribution—using public marine and grid data to estimate how often the 85°F threshold is exceeded and how often those hours coincide with top-decile load.</p>
 </section>
-<section id="methods-what-was-done" class="level2">
-<h2 class="anchored" data-anchor-id="methods-what-was-done">Methods (what was done)</h2>
-<p>The analysis links <strong>hourly</strong> Gulf water temperature from <strong>NOAA’s NDBC</strong> buoy record near Dauphin Island <span class="citation" data-cites="ndbc-dpha1">(<a href="#ref-ndbc-dpha1" role="doc-biblioref">National Data Buoy Center 2025</a>)</span> to <strong>hourly</strong> balancing-authority demand from the <strong>U.S. EIA</strong> Hourly Electric Grid Monitor <span class="citation" data-cites="eia-grid-monitor">(<a href="#ref-eia-grid-monitor" role="doc-biblioref">U.S. Energy Information Administration 2025</a>)</span>. Water temperatures were cleaned (including sentinel missingness), converted to °F, and averaged to hourly values; demand was aligned on <strong>local</strong> timestamps. <strong>Exceedance</strong> is defined as hourly water temperature <strong>above 85°F</strong>; <strong>peak demand</strong> is the <strong>top 10%</strong> of hours by load in the study window.</p>
-<p><strong>Binomial logistic regression</strong> <span class="citation" data-cites="agresti2013">(<a href="#ref-agresti2013" role="doc-biblioref">Agresti 2013</a>)</span> estimates how the <strong>probability</strong> of exceedance changes with peak-load status, with a <strong>month-adjusted</strong> model to separate <strong>load-driven</strong> association from <strong>seasonal</strong> co-movement of temperature and demand. Results emphasize <strong>confidence intervals</strong> and <strong>frequency translation</strong> (expected hours and days per year and over five years) rather than null-hypothesis testing.</p>
+<section id="methods" class="level2">
+<h2 class="anchored" data-anchor-id="methods">Methods</h2>
+<p>The analysis links hourly Gulf water temperature from NOAA’s NDBC buoy record near Dauphin Island <span class="citation" data-cites="ndbc-dpha1">(<a href="references.html#ref-ndbc-dpha1" role="doc-biblioref">National Data Buoy Center 2025</a>)</span> to hourly balancing-authority demand from the U.S. EIA Hourly Electric Grid Monitor <span class="citation" data-cites="eia-grid-monitor">(<a href="references.html#ref-eia-grid-monitor" role="doc-biblioref">U.S. Energy Information Administration 2025</a>)</span>. Water temperatures were cleaned (including sentinel missingness), converted to °F, and averaged to hourly values; demand was aligned on local timestamps. Exceedance is defined as hourly water temperature above 85°F; peak demand is the top 10% of hours by load in the study window.</p>
+<p>Binomial logistic regression <span class="citation" data-cites="agresti2013">(<a href="references.html#ref-agresti2013" role="doc-biblioref">Agresti 2013</a>)</span> estimates how the probability of exceedance changes with peak-load status, with a month-adjusted model to separate load-driven association from seasonal co-movement of temperature and demand. Results emphasize confidence intervals and frequency translation (expected hours and days per year and over five years) rather than null-hypothesis testing.</p>
 </section>
-<section id="results-what-the-data-show" class="level2">
-<h2 class="anchored" data-anchor-id="results-what-the-data-show">Results (what the data show)</h2>
+<section id="results" class="level2">
+<h2 class="anchored" data-anchor-id="results">Results</h2>
+<p><strong>Important coverage note (lower bound):</strong> The demand series ends on <strong>July 1, 2025</strong>, so the coincidence analysis (temperature () peak demand) covers roughly <strong>January–June</strong> and <strong>misses July–September entirely</strong>—the three months when <a href="results.html#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a> shows exceedance rates of <strong>~85% (Jul), ~78% (Aug), and ~25% (Sep)</strong>. As a result, any <strong>annualized</strong> coincident-hours figure reported here or in Chapter 3 is a <strong>lower bound</strong>, not a standalone planning input. For rough intuition, if <strong>June</strong> (the only full summer month with demand data; <strong>~56%</strong> exceedance in <a href="results.html#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a>) is representative of the missing window, true coincident hours are plausibly <strong>3–5×</strong> the reported estimate.</p>
 <ul>
-<li><strong>Seasonality:</strong> Exceedances concentrate in <strong>late summer and early fall</strong>; winter and spring show comparatively little high-temperature risk (<a href="#fig-water-ts" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-water-ts</span></a>, <a href="#fig-water-season" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-water-season</span></a>, <a href="#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-monthly-water</span></a>).</li>
-<li><strong>Frequency:</strong> Under <strong>stationarity</strong> of the observed year, hourly exceedance rates scale to <strong>substantial annual and five-year</strong> counts of high-temperature hours (<a href="#sec-primary-exceedance" class="quarto-xref"><span class="quarto-unresolved-ref">sec-primary-exceedance</span></a>).</li>
-<li><strong>Overlap with peak load:</strong> A <strong>non-trivial share</strong> of exceedance hours occurs when demand is in the <strong>top decile</strong>, and model estimates show <strong>higher odds</strong> of exceedance during peak-load hours <strong>after accounting for month</strong>—with uncertainty summarized by <strong>odds ratios and profile confidence intervals</strong> (<a href="#tbl-logistic-models" class="quarto-xref">Table&nbsp;<span class="quarto-unresolved-ref">tbl-logistic-models</span></a>, <a href="#fig-temp-demand" class="quarto-xref">Figure&nbsp;<span class="quarto-unresolved-ref">fig-temp-demand</span></a>).</li>
+<li>Seasonality: Exceedances concentrate in late summer and early fall; winter and spring show comparatively little high-temperature risk (<a href="results.html#fig-water-ts" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>, <a href="results.html#fig-water-season" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>, <a href="results.html#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a>).</li>
+<li>Frequency: Under stationarity of the observed year, hourly exceedance rates scale to substantial annual and five-year counts of high-temperature hours (<a href="results.html#sec-primary-exceedance" class="quarto-xref"><span>Primary analysis: probability and frequency of exceeding 85°F</span></a>).</li>
+<li>Overlap with peak load: A non-trivial share of exceedance hours occurs when demand is in the top decile, and model estimates show higher odds of exceedance during peak-load hours after accounting for month—with uncertainty summarized by odds ratios and profile confidence intervals (<a href="results.html#tbl-logistic-models" class="quarto-xref">Table&nbsp;<span>3.4</span></a>, <a href="results.html#fig-temp-demand" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>).</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -266,16 +267,16 @@ div.csl-indent {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Treat <strong>warm-season Gulf temperatures</strong> as a <strong>recurring constraint</strong>, not a rare tail event. Plan <strong>capacity and maintenance</strong> around a <strong>predictable high-risk window</strong>, and evaluate <strong>cooling upgrades or contracts</strong> using <strong>expected restricted-output hours</strong> and their <strong>overlap with peak demand</strong>—not only single-year averages.</p>
+<p>Treat warm-season Gulf temperatures as a recurring constraint, not a rare tail event. Plan capacity and maintenance around a predictable high-risk window, and evaluate cooling upgrades or contracts using expected restricted-output hours and their overlap with peak demand—not only single-year averages.</p>
 </div>
 </div>
 </section>
-<section id="discussion-recommended-actions" class="level2">
-<h2 class="anchored" data-anchor-id="discussion-recommended-actions">Discussion (recommended actions)</h2>
-<p>Detailed interpretation and limitations appear in <a href="#sec-discussion" class="quarto-xref"><span class="quarto-unresolved-ref">sec-discussion</span></a>. In brief: <strong>embed thermal derate risk</strong> in resource-adequacy and reserve planning; <strong>shift discretionary outages</strong> away from months and hours where <strong>temperature and load jointly stress</strong> the system; and <strong>prioritize mitigation</strong> options using a <strong>cost–risk</strong> comparison tied to the <strong>frequency and coincidence</strong> estimates in this report.</p>
+<section id="discussion" class="level2">
+<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<p>Detailed interpretation and limitations appear in <a href="discussion.html" class="quarto-xref"><span>4&nbsp; Discussion and conclusion</span></a>. In brief: embed thermal derate risk in resource-adequacy and reserve planning; shift discretionary outages away from months and hours where temperature and load jointly stress the system; and prioritize mitigation options using a cost–risk comparison tied to the frequency and coincidence estimates in this report.</p>
 
 
-<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list">
+<div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-agresti2013" class="csl-entry" role="listitem">
 Agresti, Alan. 2013. <em>Categorical Data Analysis</em>. 3rd ed. Hoboken, NJ: Wiley. <a href="https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635">https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635</a>.
 </div>

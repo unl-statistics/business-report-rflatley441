@@ -20,6 +20,8 @@ Binomial logistic regression [@agresti2013] estimates how the probability of exc
 
 ## Results
 
+**Important coverage note (lower bound):** The demand series ends on **July 1, 2025**, so the coincidence analysis (temperature \(\cap\) peak demand) covers roughly **January–June** and **misses July–September entirely**—the three months when @tbl-monthly-water shows exceedance rates of **~85% (Jul), ~78% (Aug), and ~25% (Sep)**. As a result, any **annualized** coincident-hours figure reported here or in Chapter 3 is a **lower bound**, not a standalone planning input. For rough intuition, if **June** (the only full summer month with demand data; **~56%** exceedance in @tbl-monthly-water) is representative of the missing window, true coincident hours are plausibly **3–5×** the reported estimate.
+
 - Seasonality: Exceedances concentrate in late summer and early fall; winter and spring show comparatively little high-temperature risk (@fig-water-ts, @fig-water-season, @tbl-monthly-water).
 - Frequency: Under stationarity of the observed year, hourly exceedance rates scale to substantial annual and five-year counts of high-temperature hours (@sec-primary-exceedance).
 - Overlap with peak load: A non-trivial share of exceedance hours occurs when demand is in the top decile, and model estimates show higher odds of exceedance during peak-load hours after accounting for month—with uncertainty summarized by odds ratios and profile confidence intervals (@tbl-logistic-models, @fig-temp-demand).

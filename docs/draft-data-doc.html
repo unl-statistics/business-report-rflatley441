@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Methods – Gulf Cooling Water and Peak Demand: Thermal Risk for Coastal Generation</title>
+<title>Appendix A — Data documentation – Gulf Cooling Water and Peak Demand: Thermal Risk for Coastal Generation</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -50,8 +50,7 @@ div.csl-indent {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./results.html" rel="next">
-<link href="./intro.html" rel="prev">
+<link href="./references.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
@@ -91,35 +90,6 @@ div.csl-indent {
   }
 }</script>
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 </head>
 
@@ -132,7 +102,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./methods.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Methods</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./draft-data-doc.html">Appendices</a></li><li class="breadcrumb-item"><a href="./draft-data-doc.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Data documentation</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -177,7 +147,7 @@ window.Quarto = {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./methods.html" class="sidebar-item-text sidebar-link active">
+  <a href="./methods.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Methods</span></span></a>
   </div>
 </li>
@@ -210,7 +180,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./draft-data-doc.html" class="sidebar-item-text sidebar-link">
+  <a href="./draft-data-doc.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Data documentation</span></span></a>
   </div>
 </li>
@@ -226,24 +196,43 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#study-design-and-estimand" id="toc-study-design-and-estimand" class="nav-link active" data-scroll-target="#study-design-and-estimand"><span class="header-section-number">2.1</span> Study design and estimand</a></li>
-  <li><a href="#sec-data-role" id="toc-sec-data-role" class="nav-link" data-scroll-target="#sec-data-role"><span class="header-section-number">2.2</span> Data sources and role in place of primary collection</a></li>
-  <li><a href="#outcomes-and-operational-indicators" id="toc-outcomes-and-operational-indicators" class="nav-link" data-scroll-target="#outcomes-and-operational-indicators"><span class="header-section-number">2.3</span> Outcomes and operational indicators</a></li>
-  <li><a href="#statistical-methods-and-justification" id="toc-statistical-methods-and-justification" class="nav-link" data-scroll-target="#statistical-methods-and-justification"><span class="header-section-number">2.4</span> Statistical methods and justification</a>
+  <li><a href="#sec-data-water" id="toc-sec-data-water" class="nav-link active" data-scroll-target="#sec-data-water"><span class="header-section-number">A.1</span> Gulf heat-sink temperature (near Dauphin Island)</a>
   <ul class="collapse">
-  <li><a href="#why-logistic-regression" id="toc-why-logistic-regression" class="nav-link" data-scroll-target="#why-logistic-regression"><span class="header-section-number">2.4.1</span> Why logistic regression</a></li>
-  <li><a href="#frequency-translation" id="toc-frequency-translation" class="nav-link" data-scroll-target="#frequency-translation"><span class="header-section-number">2.4.2</span> Frequency translation</a></li>
+  <li><a href="#dataset" id="toc-dataset" class="nav-link" data-scroll-target="#dataset"><span class="header-section-number">A.1.1</span> Dataset</a></li>
+  <li><a href="#who-collected-it" id="toc-who-collected-it" class="nav-link" data-scroll-target="#who-collected-it"><span class="header-section-number">A.1.2</span> Who collected it</a></li>
+  <li><a href="#why-it-exists" id="toc-why-it-exists" class="nav-link" data-scroll-target="#why-it-exists"><span class="header-section-number">A.1.3</span> Why it exists</a></li>
+  <li><a href="#what-the-data-is-about-fields-meaning" id="toc-what-the-data-is-about-fields-meaning" class="nav-link" data-scroll-target="#what-the-data-is-about-fields-meaning"><span class="header-section-number">A.1.4</span> What the data is about (fields + meaning)</a></li>
+  <li><a href="#when-the-data-was-collected" id="toc-when-the-data-was-collected" class="nav-link" data-scroll-target="#when-the-data-was-collected"><span class="header-section-number">A.1.5</span> When the data was collected</a></li>
+  <li><a href="#where-the-data-was-collected" id="toc-where-the-data-was-collected" class="nav-link" data-scroll-target="#where-the-data-was-collected"><span class="header-section-number">A.1.6</span> Where the data was collected</a></li>
+  <li><a href="#how-the-data-was-collected" id="toc-how-the-data-was-collected" class="nav-link" data-scroll-target="#how-the-data-was-collected"><span class="header-section-number">A.1.7</span> How the data was collected</a></li>
+  <li><a href="#structure-of-the-data" id="toc-structure-of-the-data" class="nav-link" data-scroll-target="#structure-of-the-data"><span class="header-section-number">A.1.8</span> Structure of the data</a></li>
+  <li><a href="#formatting-decisions-missingness-codes" id="toc-formatting-decisions-missingness-codes" class="nav-link" data-scroll-target="#formatting-decisions-missingness-codes"><span class="header-section-number">A.1.9</span> Formatting decisions + missingness codes</a></li>
+  <li><a href="#data-validation" id="toc-data-validation" class="nav-link" data-scroll-target="#data-validation"><span class="header-section-number">A.1.10</span> Data validation</a></li>
+  <li><a href="#reuse-licensing" id="toc-reuse-licensing" class="nav-link" data-scroll-target="#reuse-licensing"><span class="header-section-number">A.1.11</span> Reuse / licensing</a></li>
   </ul></li>
-  <li><a href="#what-this-chapter-does-not-contain" id="toc-what-this-chapter-does-not-contain" class="nav-link" data-scroll-target="#what-this-chapter-does-not-contain"><span class="header-section-number">2.5</span> What this chapter does not contain</a></li>
+  <li><a href="#sec-data-electricity" id="toc-sec-data-electricity" class="nav-link" data-scroll-target="#sec-data-electricity"><span class="header-section-number">A.2</span> Electricity usage and demand (timing of high-load periods)</a>
+  <ul class="collapse">
+  <li><a href="#dataset-1" id="toc-dataset-1" class="nav-link" data-scroll-target="#dataset-1"><span class="header-section-number">A.2.1</span> Dataset</a></li>
+  <li><a href="#who-collected-it-1" id="toc-who-collected-it-1" class="nav-link" data-scroll-target="#who-collected-it-1"><span class="header-section-number">A.2.2</span> Who collected it</a></li>
+  <li><a href="#why-it-exists-1" id="toc-why-it-exists-1" class="nav-link" data-scroll-target="#why-it-exists-1"><span class="header-section-number">A.2.3</span> Why it exists</a></li>
+  <li><a href="#what-the-data-is-about-fields-meaning-1" id="toc-what-the-data-is-about-fields-meaning-1" class="nav-link" data-scroll-target="#what-the-data-is-about-fields-meaning-1"><span class="header-section-number">A.2.4</span> What the data is about (fields + meaning)</a></li>
+  <li><a href="#when-the-data-was-collected-1" id="toc-when-the-data-was-collected-1" class="nav-link" data-scroll-target="#when-the-data-was-collected-1"><span class="header-section-number">A.2.5</span> When the data was collected</a></li>
+  <li><a href="#where-the-data-was-collected-1" id="toc-where-the-data-was-collected-1" class="nav-link" data-scroll-target="#where-the-data-was-collected-1"><span class="header-section-number">A.2.6</span> Where the data was collected</a></li>
+  <li><a href="#how-the-data-was-generatedcollected" id="toc-how-the-data-was-generatedcollected" class="nav-link" data-scroll-target="#how-the-data-was-generatedcollected"><span class="header-section-number">A.2.7</span> How the data was generated/collected</a></li>
+  <li><a href="#structure-of-the-data-1" id="toc-structure-of-the-data-1" class="nav-link" data-scroll-target="#structure-of-the-data-1"><span class="header-section-number">A.2.8</span> Structure of the data</a></li>
+  <li><a href="#formatting-decisions-missingness-codes-1" id="toc-formatting-decisions-missingness-codes-1" class="nav-link" data-scroll-target="#formatting-decisions-missingness-codes-1"><span class="header-section-number">A.2.9</span> Formatting decisions + missingness codes</a></li>
+  <li><a href="#data-validation-1" id="toc-data-validation-1" class="nav-link" data-scroll-target="#data-validation-1"><span class="header-section-number">A.2.10</span> Data validation</a></li>
+  <li><a href="#reuse-licensing-1" id="toc-reuse-licensing-1" class="nav-link" data-scroll-target="#reuse-licensing-1"><span class="header-section-number">A.2.11</span> Reuse / licensing</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./draft-data-doc.html">Appendices</a></li><li class="breadcrumb-item"><a href="./draft-data-doc.html"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">Data documentation</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-methods" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Methods</span></span></h1>
+<h1 class="title"><span id="sec-data-appendix" class="quarto-section-identifier">Appendix A — Data documentation</span></h1>
 </div>
 
 
@@ -260,48 +249,184 @@ window.Quarto = {
 </header>
 
 
-<section id="study-design-and-estimand" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="study-design-and-estimand"><span class="header-section-number">2.1</span> Study design and estimand</h2>
-<p>The estimand is operational, not causal: the probability that hourly Gulf water temperature exceeds 85°F and how that probability differs during peak-demand hours versus other hours, holding month fixed to reflect the strong shared seasonality of temperature and air-conditioning load. The report also reports descriptive frequencies—how often exceedances occur overall and jointly with peak demand—scaled to annual and five-year hours and days under a stationarity assumption (recent conditions remain representative of the near term).</p>
+<p>This appendix supports <a href="methods.html" class="quarto-xref"><span>Chapter 2</span></a> and <a href="results.html" class="quarto-xref"><span>Chapter 3</span></a> by documenting <strong>sources</strong>, <strong>variables</strong>, and <strong>merge rules</strong> for the two public datasets used in the report. Citations: NDBC station page <span class="citation" data-cites="ndbc-dpha1">(<a href="references.html#ref-ndbc-dpha1" role="doc-biblioref">National Data Buoy Center 2025</a>)</span>; EIA Hourly Electric Grid Monitor <span class="citation" data-cites="eia-grid-monitor">(<a href="references.html#ref-eia-grid-monitor" role="doc-biblioref">U.S. Energy Information Administration 2025</a>)</span>.</p>
+<section id="sec-data-water" class="level2" data-number="A.1">
+<h2 data-number="A.1" class="anchored" data-anchor-id="sec-data-water"><span class="header-section-number">A.1</span> Gulf heat-sink temperature (near Dauphin Island)</h2>
+<section id="dataset" class="level3" data-number="A.1.1">
+<h3 data-number="A.1.1" class="anchored" data-anchor-id="dataset"><span class="header-section-number">A.1.1</span> Dataset</h3>
+<ul>
+<li>Local file: <code>water_temps.txt</code></li>
+<li>Primary variable: <code>WTMP</code> = water temperature (units: °C)</li>
+</ul>
 </section>
-<section id="sec-data-role" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="sec-data-role"><span class="header-section-number">2.2</span> Data sources and role in place of primary collection</h2>
-<p>Because this is a secondary-data study, source selection is part of the method. NDBC provides continuous nearshore sea surface temperature suitable for a local heat-sink proxy <span class="citation" data-cites="ndbc-dpha1">(<a href="references.html#ref-ndbc-dpha1" role="doc-biblioref">National Data Buoy Center 2025</a>)</span>. EIA-930 provides hourly demand comparable in time resolution for defining system stress <span class="citation" data-cites="eia-grid-monitor">(<a href="references.html#ref-eia-grid-monitor" role="doc-biblioref">U.S. Energy Information Administration 2025</a>)</span>. Full provenance, fields, missing-data conventions, and merge logic are documented in <a href="draft-data-doc.html" class="quarto-xref"><span>Appendix A</span></a>; this chapter states only what is necessary to interpret the models and results.</p>
+<section id="who-collected-it" class="level3" data-number="A.1.2">
+<h3 data-number="A.1.2" class="anchored" data-anchor-id="who-collected-it"><span class="header-section-number">A.1.2</span> Who collected it</h3>
+<ul>
+<li>This file format matches NOAA’s National Data Buoy Center(NDBC) station data products; the station page for DPHA1 describes the station and operator.</li>
+</ul>
 </section>
-<section id="outcomes-and-operational-indicators" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="outcomes-and-operational-indicators"><span class="header-section-number">2.3</span> Outcomes and operational indicators</h2>
-<p>Exceedance is the binary indicator equal to one when hourly water temperature exceeds <span class="math inline">\(85^\circ\)</span>F after aggregating 30-minute buoy readings to hourly means (an hour exceeds if any aligned sub-hourly value exceeds after aggregation—implemented as any sub-hourly exceedance within the hour). Peak demand is an indicator for hours at or above the 90th percentile of observed hourly demand in the merged window. The percentile definition is internal to the sample and should be read as relative stress within the study period rather than an industry-wide reserve event definition.</p>
+<section id="why-it-exists" class="level3" data-number="A.1.3">
+<h3 data-number="A.1.3" class="anchored" data-anchor-id="why-it-exists"><span class="header-section-number">A.1.3</span> Why it exists</h3>
+<ul>
+<li>NDBC station observations support marine weather/ocean monitoring (operational marine observations). The data suits usecase as it is a nearby observed water temperature time series for a coastal site.</li>
+</ul>
 </section>
-<section id="statistical-methods-and-justification" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="statistical-methods-and-justification"><span class="header-section-number">2.4</span> Statistical methods and justification</h2>
-<section id="why-logistic-regression" class="level3" data-number="2.4.1">
-<h3 data-number="2.4.1" class="anchored" data-anchor-id="why-logistic-regression"><span class="header-section-number">2.4.1</span> Why logistic regression</h3>
-<p>The primary outcome is binary. Binomial logistic regression models the log-odds of exceedance as a linear function of predictors <span class="citation" data-cites="agresti2013 mccullagh1989">(<a href="references.html#ref-agresti2013" role="doc-biblioref">Agresti 2013</a>; <a href="references.html#ref-mccullagh1989" role="doc-biblioref">McCullagh and Nelder 1989</a>)</span>. This choice matches the data type, yields multiplicative odds statements comparable across subgroups, and supports interval estimates via profile likelihood intervals for parameters (reported on the odds-ratio scale via exponentiation).</p>
-<p>Three specifications are fit:</p>
-<ol type="1">
-<li>Intercept-only (“crude”) model: overall exceedance prevalence on the logit scale.</li>
-<li>Peak-demand indicator: tests whether odds of exceedance differ during peak hours without seasonal adjustment.</li>
-<li>Peak + month factors: adjusts for month to reduce confounding when both temperature and load rise in summer.</li>
-</ol>
-<p>p-values are secondary; practical significance is assessed using magnitude and confidence intervals for odds ratios and by translating probabilities into expected hours per year.</p>
+<section id="what-the-data-is-about-fields-meaning" class="level3" data-number="A.1.4">
+<h3 data-number="A.1.4" class="anchored" data-anchor-id="what-the-data-is-about-fields-meaning"><span class="header-section-number">A.1.4</span> What the data is about (fields + meaning)</h3>
+<p>The file includes timestamp columns plus marine meteorology/ocean variables. The header lines define the schema and units.</p>
+<p>Key features for project:</p>
+<ul>
+<li><code>YY, MM, DD, hh, mm</code> = date/time components (year, month, day, hour, minute)</li>
+<li><code>WTMP</code> (<strong>degC</strong>) = water temperature</li>
+</ul>
+<p>Optional columns possibly worth exploring:</p>
+<ul>
+<li><code>ATMP</code> (<strong>degC</strong>) air temperature</li>
+<li><code>PRES</code> (<strong>hPa</strong>) pressure</li>
+<li><code>WDIR</code> (<strong>degT</strong>) wind direction; <code>WSPD</code> (<strong>m/s</strong>) wind speed</li>
+<li><code>TIDE</code> (<strong>ft</strong>) tide</li>
+</ul>
 </section>
-<section id="frequency-translation" class="level3" data-number="2.4.2">
-<h3 data-number="2.4.2" class="anchored" data-anchor-id="frequency-translation"><span class="header-section-number">2.4.2</span> Frequency translation</h3>
-<p>Let <span class="math inline">\(\hat{p}\)</span> be the sample proportion of hours with exceedance among hours with non-missing temperature. Under stationarity, expected annual exceedance hours are <span class="math inline">\(\hat{p} \times 365 \times 24\)</span>; five-year totals multiply by five. These projections are planning aids, not forecasts with climate or weather uncertainty bands.</p>
+<section id="when-the-data-was-collected" class="level3" data-number="A.1.5">
+<h3 data-number="A.1.5" class="anchored" data-anchor-id="when-the-data-was-collected"><span class="header-section-number">A.1.5</span> When the data was collected</h3>
+<ul>
+<li>The file contains data for 2025</li>
+<li>Time resolution is in 30-minute intervals</li>
+</ul>
+</section>
+<section id="where-the-data-was-collected" class="level3" data-number="A.1.6">
+<h3 data-number="A.1.6" class="anchored" data-anchor-id="where-the-data-was-collected"><span class="header-section-number">A.1.6</span> Where the data was collected</h3>
+<p>NDBC station, DPHA1, location: 30.251 N, 88.078 W, Dauphin Island Sea Lab, AL</p>
+</section>
+<section id="how-the-data-was-collected" class="level3" data-number="A.1.7">
+<h3 data-number="A.1.7" class="anchored" data-anchor-id="how-the-data-was-collected"><span class="header-section-number">A.1.7</span> How the data was collected</h3>
+<ul>
+<li>Observations are recorded by the station sensor suite; the station page documents station/operator and measurement configuration like sea temp depth</li>
+</ul>
+</section>
+<section id="structure-of-the-data" class="level3" data-number="A.1.8">
+<h3 data-number="A.1.8" class="anchored" data-anchor-id="structure-of-the-data"><span class="header-section-number">A.1.8</span> Structure of the data</h3>
+<ul>
+<li>Plain text, whitespace-delimited table with 2 header/comment lines, starting with <code>#</code>, then numeric rows.</li>
+</ul>
+</section>
+<section id="formatting-decisions-missingness-codes" class="level3" data-number="A.1.9">
+<h3 data-number="A.1.9" class="anchored" data-anchor-id="formatting-decisions-missingness-codes"><span class="header-section-number">A.1.9</span> Formatting decisions + missingness codes</h3>
+<ul>
+<li><p>Missing/invalid values are encoded with sentinel values that appear in the file:</p>
+<ul>
+<li><code>999</code> and <code>999.0</code> (seen for <code>WDIR</code>, <code>DEWP</code>, etc.)</li>
+<li><code>99.0</code> and <code>99.00</code> (seen across wave/tide/visibility fields)</li>
+</ul></li>
+</ul>
+</section>
+<section id="data-validation" class="level3" data-number="A.1.10">
+<h3 data-number="A.1.10" class="anchored" data-anchor-id="data-validation"><span class="header-section-number">A.1.10</span> Data validation</h3>
+<ul>
+<li><p>sentinel missingness occur somewhat frequently, so QA should include:</p>
+<ul>
+<li>% missing in <code>WTMP</code> by month</li>
+<li>gaps (long runs of missing)</li>
+<li>physically plausible range checks for <code>WTMP</code></li>
+</ul></li>
+</ul>
+</section>
+<section id="reuse-licensing" class="level3" data-number="A.1.11">
+<h3 data-number="A.1.11" class="anchored" data-anchor-id="reuse-licensing"><span class="header-section-number">A.1.11</span> Reuse / licensing</h3>
+<ul>
+<li>NOAA/NDBC station data are publicly distributed for reuse; cite the station page and note retrieval date/time in your report appendix.</li>
+</ul>
+<hr>
 </section>
 </section>
-<section id="what-this-chapter-does-not-contain" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="what-this-chapter-does-not-contain"><span class="header-section-number">2.5</span> What this chapter does not contain</h2>
-<p>Following standard reporting practice, methods do not present findings or recommendations; those appear in <a href="results.html" class="quarto-xref"><span>Chapter 3</span></a> and <a href="discussion.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
+<section id="sec-data-electricity" class="level2" data-number="A.2">
+<h2 data-number="A.2" class="anchored" data-anchor-id="sec-data-electricity"><span class="header-section-number">A.2</span> Electricity usage and demand (timing of high-load periods)</h2>
+<section id="dataset-1" class="level3" data-number="A.2.1">
+<h3 data-number="A.2.1" class="anchored" data-anchor-id="dataset-1"><span class="header-section-number">A.2.1</span> Dataset</h3>
+<ul>
+<li>file: <code>electrical_usage.csv</code></li>
+<li>Primary variable: <code>Demand (MW)</code> = actual demand (units: MW)</li>
+</ul>
+</section>
+<section id="who-collected-it-1" class="level3" data-number="A.2.2">
+<h3 data-number="A.2.2" class="anchored" data-anchor-id="who-collected-it-1"><span class="header-section-number">A.2.2</span> Who collected it</h3>
+<ul>
+<li>U.S. Energy Information Administration (EIA) collects these operational grid data through Form EIA-930 from balancing authorities</li>
+</ul>
+</section>
+<section id="why-it-exists-1" class="level3" data-number="A.2.3">
+<h3 data-number="A.2.3" class="anchored" data-anchor-id="why-it-exists-1"><span class="header-section-number">A.2.3</span> Why it exists</h3>
+<ul>
+<li>Supports the Hourly Electric Grid Monitor and public visibility into hourly demand, generation, and interchange.</li>
+</ul>
+</section>
+<section id="what-the-data-is-about-fields-meaning-1" class="level3" data-number="A.2.4">
+<h3 data-number="A.2.4" class="anchored" data-anchor-id="what-the-data-is-about-fields-meaning-1"><span class="header-section-number">A.2.4</span> What the data is about (fields + meaning)</h3>
+<p>The file is an EIA-930 “BALANCE” consolidated CSV with BA-by-hour operational measures. It contains hourly demand forecast, demand, net generation, total interchange, and generation by source.</p>
+<p>Key features of data:</p>
+<ul>
+<li><code>Balancing Authority</code> = BA acronym/name (e.g., “AECI”)</li>
+<li><code>Data Date</code> = operating date (local)</li>
+<li><code>Hour Number</code> = 1–24 hour-ending index</li>
+<li><code>Local Time at End of Hour</code> and <code>UTC Time at End of Hour</code> = timestamps</li>
+<li><code>Demand Forecast (MW)</code> = day-ahead forecasted demand</li>
+<li><code>Demand (MW)</code> = actual demand</li>
+<li><code>Net Generation (MW)</code> = net generation within BA</li>
+<li><code>Total Interchange (MW)</code> = net interchange with neighbors</li>
+</ul>
+<p>Optional columns possibly worth exploring: - Fuel mix columns, e.g., <code>Net Generation (MW) from Coal</code>, <code>... Natural Gas</code>, etc.</p>
+</section>
+<section id="when-the-data-was-collected-1" class="level3" data-number="A.2.5">
+<h3 data-number="A.2.5" class="anchored" data-anchor-id="when-the-data-was-collected-1"><span class="header-section-number">A.2.5</span> When the data was collected</h3>
+<ul>
+<li>The file contains data for Jan–Jun 2025</li>
+<li>Time resolution is hourly</li>
+</ul>
+</section>
+<section id="where-the-data-was-collected-1" class="level3" data-number="A.2.6">
+<h3 data-number="A.2.6" class="anchored" data-anchor-id="where-the-data-was-collected-1"><span class="header-section-number">A.2.6</span> Where the data was collected</h3>
+<p>These are reported at the Balancing Authority level for the Lower 48 and filtered to southern region.</p>
+</section>
+<section id="how-the-data-was-generatedcollected" class="level3" data-number="A.2.7">
+<h3 data-number="A.2.7" class="anchored" data-anchor-id="how-the-data-was-generatedcollected"><span class="header-section-number">A.2.7</span> How the data was generated/collected</h3>
+<ul>
+<li>Reported via EIA’s automated feeds under Form EIA-930</li>
+</ul>
+</section>
+<section id="structure-of-the-data-1" class="level3" data-number="A.2.8">
+<h3 data-number="A.2.8" class="anchored" data-anchor-id="structure-of-the-data-1"><span class="header-section-number">A.2.8</span> Structure of the data</h3>
+<ul>
+<li>CSV (rows = Balancing authority -hour observations; columns = demand/generation/interchange + fuel mix + variants like imputed/adjusted values)</li>
+</ul>
+</section>
+<section id="formatting-decisions-missingness-codes-1" class="level3" data-number="A.2.9">
+<h3 data-number="A.2.9" class="anchored" data-anchor-id="formatting-decisions-missingness-codes-1"><span class="header-section-number">A.2.9</span> Formatting decisions + missingness codes</h3>
+<ul>
+<li>EIA-930 includes “imputed” and “adjusted” series which should be documented as separate variables</li>
+<li>Need to specify which one to use as “authoritative” for analysis (or how to prioritize them)</li>
+<li>Define what counts as missing (blank/NA) and whether to substitute adjusted for raw when raw is missing</li>
+</ul>
+</section>
+<section id="data-validation-1" class="level3" data-number="A.2.10">
+<h3 data-number="A.2.10" class="anchored" data-anchor-id="data-validation-1"><span class="header-section-number">A.2.10</span> Data validation</h3>
+<ul>
+<li><p>Timezone in this dataset is different than water temp dataset.</p></li>
+<li><p>QA should include:</p>
+<ul>
+<li>missingness rate by BA</li>
+<li>negative/implausible values</li>
+<li>time continuity checks</li>
+</ul></li>
+</ul>
+</section>
+<section id="reuse-licensing-1" class="level3" data-number="A.2.11">
+<h3 data-number="A.2.11" class="anchored" data-anchor-id="reuse-licensing-1"><span class="header-section-number">A.2.11</span> Reuse / licensing</h3>
+<ul>
+<li>EIA publishes the Grid Monitor datasets for public use</li>
+</ul>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-agresti2013" class="csl-entry" role="listitem">
-Agresti, Alan. 2013. <em>Categorical Data Analysis</em>. 3rd ed. Hoboken, NJ: Wiley. <a href="https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635">https://www.wiley.com/en-us/Categorical+Data+Analysis%2C+3rd+Edition-p-9780470463635</a>.
-</div>
-<div id="ref-mccullagh1989" class="csl-entry" role="listitem">
-McCullagh, Peter, and John Nelder. 1989. <em>Generalized Linear Models</em>. 2nd ed. London: Chapman; Hall. <a href="https://utstat.utoronto.ca/brunner/oldclass/2201s11/readings/glmbook.pdf">https://utstat.utoronto.ca/brunner/oldclass/2201s11/readings/glmbook.pdf</a>.
-</div>
 <div id="ref-ndbc-dpha1" class="csl-entry" role="listitem">
 National Data Buoy Center. 2025. <span>“Station <span>DPHA1</span> — Dauphin Island, <span>AL</span>.”</span> National Oceanic; Atmospheric Administration. 2025. <a href="https://www.ndbc.noaa.gov/station_page.php?station=dpha1">https://www.ndbc.noaa.gov/station_page.php?station=dpha1</a>.
 </div>
@@ -309,6 +434,7 @@ National Data Buoy Center. 2025. <span>“Station <span>DPHA1</span> — Dauphin
 U.S. Energy Information Administration. 2025. <span>“Hourly Electric Grid Monitor.”</span> U.S. Department of Energy. 2025. <a href="https://www.eia.gov/electricity/gridmonitor/dashboard">https://www.eia.gov/electricity/gridmonitor/dashboard</a>.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -714,14 +840,11 @@ U.S. Energy Information Administration. 2025. <span>“Hourly Electric Grid Moni
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./intro.html" class="pagination-link" aria-label="Introduction">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Introduction</span></span>
+      <a href="./references.html" class="pagination-link" aria-label="References">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">References</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./results.html" class="pagination-link" aria-label="Results">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Results</span></span> <i class="bi bi-arrow-right-short"></i>
-      </a>
   </div>
 </nav>
 </div> <!-- /content -->

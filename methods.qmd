@@ -10,7 +10,7 @@ Because this is a secondary-data study, source selection is part of the method. 
 
 ## Outcomes and operational indicators
 
-Exceedance is the binary indicator equal to one when hourly water temperature exceeds \(85^\circ\)F after aggregating 30-minute buoy readings to hourly means (an hour exceeds if any aligned sub-hourly value exceeds after aggregation—implemented as any sub-hourly exceedance within the hour). Peak demand is an indicator for hours at or above the 90th percentile of observed hourly demand in the merged window. The percentile definition is internal to the sample and should be read as relative stress within the study period rather than an industry-wide reserve event definition.
+Exceedance is the binary indicator equal to one when hourly water temperature exceeds $85^\circ$F after aggregating 30-minute buoy readings to hourly means (an hour exceeds if any aligned sub-hourly value exceeds after aggregation—implemented as any sub-hourly exceedance within the hour). Peak demand is an indicator for hours at or above the 90th percentile of observed hourly demand in the merged window. The percentile definition is internal to the sample and should be read as relative stress within the study period rather than an industry-wide reserve event definition.
 
 ## Statistical methods and justification
 
@@ -28,7 +28,7 @@ p-values are secondary; practical significance is assessed using magnitude and c
 
 ### Frequency translation
 
-Let \(\hat{p}\) be the sample proportion of hours with exceedance among hours with non-missing temperature. Under stationarity, expected annual exceedance hours are \(\hat{p} \times 365 \times 24\); five-year totals multiply by five. These projections are planning aids, not forecasts with climate or weather uncertainty bands.
+Let $\hat{p}$ be the sample proportion of hours with exceedance among hours with non-missing temperature. Under stationarity, expected annual exceedance hours are $\hat{p} \times 365 \times 24$; five-year totals multiply by five. These projections are planning aids, not forecasts with climate or weather uncertainty bands.
 
 ## What this chapter does not contain
 

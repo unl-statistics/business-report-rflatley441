@@ -6,7 +6,7 @@ Electricity systems depend on dispatchable capacity during the highest-demand ho
 
 From a business perspective, the concern is not only average conditions but joint risk: hours when water temperature is high enough to threaten full output and load is elevated. Regulators, markets, and internal planning groups increasingly expect evidence that design assumptions (such as a maximum Gulf water temperature) remain consistent with observed operating conditions.
 
-## Problem definition and niche
+## Problem 
 
 This report addresses a focused question: Over a near-term planning horizon, how often does observed Gulf water temperature exceed an 85°F operating reference, and how often do those exceedances coincide with high electricity demand? The niche is hour-level, regional joint analysis of public environmental and grid data—appropriate when the decision is operational and scheduling (for example, maintenance placement and mitigation timing) rather than estimating decades-scale climate trends, which would require longer records and different tools.
 
