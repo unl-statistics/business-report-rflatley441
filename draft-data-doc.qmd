@@ -1,6 +1,6 @@
 # Data documentation {#sec-data-appendix}
 
-This appendix supports @sec-methods and @sec-results by documenting **sources**, **variables**, and **merge rules** for the two public datasets used in the report. Citations: NDBC station page [@ndbc-dpha1]; EIA Hourly Electric Grid Monitor [@eia-grid-monitor].
+This appendix supports @sec-methods and @sec-results by documenting sources, variables, and merge rules for the two public datasets used in the report. Citations: NDBC station page [@ndbc-dpha1]; EIA Hourly Electric Grid Monitor [@eia-grid-monitor].
 
 ## Gulf heat-sink temperature (near Dauphin Island) {#sec-data-water}
 
@@ -24,14 +24,14 @@ The file includes timestamp columns plus marine meteorology/ocean variables. The
 Key features for project:
 
 - `YY, MM, DD, hh, mm` = date/time components (year, month, day, hour, minute) 
-- `WTMP` (**degC**) = water temperature 
+- `WTMP` (degC) = water temperature 
 
 Optional columns possibly worth exploring:
 
-  - `ATMP` (**degC**) air temperature 
-  - `PRES` (**hPa**) pressure 
-  - `WDIR` (**degT**) wind direction; `WSPD` (**m/s**) wind speed 
-  - `TIDE` (**ft**) tide 
+  - `ATMP` (degC) air temperature 
+  - `PRES` (hPa) pressure 
+  - `WDIR` (degT) wind direction; `WSPD` (m/s) wind speed 
+  - `TIDE` (ft) tide 
 
 ### When the data was collected 
 

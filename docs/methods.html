@@ -226,7 +226,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#study-design-and-estimand" id="toc-study-design-and-estimand" class="nav-link active" data-scroll-target="#study-design-and-estimand"><span class="header-section-number">2.1</span> Study design and estimand</a></li>
+  <li><a href="#study-design-and-target-quantity" id="toc-study-design-and-target-quantity" class="nav-link active" data-scroll-target="#study-design-and-target-quantity"><span class="header-section-number">2.1</span> Study design and target quantity</a></li>
   <li><a href="#sec-data-role" id="toc-sec-data-role" class="nav-link" data-scroll-target="#sec-data-role"><span class="header-section-number">2.2</span> Data sources and role in place of primary collection</a></li>
   <li><a href="#outcomes-and-operational-indicators" id="toc-outcomes-and-operational-indicators" class="nav-link" data-scroll-target="#outcomes-and-operational-indicators"><span class="header-section-number">2.3</span> Outcomes and operational indicators</a></li>
   <li><a href="#statistical-methods-and-justification" id="toc-statistical-methods-and-justification" class="nav-link" data-scroll-target="#statistical-methods-and-justification"><span class="header-section-number">2.4</span> Statistical methods and justification</a>
@@ -234,7 +234,6 @@ window.Quarto = {
   <li><a href="#why-logistic-regression" id="toc-why-logistic-regression" class="nav-link" data-scroll-target="#why-logistic-regression"><span class="header-section-number">2.4.1</span> Why logistic regression</a></li>
   <li><a href="#frequency-translation" id="toc-frequency-translation" class="nav-link" data-scroll-target="#frequency-translation"><span class="header-section-number">2.4.2</span> Frequency translation</a></li>
   </ul></li>
-  <li><a href="#what-this-chapter-does-not-contain" id="toc-what-this-chapter-does-not-contain" class="nav-link" data-scroll-target="#what-this-chapter-does-not-contain"><span class="header-section-number">2.5</span> What this chapter does not contain</a></li>
   </ul>
 </nav>
     </div>
@@ -260,9 +259,9 @@ window.Quarto = {
 </header>
 
 
-<section id="study-design-and-estimand" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="study-design-and-estimand"><span class="header-section-number">2.1</span> Study design and estimand</h2>
-<p>The estimand is operational, not causal: the probability that hourly Gulf water temperature exceeds 85°F and how that probability differs during peak-demand hours versus other hours, holding month fixed to reflect the strong shared seasonality of temperature and air-conditioning load. The report also reports descriptive frequencies—how often exceedances occur overall and jointly with peak demand—scaled to annual and five-year hours and days under a stationarity assumption (recent conditions remain representative of the near term).</p>
+<section id="study-design-and-target-quantity" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="study-design-and-target-quantity"><span class="header-section-number">2.1</span> Study design and target quantity</h2>
+<p>The quantity we estimate is operational, not causal; the exceedance and peak-demand indicators are defined in <a href="intro.html" class="quarto-xref"><span>Chapter 1</span></a>. The report also reports descriptive frequencies, how often exceedances occur overall and jointly with peak demand, scaled to annual and five-year hours and days under a stationarity assumption (recent conditions remain representative of the near term).</p>
 </section>
 <section id="sec-data-role" class="level2" data-number="2.2">
 <h2 data-number="2.2" class="anchored" data-anchor-id="sec-data-role"><span class="header-section-number">2.2</span> Data sources and role in place of primary collection</h2>
@@ -270,29 +269,18 @@ window.Quarto = {
 </section>
 <section id="outcomes-and-operational-indicators" class="level2" data-number="2.3">
 <h2 data-number="2.3" class="anchored" data-anchor-id="outcomes-and-operational-indicators"><span class="header-section-number">2.3</span> Outcomes and operational indicators</h2>
-<p>Exceedance is the binary indicator equal to one when hourly water temperature exceeds <span class="math inline">\(85^\circ\)</span>F after aggregating 30-minute buoy readings to hourly means (an hour exceeds if any aligned sub-hourly value exceeds after aggregation—implemented as any sub-hourly exceedance within the hour). Peak demand is an indicator for hours at or above the 90th percentile of observed hourly demand in the merged window. The percentile definition is internal to the sample and should be read as relative stress within the study period rather than an industry-wide reserve event definition.</p>
+<p>Exceedance is the binary indicator equal to one when hourly water temperature exceeds <span class="math inline">\(85^\circ\)</span>F after aggregating 30-minute buoy readings to hourly means (an hour exceeds if any aligned sub-hourly value exceeds after aggregation, implemented as any sub-hourly exceedance within the hour). Peak demand is an indicator for hours at or above the 90th percentile of observed hourly demand in the merged window. The percentile definition is internal to the sample and should be read as relative stress within the study period rather than an industry-wide reserve event definition.</p>
 </section>
 <section id="statistical-methods-and-justification" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="statistical-methods-and-justification"><span class="header-section-number">2.4</span> Statistical methods and justification</h2>
 <section id="why-logistic-regression" class="level3" data-number="2.4.1">
 <h3 data-number="2.4.1" class="anchored" data-anchor-id="why-logistic-regression"><span class="header-section-number">2.4.1</span> Why logistic regression</h3>
-<p>The primary outcome is binary. Binomial logistic regression models the log-odds of exceedance as a linear function of predictors <span class="citation" data-cites="agresti2013 mccullagh1989">(<a href="references.html#ref-agresti2013" role="doc-biblioref">Agresti 2013</a>; <a href="references.html#ref-mccullagh1989" role="doc-biblioref">McCullagh and Nelder 1989</a>)</span>. This choice matches the data type, yields multiplicative odds statements comparable across subgroups, and supports interval estimates via profile likelihood intervals for parameters (reported on the odds-ratio scale via exponentiation).</p>
-<p>Three specifications are fit:</p>
-<ol type="1">
-<li>Intercept-only (“crude”) model: overall exceedance prevalence on the logit scale.</li>
-<li>Peak-demand indicator: tests whether odds of exceedance differ during peak hours without seasonal adjustment.</li>
-<li>Peak + month factors: adjusts for month to reduce confounding when both temperature and load rise in summer.</li>
-</ol>
+<p>The primary outcome is binary. Binomial logistic regression models the log-odds of exceedance as a linear function of predictors <span class="citation" data-cites="agresti2013 mccullagh1989">(<a href="references.html#ref-agresti2013" role="doc-biblioref">Agresti 2013</a>; <a href="references.html#ref-mccullagh1989" role="doc-biblioref">McCullagh and Nelder 1989</a>)</span>. This choice matches the data type, yields multiplicative odds statements comparable across subgroups, and supports interval estimates via profile likelihood intervals for parameters (reported on the odds-ratio scale via exponentiation). The fitted specifications (crude, peak-only, and month-adjusted) are stated with results in <a href="results.html" class="quarto-xref"><span>Chapter 3</span></a>.</p>
 <p>p-values are secondary; practical significance is assessed using magnitude and confidence intervals for odds ratios and by translating probabilities into expected hours per year.</p>
 </section>
 <section id="frequency-translation" class="level3" data-number="2.4.2">
 <h3 data-number="2.4.2" class="anchored" data-anchor-id="frequency-translation"><span class="header-section-number">2.4.2</span> Frequency translation</h3>
 <p>Let <span class="math inline">\(\hat{p}\)</span> be the sample proportion of hours with exceedance among hours with non-missing temperature. Under stationarity, expected annual exceedance hours are <span class="math inline">\(\hat{p} \times 365 \times 24\)</span>; five-year totals multiply by five. These projections are planning aids, not forecasts with climate or weather uncertainty bands.</p>
-</section>
-</section>
-<section id="what-this-chapter-does-not-contain" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="what-this-chapter-does-not-contain"><span class="header-section-number">2.5</span> What this chapter does not contain</h2>
-<p>Following standard reporting practice, methods do not present findings or recommendations; those appear in <a href="results.html" class="quarto-xref"><span>Chapter 3</span></a> and <a href="discussion.html" class="quarto-xref"><span>Chapter 4</span></a>.</p>
 
 
 <div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" role="list" style="display: none">
@@ -309,6 +297,7 @@ National Data Buoy Center. 2025. <span>“Station <span>DPHA1</span> — Dauphin
 U.S. Energy Information Administration. 2025. <span>“Hourly Electric Grid Monitor.”</span> U.S. Department of Energy. 2025. <a href="https://www.eia.gov/electricity/gridmonitor/dashboard">https://www.eia.gov/electricity/gridmonitor/dashboard</a>.
 </div>
 </div>
+</section>
 </section>
 
 </main> <!-- /main -->

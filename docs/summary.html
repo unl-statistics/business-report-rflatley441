@@ -226,22 +226,9 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-simple callout-note no-icon callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>How to read this summary
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Section headings below follow the same order as the full report: Introduction, Methods, Results, and Discussion. Numbers cited here are developed in <a href="results.html" class="quarto-xref"><span>3&nbsp; Results</span></a> and supported by the data sources described in <a href="methods.html" class="quarto-xref"><span>2&nbsp; Methods</span></a> and documented in <a href="draft-data-doc.html" class="quarto-xref"><span>Appendix A — Data documentation</span></a>.</p>
-</div>
-</div>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>Coastal steam and combined-cycle plants often rely on Gulf water as a heat sink. When nearshore water temperature approaches design limits, operators may need to reduce output—sometimes during the same summer and early-fall hours when electricity demand is highest. The business question is whether an 85°F Gulf-water assumption remains a credible planning baseline or whether observed temperatures and their overlap with peak demand warrant capacity, scheduling, and mitigation decisions now.</p>
+<p>Coastal steam and combined-cycle plants often rely on Gulf water as a heat sink. When nearshore water temperature approaches design limits, operators may need to reduce output, sometimes during the same summer and early-fall hours when electricity demand is highest. The business question is whether an 85°F Gulf-water assumption remains a credible planning baseline or whether observed temperatures and their overlap with peak demand warrant capacity, scheduling, and mitigation decisions now.</p>
 </section>
 <section id="methods" class="level2">
 <h2 class="anchored" data-anchor-id="methods">Methods</h2>
@@ -250,11 +237,11 @@ div.csl-indent {
 </section>
 <section id="results" class="level2">
 <h2 class="anchored" data-anchor-id="results">Results</h2>
-<p><strong>Important coverage note (lower bound):</strong> The demand series ends on <strong>July 1, 2025</strong>, so the coincidence analysis (temperature () peak demand) covers roughly <strong>January–June</strong> and <strong>misses July–September entirely</strong>—the three months when <a href="results.html#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a> shows exceedance rates of <strong>~85% (Jul), ~78% (Aug), and ~25% (Sep)</strong>. As a result, any <strong>annualized</strong> coincident-hours figure reported here or in Chapter 3 is a <strong>lower bound</strong>, not a standalone planning input. For rough intuition, if <strong>June</strong> (the only full summer month with demand data; <strong>~56%</strong> exceedance in <a href="results.html#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a>) is representative of the missing window, true coincident hours are plausibly <strong>3–5×</strong> the reported estimate.</p>
+<p>Any annualized coincident-hours figure is a <strong>lower bound</strong> because demand data end mid-year; the quantitative caveat and months affected are laid out in <a href="results.html#sec-coincidence-lower-bound" class="quarto-xref"><span>Cross‑tabulation of exceedance and peak demand</span></a>.</p>
 <ul>
 <li>Seasonality: Exceedances concentrate in late summer and early fall; winter and spring show comparatively little high-temperature risk (<a href="results.html#fig-water-ts" class="quarto-xref">Figure&nbsp;<span>3.1</span></a>, <a href="results.html#fig-water-season" class="quarto-xref">Figure&nbsp;<span>3.3</span></a>, <a href="results.html#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a>).</li>
 <li>Frequency: Under stationarity of the observed year, hourly exceedance rates scale to substantial annual and five-year counts of high-temperature hours (<a href="results.html#sec-primary-exceedance" class="quarto-xref"><span>Primary analysis: probability and frequency of exceeding 85°F</span></a>).</li>
-<li>Overlap with peak load: A non-trivial share of exceedance hours occurs when demand is in the top decile, and model estimates show higher odds of exceedance during peak-load hours after accounting for month—with uncertainty summarized by odds ratios and profile confidence intervals (<a href="results.html#tbl-logistic-models" class="quarto-xref">Table&nbsp;<span>3.4</span></a>, <a href="results.html#fig-temp-demand" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>).</li>
+<li>Overlap with peak load: A non-trivial share of exceedance hours occurs when demand is in the top decile, and model estimates show higher odds of exceedance during peak-load hours after accounting for month, with uncertainty summarized by odds ratios and profile confidence intervals (<a href="results.html#tbl-logistic-models" class="quarto-xref">Table&nbsp;<span>3.4</span></a>, <a href="results.html#fig-temp-demand" class="quarto-xref">Figure&nbsp;<span>3.2</span></a>).</li>
 </ul>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -266,7 +253,7 @@ div.csl-indent {
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Treat warm-season Gulf temperatures as a recurring constraint, not a rare tail event. Plan capacity and maintenance around a predictable high-risk window, and evaluate cooling upgrades or contracts using expected restricted-output hours and their overlap with peak demand—not only single-year averages.</p>
+<p>Treat warm-season Gulf temperatures as a recurring constraint, not a rare tail event. Plan capacity and maintenance around a predictable high-risk window, and evaluate cooling upgrades or contracts using expected restricted-output hours and their overlap with peak demand, not only single-year averages.</p>
 </div>
 </div>
 </section>

@@ -14,17 +14,17 @@ The business problem is a planning trade-off: if Gulf water temperatures frequen
 
 To answer the business question, the analysis uses observed 2025 data and a transparent workflow designed for planning use:
 
-- **Data**: Gulf water temperature observations near Dauphin Island, AL and hourly electricity demand for the plant’s region.
+- Data: Gulf water temperature observations near Dauphin Island, AL and hourly electricity demand for the plant’s region.
 - **Cleaning and alignment**: Water temperatures were cleaned (including sentinel missingness), converted to Fahrenheit, and aggregated to hourly averages; demand data were cleaned and time-aligned to the same local hourly timestamps.
 - **Operational indicators**:
-  - **Exceedance**: hourly water temperature $> 85^\circ$F
+  - Exceedance: hourly water temperature $> 85^\circ$F
   - **Peak demand**: top 10% of demand hours in the study period
-- **Analysis**: descriptive summaries and seasonality plots; cross-tabulations of exceedance by peak-demand status; logistic regression models (crude, peak-only, and month-adjusted) to assess whether exceedance risk is elevated during peak-demand periods after accounting for seasonal month effects.
-- **Planning translation**: observed exceedance proportions were scaled to expected **annual** and **five-year** hours/days above 85°F under a conservative stationarity assumption (i.e., near-term conditions resemble the observed year).
+- Analysis: descriptive summaries and seasonality plots; cross-tabulations of exceedance by peak-demand status; logistic regression models (crude, peak-only, and month-adjusted) to assess whether exceedance risk is elevated during peak-demand periods after accounting for seasonal month effects.
+- **Planning translation**: observed exceedance proportions were scaled to expected annual and five-year hours/days above 85°F under a conservative stationarity assumption (i.e., near-term conditions resemble the observed year).
 
 ### Main conclusion
 
-Observed 2025 conditions indicate that water temperatures above 85°F are not rare and are strongly seasonal, clustering in late summer and early fall. A **non-trivial subset** of these exceedance hours occurs during **peak-demand** periods, creating a recurring warm-season window when the plant is most likely to be thermally constrained precisely when the grid most benefits from full capacity. Even under conservative assumptions (no additional warming beyond observed conditions), the evidence supports treating high Gulf temperatures as a risk over a five-year planning horizon.
+Observed 2025 conditions indicate that water temperatures above 85°F are not rare and are strongly seasonal, clustering in late summer and early fall. A **non-trivial subset** of these exceedance hours occurs during peak-demand periods, creating a recurring warm-season window when the plant is most likely to be thermally constrained precisely when the grid most benefits from full capacity. Even under conservative assumptions (no additional warming beyond observed conditions), the evidence supports treating high Gulf temperatures as a risk over a five-year planning horizon.
 
 ### Recommendations and decisions
 

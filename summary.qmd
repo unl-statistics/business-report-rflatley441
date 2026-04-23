@@ -1,14 +1,8 @@
 # Executive summary {.unnumbered}
 
-::: {.callout-note appearance="minimal"}
-## How to read this summary
-
-Section headings below follow the same order as the full report: Introduction, Methods, Results, and Discussion. Numbers cited here are developed in @sec-results and supported by the data sources described in @sec-methods and documented in @sec-data-appendix.
-:::
-
 ## Introduction 
 
-Coastal steam and combined-cycle plants often rely on Gulf water as a heat sink. When nearshore water temperature approaches design limits, operators may need to reduce output—sometimes during the same summer and early-fall hours when electricity demand is highest. The business question is whether an 85°F Gulf-water assumption remains a credible planning baseline or whether observed temperatures and their overlap with peak demand warrant capacity, scheduling, and mitigation decisions now.
+Coastal steam and combined-cycle plants often rely on Gulf water as a heat sink. When nearshore water temperature approaches design limits, operators may need to reduce output, sometimes during the same summer and early-fall hours when electricity demand is highest. The business question is whether an 85°F Gulf-water assumption remains a credible planning baseline or whether observed temperatures and their overlap with peak demand warrant capacity, scheduling, and mitigation decisions now.
 
 ## Methods 
 
@@ -18,16 +12,16 @@ Binomial logistic regression [@agresti2013] estimates how the probability of exc
 
 ## Results
 
-**Important coverage note (lower bound):** The demand series ends on **July 1, 2025**, so the coincidence analysis (temperature \(\cap\) peak demand) covers roughly **January–June** and **misses July–September entirely**—the three months when @tbl-monthly-water shows exceedance rates of **~85% (Jul), ~78% (Aug), and ~25% (Sep)**. As a result, any **annualized** coincident-hours figure reported here or in Chapter 3 is a **lower bound**, not a standalone planning input. For rough intuition, if **June** (the only full summer month with demand data; **~56%** exceedance in @tbl-monthly-water) is representative of the missing window, true coincident hours are plausibly **3–5×** the reported estimate.
+Any annualized coincident-hours figure is a **lower bound** because demand data end mid-year; the quantitative caveat and months affected are laid out in @sec-coincidence-lower-bound.
 
 - Seasonality: Exceedances concentrate in late summer and early fall; winter and spring show comparatively little high-temperature risk (@fig-water-ts, @fig-water-season, @tbl-monthly-water).
 - Frequency: Under stationarity of the observed year, hourly exceedance rates scale to substantial annual and five-year counts of high-temperature hours (@sec-primary-exceedance).
-- Overlap with peak load: A non-trivial share of exceedance hours occurs when demand is in the top decile, and model estimates show higher odds of exceedance during peak-load hours after accounting for month—with uncertainty summarized by odds ratios and profile confidence intervals (@tbl-logistic-models, @fig-temp-demand).
+- Overlap with peak load: A non-trivial share of exceedance hours occurs when demand is in the top decile, and model estimates show higher odds of exceedance during peak-load hours after accounting for month, with uncertainty summarized by odds ratios and profile confidence intervals (@tbl-logistic-models, @fig-temp-demand).
 
 ::: {.callout-important}
 ## Bottom line for decision-makers
 
-Treat warm-season Gulf temperatures as a recurring constraint, not a rare tail event. Plan capacity and maintenance around a predictable high-risk window, and evaluate cooling upgrades or contracts using expected restricted-output hours and their overlap with peak demand—not only single-year averages.
+Treat warm-season Gulf temperatures as a recurring constraint, not a rare tail event. Plan capacity and maintenance around a predictable high-risk window, and evaluate cooling upgrades or contracts using expected restricted-output hours and their overlap with peak demand, not only single-year averages.
 :::
 
 ## Discussion

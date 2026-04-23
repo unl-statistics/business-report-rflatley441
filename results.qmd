@@ -232,22 +232,19 @@ The demand dataset contributes `r if (exists("demand_summary")) scales::comma(de
 
 Data cleaning steps are summarized below:
 
-- **Water temperature**:
-  - Removed sentinel missingness codes on the **°C scale** (e.g., `WTMP` = 99 or 999). These values (99 and 999) are placeholder codes used by NDBC to indicate failed or missing sensor readings, not real temperatures; left in place, they would convert to approximately 210°F and 2,102°F respectively, which would corrupt every exceedance calculation downstream.
-  - Added a **range-check flag** for any observation outside roughly **7°C–35°C** (`r if (exists("water")) sum(water$wtmp_out_of_range, na.rm = TRUE) else "NA"` flagged half-hour readings), but did not silently drop flagged values. The 7°C to 35°C bounds represent the physically plausible envelope for nearshore Gulf surface water at this latitude across all seasons: a reading below 7°C would be inconsistent with even the coldest recorded Gulf winters near Dauphin Island, and a reading above 35°C would exceed the warmest documented nearshore Gulf surface temperatures on record. Any observation outside this window therefore indicates sensor malfunction or a transcription error rather than a real ocean condition.
-  - Converted cleaned water temperatures from **°C to °F**. The plant's operating threshold is defined in Fahrenheit, and converting the buoy record to the same units at the aggregation step ensures all reported figures, exceedance indicators, and table values are directly comparable to the 85°F design assumption without requiring the reader to mentally convert.
-  - Aggregated from 30‑minute readings to **hourly averages** to align with demand data. The demand dataset is recorded at hourly resolution and the two series cannot be joined without a common time key; averaging buoy readings to the hour is the minimum transformation needed to align them.
+Water temperature records were cleaned of sentinel missing values, range-checked against physically plausible Gulf bounds, converted to °F, and aggregated to hourly means (rationale and conventions are documented in @sec-data-appendix).
+
 - **Electricity demand**: limited to observed hourly demand (`demand_mw`), with a peak-demand indicator defined as the top 10% of demand hours.
 - **Merged analysis file**: constructed by joining hourly Gulf temperatures to hourly demand on local timestamp.
 
 ### Descriptive statistics: water temperature
 
 On average, Gulf water temperature during the 2025 observation window was
-**`r if (exists("water_summary")) round(water_summary$mean_F, 1) else "NA"`°F** (SD `r if (exists("water_summary")) round(water_summary$sd_F, 1) else "NA"`°F),
+`r if (exists("water_summary")) round(water_summary$mean_F, 1) else "NA"`°F (SD `r if (exists("water_summary")) round(water_summary$sd_F, 1) else "NA"`°F),
 with a median of `r if (exists("water_summary")) round(water_summary$p50_F, 1) else "NA"`°F and a maximum of
 `r if (exists("water_summary")) round(water_summary$max_F, 1) else "NA"`°F.
 High-temperature conditions relevant for plant operations were not rare:
-**`r if (exists("water_summary")) scales::percent(water_summary$prop_exceed_85F) else "NA"`** of half‑hour readings exceeded the
+`r if (exists("water_summary")) scales::percent(water_summary$prop_exceed_85F) else "NA"` of half‑hour readings exceeded the
 85°F design assumption.
 
 ```{r}
@@ -275,12 +272,12 @@ This seasonality is important for planning maintenance and contingency capacity.
 
 ### Descriptive statistics: electricity demand and peak periods
 
-Hourly demand over the same period averaged **`r if (exists("demand_summary")) round(demand_summary$mean_MW, 0) else "NA"` MW**
+Hourly demand over the same period averaged `r if (exists("demand_summary")) round(demand_summary$mean_MW, 0) else "NA"` MW
 (SD `r if (exists("demand_summary")) round(demand_summary$sd_MW, 0) else "NA"` MW), with a typical hour (median) at
 `r if (exists("demand_summary")) round(demand_summary$p50_MW, 0) else "NA"` MW and a maximum of
 `r if (exists("demand_summary")) round(demand_summary$max_MW, 0) else "NA"` MW.
-By construction, approximately **`r if (exists("demand_summary")) scales::percent(demand_summary$prop_peak_hours) else "NA"`**
-of hours are classified as **peak‑demand** hours.
+By construction, approximately `r if (exists("demand_summary")) scales::percent(demand_summary$prop_peak_hours) else "NA"`
+of hours are classified as peak‑demand hours.
 
 ```{r}
 #| label: tbl-monthly-demand
@@ -329,13 +326,13 @@ These stretches translate directly into periods when the plant would be forced t
 ### Overall probability of exceedance
 
 At the hourly level (after aggregating 30‑minute readings), the plant would have faced
-reduced‑capacity conditions in **`r if (exists("exceed_metrics")) scales::percent(exceed_metrics$prop_exceed) else "NA"`** of observed hours.
+reduced‑capacity conditions in `r if (exists("exceed_metrics")) scales::percent(exceed_metrics$prop_exceed) else "NA"` of observed hours.
 Scaling this observed proportion to a full year implies that, under 2025‑like conditions, the plant should expect approximately
-**`r if (exists("annual_exceed_hours")) round(annual_exceed_hours, 0) else "NA"` hours** (about
-**`r if (exists("annual_exceed_days")) round(annual_exceed_days, 1) else "NA"` days**) per year above 85°F.
+`r if (exists("annual_exceed_hours")) round(annual_exceed_hours, 0) else "NA"` hours (about
+`r if (exists("annual_exceed_days")) round(annual_exceed_days, 1) else "NA"` days) per year above 85°F.
 Over a 5‑year planning horizon, this corresponds to roughly
-**`r if (exists("five_year_exceed_hours")) round(five_year_exceed_hours, 0) else "NA"` hours** (about
-**`r if (exists("five_year_exceed_days")) round(five_year_exceed_days, 1) else "NA"` days) of required reduced‑capacity operation,
+`r if (exists("five_year_exceed_hours")) round(five_year_exceed_hours, 0) else "NA"` hours (about
+`r if (exists("five_year_exceed_days")) round(five_year_exceed_days, 1) else "NA"` days) of required reduced‑capacity operation,
 assuming no further warming trend beyond 2025.
 
 ```{r}
@@ -362,9 +359,9 @@ Operationally, this means that reduced‑capacity events are not evenly scattere
 
 We fit **binomial logistic regression** models for the binary outcome “hourly water temperature above 85°F” [@agresti2013].
 
-- **Crude model**: intercept‑only—overall exceedance **prevalence** on the logit scale.
-- **Peak‑only model**: adds an indicator for **peak‑demand** hours (top 10% of load).
-- **Adjusted model**: adds **month** indicators so that the peak‑load contrast is estimated **within calendar month**, reducing spurious association driven purely by shared summer seasonality between temperature and air‑conditioning load.
+- **Crude model**: intercept‑only, overall exceedance prevalence on the logit scale.
+- **Peak‑only model**: adds an indicator for peak‑demand hours (top 10% of load).
+- **Adjusted model**: adds month indicators so that the peak‑load contrast is estimated **within calendar month**, reducing spurious association driven purely by shared summer seasonality between temperature and air‑conditioning load.
 
 ```{r}
 #| label: tbl-logistic-models
@@ -377,15 +374,15 @@ model_table %>%
   )
 ```
 
-The intercept‑only specification reproduces the **marginal** exceedance frequency. For the **peak‑demand** term, interpret the **odds ratio** as a **multiplicative** change in the **odds** of exceedance relative to non‑peak hours; when exceedance is **not too rare**, odds ratios approximate **relative risk** directionally for prioritization. **Practical** conclusions rest on whether **confidence intervals** for the peak‑demand odds ratio **exclude 1** at the **upper** tail (elevated odds during peak) and on the **magnitude**—large multipliers matter more than **p-values** for sparse hourly events.
+The intercept‑only specification reproduces the marginal exceedance frequency. For the peak‑demand term, interpret the odds ratio as a multiplicative change in the odds of exceedance relative to non‑peak hours; when exceedance is not too rare, odds ratios approximate relative risk directionally for prioritization. Practical conclusions rest on whether **confidence intervals** for the peak‑demand odds ratio **exclude 1** at the upper tail (elevated odds during peak) and on the magnitude; large multipliers matter more than p-values for sparse hourly events.
 
-The **month‑adjusted** model asks a narrower question: **conditional on month**, are peak‑load hours still more likely to coincide with exceedance? Affirmative evidence supports **load‑related** concentration beyond **seasonal** co‑movement alone.
+The month‑adjusted model asks a narrower question: conditional on month, are peak‑load hours still more likely to coincide with exceedance? Affirmative evidence supports load‑related concentration beyond seasonal co‑movement alone.
 
-The very large odds ratio and wide confidence interval on `peak_demandTRUE` in the month‑adjusted model reflect **(quasi-)complete separation** in the observed data (formally flagged by a separation diagnostic: `r if (exists("sep_check")) sep_check$separation else "NA"`). Most notably, within the warm-season subset there is little overlap between “peak demand” and “non‑exceedance” hours (e.g., @tbl-season-peak shows `Summer` + `TRUE` has `prob_exceed = 1.000`)—so the **direction** (higher odds during peak hours) is robust but the point estimate should **not** be interpreted numerically.
+The very large odds ratio and wide confidence interval on `peak_demandTRUE` in the month‑adjusted model reflect (quasi-)complete separation in the observed data. In plain terms, within warm-season months in this sample, nearly every peak-demand hour also exceeded 85°F, which inflates the point estimate but does not change the direction of the effect (higher odds during peak hours).
 
 ## Coincidence of high temperatures with high‑demand periods
 
-### Cross‑tabulation of exceedance and peak demand
+### Cross‑tabulation of exceedance and peak demand {#sec-coincidence-lower-bound}
 
 ```{r}
 #| label: tbl-exceed-peak
@@ -410,16 +407,16 @@ Across the full observation window, the water temperature exceeded 85°F in
 hours with both temperature and demand data.
 Of those exceedance hours, `r if (exists("exceed_metrics")) exceed_metrics$n_peak_exceed_hours else "NA"` occurred during peak‑demand hours.
 The resulting annualized estimate is approximately
-**`r if (exists("annual_peak_exceed_hours")) round(annual_peak_exceed_hours, 0) else "NA"` hours**
-(about `r if (exists("annual_peak_exceed_days")) round(annual_peak_exceed_days, 1) else "NA"` days) per year when **both**
+`r if (exists("annual_peak_exceed_hours")) round(annual_peak_exceed_hours, 0) else "NA"` hours
+(about `r if (exists("annual_peak_exceed_days")) round(annual_peak_exceed_days, 1) else "NA"` days) per year when both
 Gulf water exceeds 85°F and electricity demand is in the top 10%.
 
-**Important caveat (lower bound):** the demand series ends **July 1**, so this coincidence calculation excludes **July, August, and September entirely**—the three months when @tbl-monthly-water shows exceedance rates of about
-**`r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Jul") %>% pull(prop_exceed_85F)) else "NA"`** (Jul),
-**`r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Aug") %>% pull(prop_exceed_85F)) else "NA"`** (Aug), and
-**`r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Sep") %>% pull(prop_exceed_85F)) else "NA"`** (Sep).
+Note that the demand series ends July 1, so this coincidence calculation excludes July, August, and September entirely, the three months when @tbl-monthly-water shows exceedance rates of about
+`r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Jul") %>% pull(prop_exceed_85F)) else "NA"` (Jul),
+`r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Aug") %>% pull(prop_exceed_85F)) else "NA"` (Aug), and
+`r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Sep") %>% pull(prop_exceed_85F)) else "NA"` (Sep).
 As a result, the annualized coincident-hours figure above should be treated as a **lower bound**, not a standalone planning input.
-For rough intuition, if **June**—the only full summer month with demand data, with **`r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Jun") %>% pull(prop_exceed_85F)) else "NA"`** exceedance in @tbl-monthly-water—is at all representative of the missing July–September window, then true coincident hours could plausibly be on the order of **3–5×** the reported estimate.
+For rough intuition, if June, the only full summer month with demand data, with `r if (exists("water_by_month")) scales::percent(water_by_month %>% filter(month == "Jun") %>% pull(prop_exceed_85F)) else "NA"` exceedance in @tbl-monthly-water, is at all representative of the missing July–September window, then true coincident hours could plausibly be on the order of 3–5× the reported estimate.
 
 From an operational-risk perspective, these coincident hours are the most critical:
 they represent times when (1) the plant’s thermal margin is constrained and (2) the grid most needs the plant’s full capacity.
@@ -506,8 +503,8 @@ knitr::kable(
 ```
 
 Seasonal subgroup analyses (@tbl-season-peak) show that exceedances are almost entirely a summer and early‑fall phenomenon, with negligible risk in winter and spring.
-Within summer, exceedance during peak‑demand hours can exceed non‑peak hours—consistent with **effect modification** by both season and load level.
+Within summer, exceedance during peak‑demand hours can exceed non‑peak hours, consistent with effect modification by both season and load level.
 
 ### Sensitivity to peak‑demand definition
 
-Alternative **top‑quantile** cutoffs (for example, **5%** versus **15%**) change the **count** of peak hours but rarely overturn the qualitative pattern: a **non‑zero** set of hours exhibits **both** high temperature and **high** relative load. Re‑estimation under alternative rules is straightforward given the merged hourly file.
+Alternative top‑quantile cutoffs (for example, 5% versus 15%) change the count of peak hours but rarely overturn the qualitative pattern: a non‑zero set of hours exhibits both high temperature and high relative load. Re‑estimation under alternative rules is straightforward given the merged hourly file.

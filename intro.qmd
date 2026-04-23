@@ -2,15 +2,15 @@
 
 ## Background and motivation
 
-Electricity systems depend on dispatchable capacity during the highest-demand hours. For generators sited on the Gulf Coast, condenser cooling is often tied to ambient or intake water that warms with seasonal air temperatures, shallow shelf dynamics, and extended heat events. When cooling is constrained, plants may face output limits or efficiency losses precisely when reliability margins are thinnest.
-
 From a business perspective, the concern is not only average conditions but joint risk: hours when water temperature is high enough to threaten full output and load is elevated. Regulators, markets, and internal planning groups increasingly expect evidence that design assumptions (such as a maximum Gulf water temperature) remain consistent with observed operating conditions.
+
+Electricity systems depend on dispatchable capacity during the highest-demand hours. For generators sited on the Gulf Coast, condenser cooling is often tied to ambient or intake water that warms with seasonal air temperatures, shallow shelf dynamics, and extended heat events. When cooling is constrained, plants may face output limits or efficiency losses precisely when reliability margins are thinnest.
 
 ## Problem 
 
-This report addresses a focused question: Over a near-term planning horizon, how often does observed Gulf water temperature exceed an 85°F operating reference, and how often do those exceedances coincide with high electricity demand? The niche is hour-level, regional joint analysis of public environmental and grid data—appropriate when the decision is operational and scheduling (for example, maintenance placement and mitigation timing) rather than estimating decades-scale climate trends, which would require longer records and different tools.
+This report addresses a focused question: Over a near-term planning horizon, how often does observed Gulf water temperature exceed an 85°F operating reference, and how often do those exceedances coincide with high electricity demand? The niche is hour-level, regional joint analysis of public environmental and grid data, appropriate when the decision is operational and scheduling (for example, maintenance placement and mitigation timing) rather than estimating decades-scale climate trends, which would require longer records and different tools.
 
-The analysis is intentionally transparent and reproducible: it uses documented thresholds (85°F exceedance; top 10% of hours for peak demand) and standard binomial regression to express uncertainty for decision-relevant comparisons—especially confidence intervals on adjusted associations between peak load and exceedance after month effects are accounted for [@agresti2013].
+The analysis is intentionally transparent and reproducible: it uses documented thresholds (85°F exceedance; top 10% of hours for peak demand) and standard binomial regression to express uncertainty for decision-relevant comparisons, especially confidence intervals on adjusted associations between peak load and exceedance after month effects are accounted for [@agresti2013].
 
 ## Preview of data and methods
 
