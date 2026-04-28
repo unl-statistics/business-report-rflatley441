@@ -2,6 +2,10 @@ project:
   type: book  
   output-dir: docs
 
+profiles:
+  windows:
+    post-render: compile-slides.bat
+
 book:
   title: "Gulf Cooling Water and Peak Demand: Thermal Risk for Coastal Generation"
   author: "Ryan Flatley"
