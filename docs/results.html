@@ -260,7 +260,7 @@ div.csl-indent {
 <div id="tbl-monthly-water" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-monthly-water-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.1: Monthly Gulf water temperatures and share of half-hour observations above 85&lt;U+00B0&gt;F (Dauphin Island, 2025).
+Table&nbsp;3.1: Monthly Gulf water temperatures and share of half-hour observations above 85°F (Dauphin Island, 2025).
 </figcaption>
 <div aria-describedby="tbl-monthly-water-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -388,7 +388,7 @@ Table&nbsp;3.1: Monthly Gulf water temperatures and share of half-hour observati
 <div id="tbl-monthly-demand" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-monthly-demand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.2: Monthly electricity demand (MW) in the plant&lt;U+2019&gt;s balancing-authority region (study window).
+Table&nbsp;3.2: Monthly electricity demand (MW) in the plant’s balancing-authority region (study window).
 </figcaption>
 <div aria-describedby="tbl-monthly-demand-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -496,7 +496,7 @@ Figure&nbsp;3.1: Hourly average Gulf water temperature at Dauphin Island with 85
 <div id="tbl-exceed-by-month" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-exceed-by-month-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.3: Monthly share of hours with hourly Gulf water temperature above 85&lt;U+00B0&gt;F.
+Table&nbsp;3.3: Monthly share of hours with hourly Gulf water temperature above 85°F.
 </figcaption>
 <div aria-describedby="tbl-exceed-by-month-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -579,7 +579,7 @@ Table&nbsp;3.3: Monthly share of hours with hourly Gulf water temperature above 
 <div id="tbl-logistic-models" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-logistic-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.4: Logistic regression for hourly Gulf water temperature above 85&lt;U+00B0&gt;F: odds ratios with 95% profile confidence intervals.
+Table&nbsp;3.4: Logistic regression for hourly Gulf water temperature above 85°F: odds ratios with 95% profile confidence intervals.
 </figcaption>
 <div aria-describedby="tbl-logistic-models-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -615,7 +615,7 @@ Table&nbsp;3.4: Logistic regression for hourly Gulf water temperature above 85&l
 <td style="text-align: right;">0.000</td>
 </tr>
 <tr class="even">
-<td style="text-align: left;">Peak vs non&lt;U+2011&gt;peak</td>
+<td style="text-align: left;">Peak vs non‑peak</td>
 <td style="text-align: left;">peak_demandTRUE</td>
 <td style="text-align: right;">1.14</td>
 <td style="text-align: right;">0.168</td>
@@ -738,9 +738,9 @@ Table&nbsp;3.4: Logistic regression for hourly Gulf water temperature above 85&l
 </figure>
 </div>
 </div>
-<p>The intercept‑only specification reproduces the marginal exceedance frequency. For the peak‑demand term, interpret the <strong>odds ratio</strong> as a multiplicative change in the odds of exceedance relative to non‑peak hours; when exceedance is <strong>not too rare</strong>, odds ratios approximate <strong>relative risk</strong> directionally for prioritization. Practical conclusions rest on whether <strong>confidence intervals</strong> for the peak‑demand odds ratio <strong>exclude 1</strong> at the upper tail (elevated odds during peak) and on the magnitude; large multipliers matter more than p-values for sparse hourly events.</p>
-<p>The month‑adjusted model asks a narrower question: <strong>conditional on month</strong>, are peak‑load hours still more likely to coincide with exceedance? Affirmative evidence supports load‑related concentration beyond seasonal co‑movement alone.</p>
-<p>The very large odds ratio and wide confidence interval on <code>peak_demandTRUE</code> in the month‑adjusted model reflect <strong>(quasi-)complete separation</strong> in the observed data. In plain terms, within warm-season months in this sample, nearly every peak-demand hour also exceeded 85°F, which inflates the point estimate but does not change the direction of the effect (higher odds during peak hours).</p>
+<p>The intercept‑only specification reproduces the marginal exceedance frequency. For the peak‑demand term, interpret the odds ratio as a multiplicative change in the odds of exceedance relative to non‑peak hours; when exceedance is not too rare, odds ratios approximate relative risk directionally for prioritization. Practical conclusions rest on whether <strong>confidence intervals</strong> for the peak‑demand odds ratio <strong>exclude 1</strong> at the upper tail (elevated odds during peak) and on the magnitude; large multipliers matter more than p-values for sparse hourly events.</p>
+<p>The month‑adjusted model asks a narrower question: conditional on month, are peak‑load hours still more likely to coincide with exceedance? Affirmative evidence supports load‑related concentration beyond seasonal co‑movement alone.</p>
+<p>The very large odds ratio and wide confidence interval on <code>peak_demandTRUE</code> in the month‑adjusted model reflect (quasi-)complete separation in the observed data. In plain terms, within warm-season months in this sample, nearly every peak-demand hour also exceeded 85°F, which inflates the point estimate but does not change the direction of the effect (higher odds during peak hours).</p>
 </section>
 </section>
 <section id="coincidence-of-high-temperatures-with-highdemand-periods" class="level2" data-number="3.3">
@@ -751,7 +751,7 @@ Table&nbsp;3.4: Logistic regression for hourly Gulf water temperature above 85&l
 <div id="tbl-exceed-peak" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-exceed-peak-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.5: Probability of Gulf water temperature above 85&lt;U+00B0&gt;F during peak versus non-peak demand hours.
+Table&nbsp;3.5: Probability of Gulf water temperature above 85°F during peak versus non-peak demand hours.
 </figcaption>
 <div aria-describedby="tbl-exceed-peak-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -785,7 +785,7 @@ Table&nbsp;3.5: Probability of Gulf water temperature above 85&lt;U+00B0&gt;F du
 </div>
 </div>
 <p>Across the full observation window, the water temperature exceeded 85°F in 427 of the 3999 hours with both temperature and demand data. Of those exceedance hours, 45 occurred during peak‑demand hours. The resulting annualized estimate is approximately 99 hours (about 4.1 days) per year when both Gulf water exceeds 85°F and electricity demand is in the top 10%.</p>
-<p><strong>Important caveat (lower bound):</strong> the demand series ends <strong>July 1</strong>, so this coincidence calculation excludes <strong>July, August, and September entirely</strong>, the three months when <a href="#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a> shows exceedance rates of about 85% (Jul), 78% (Aug), and 25% (Sep). As a result, the annualized coincident-hours figure above should be treated as a <strong>lower bound</strong>, not a standalone planning input. For rough intuition, if June, the only full summer month with demand data, with 56% exceedance in <a href="#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a>, is at all representative of the missing July–September window, then true coincident hours could plausibly be on the order of 3–5× the reported estimate.</p>
+<p>Note that the demand series ends July 1, so this coincidence calculation excludes July, August, and September entirely, the three months when <a href="#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a> shows exceedance rates of about 85% (Jul), 78% (Aug), and 25% (Sep). As a result, the annualized coincident-hours figure above should be treated as a <strong>lower bound</strong>, not a standalone planning input. For rough intuition, if June, the only full summer month with demand data, with 56% exceedance in <a href="#tbl-monthly-water" class="quarto-xref">Table&nbsp;<span>3.1</span></a>, is at all representative of the missing July–September window, then true coincident hours could plausibly be on the order of 3–5× the reported estimate.</p>
 <p>From an operational-risk perspective, these coincident hours are the most critical: they represent times when (1) the plant’s thermal margin is constrained and (2) the grid most needs the plant’s full capacity.</p>
 </section>
 <section id="joint-distribution-visualization" class="level3" data-number="3.3.2">
@@ -833,7 +833,7 @@ Figure&nbsp;3.3: Seasonal pattern of hourly Gulf water temperature by day of yea
 <div id="tbl-season-peak" class="cell quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-tbl figure">
 <figcaption class="quarto-float-caption-top quarto-float-caption quarto-float-tbl" id="tbl-season-peak-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Table&nbsp;3.6: Probability of water temperature above 85&lt;U+00B0&gt;F by season and peak-demand status.
+Table&nbsp;3.6: Probability of water temperature above 85°F by season and peak-demand status.
 </figcaption>
 <div aria-describedby="tbl-season-peak-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
@@ -884,7 +884,7 @@ Table&nbsp;3.6: Probability of water temperature above 85&lt;U+00B0&gt;F by seas
 </figure>
 </div>
 </div>
-<p>Seasonal subgroup analyses (<a href="#tbl-season-peak" class="quarto-xref">Table&nbsp;<span>3.6</span></a>) show that exceedances are almost entirely a summer and early‑fall phenomenon, with negligible risk in winter and spring. Within summer, exceedance during peak‑demand hours can exceed non‑peak hours, consistent with <strong>effect modification</strong> by both season and load level.</p>
+<p>Seasonal subgroup analyses (<a href="#tbl-season-peak" class="quarto-xref">Table&nbsp;<span>3.6</span></a>) show that exceedances are almost entirely a summer and early‑fall phenomenon, with negligible risk in winter and spring. Within summer, exceedance during peak‑demand hours can exceed non‑peak hours, consistent with effect modification by both season and load level.</p>
 </section>
 <section id="sensitivity-to-peakdemand-definition" class="level3" data-number="3.4.3">
 <h3 data-number="3.4.3" class="anchored" data-anchor-id="sensitivity-to-peakdemand-definition"><span class="header-section-number">3.4.3</span> Sensitivity to peak‑demand definition</h3>
